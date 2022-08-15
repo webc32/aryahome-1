@@ -1,0 +1,8 @@
+﻿.version_site_color {
+    color: red;
+    padding:  5px;
+    margin-top: 5px;
+    display: block;
+    max-height: none;
+    width: max-content;
+}

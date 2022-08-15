@@ -1,0 +1,20 @@
+.bottom_nav .more_text_ajax{
+    border: 2px solid!important;
+    font-weight: bold!important;
+}
+
+
+
+.bottom_nav .ajax_load_btn{
+    background:unset!important;
+    border:0px!important;
+    margin-top: 15px!important;
+}
+
+@media(max-width: 992px){
+    .bottom_nav .more_text_ajax {
+        background-color: var(--theme-base-color) !important;
+        border-color: var(--theme-base-color) !important;
+        color:#fff!important;
+    }
+}

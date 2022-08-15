@@ -1,0 +1,3 @@
+<?php
+
+$MESS['YANDEX_MARKET_EXPORT_XML_TAG_PRICE_SETTINGS_USER_GROUP'] = 'Группа пользователей';

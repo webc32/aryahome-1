@@ -1,0 +1,31 @@
+body {font-family: system,-apple-system,BlinkMacSystemFont,'Segoe UI','Segoe WP',Roboto,Ubuntu,Oxygen,Cantarell,'Fira Sans','Helvetica Neue',Helvetica,'Lucida Grande','Droid Sans',Tahoma,'Microsoft Sans Serif',sans-serif !important;}
+.bx-composite-banner{opacity: 0}
+.bx-soa-cart-total .discount .bx-soa-cart-d {text-decoration: none !important;}
+.bx-soa-cart-total .bx-price-old {text-decoration: line-through;}
+.arya-with-us {color: #EB4E4E;}
+.small-title {
+    color: #060607;
+    font-size: 17px;}
+.phoneNumber{
+	display: contents;
+}
+.c-flex{
+	align-items: center;
+}
+.wide.d-flex.flex-wrap.mx-auto .list-style-none li a{
+	color:black;
+	font-size: 15px;
+}
+.service .row ul li a:hover{
+	text-decoration: none;
+	color: #D0A550 !important;
+}
+.col-12.col-md-4.d-flex.justify-content-center.justify-content-md-end.order-md-1 a{
+	color:black;
+}
+.col-12.col-md-4.d-flex.justify-content-center.justify-content-md-end.order-md-1:hover a{
+	text-decoration: none;
+}
+.mgo-mcw-widget_mobile-view{
+    bottom: calc(var(--mobile-multiply, 1) * 80px);
+}

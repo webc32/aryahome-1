@@ -1,0 +1,36 @@
+/* sale.element
+====================*/
+.catalog .sale.element .note{
+	font-size: 14px;
+	line-height: 24px;}
+.catalog .sale.element .name h1,
+.catalog .sale.element .name{
+	font-size: 36px;
+	line-height: 41px;}
+.catalog .sale.element .description{
+	font-size: 20px;}
+.catalog .sale.element .left{font-size: 16px;}
+
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	/* sale.element
+	====================*/
+	.catalog .sale.element .name h1,
+	.catalog .sale.element .name{
+		font-size: 23px;
+		line-height: 23px;}
+	.catalog .sale.element .description{
+		font-size: 18px;
+		line-height: 23px;}
+	.catalog .sale.element .more{
+		font-size: 13px;
+		line-height: 23px;}
+	.catalog .sale.element .left{
+		font-size: 12px;
+		line-height: 20px;}
+	.catalog .sale.element .note{font-size: 12px;}
+	.catalog .sale.element .number{
+		font-size: 32px;
+		line-height: 20px;}
+}

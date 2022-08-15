@@ -1,0 +1,9 @@
+/* Menu point*/
+ul.menu-point {
+	margin-bottom:8px;
+	position: relative;
+}
+ul.menu-point li {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
