@@ -1080,4 +1080,5 @@ function GetQuantityArrayToString(
 				$USER->Authorize('1');
 			}
 		}
+		
 ?>
