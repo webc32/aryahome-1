@@ -50,7 +50,7 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 <!-- /Yandex.Metrika counter -->
 </head>
 <?
-$git = 'git';
+$git = 'git ';
 ?>
 <?$bIndexBot = CMax::checkIndexBot();?>
 <body class="<?=($bIndexBot ? "wbot" : "");?> site_<?=SITE_ID?> <?=($bIncludedModule ? CMax::getCurrentBodyClass() : '')?>" id="main" data-site="<?=SITE_DIR?>">
