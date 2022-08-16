@@ -49,7 +49,9 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 <noscript><div><img src="https://mc.yandex.ru/watch/28747751" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 </head>
-
+<?
+$git = 'git';
+?>
 <?$bIndexBot = CMax::checkIndexBot();?>
 <body class="<?=($bIndexBot ? "wbot" : "");?> site_<?=SITE_ID?> <?=($bIncludedModule ? CMax::getCurrentBodyClass() : '')?>" id="main" data-site="<?=SITE_DIR?>">
 	<!-- Google Tag Manager (noscript) -->
