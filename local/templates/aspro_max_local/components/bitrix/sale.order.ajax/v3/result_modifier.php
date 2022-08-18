@@ -71,3 +71,16 @@ $arResult['JS_DATA']['TOTAL']['DISCOUNT_PRICE_FORMATED'] =  CurrencyFormat($arRe
 
 
 //this.CUSTOM_ECONOMY_VAL = this.result.TOTAL.DISCOUNT_PRICE, this.CUSTOM_ECONOMY_VAL_FORMATED = this.result.TOTAL.DISCOUNT_PRICE_FORMATED,
+$highblock_id = 6;
+$hl_block = HLBT::getById($highblock_id)->fetch();
+
+// Получение имени класса
+$entity = HLBT::compileEntity($hl_block);
+$entity_data_class = $entity->getDataClass();
+
+// Вывод элементов Highload-блока
+$rs_data = $entity_data_class::getList(array(
+    'select' => array('*')
+));
+$orderText = $rs_data->fetch();
+$arResult['ORDER_PAY_TEXT'] = $orderText;

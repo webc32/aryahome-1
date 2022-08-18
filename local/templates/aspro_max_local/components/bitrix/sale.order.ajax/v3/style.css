@@ -3728,3 +3728,34 @@ label[data-bx-user-consent] input{
   display: flex;
   width: 100%;
 }
+
+.pay-info.bx-soa-section-title-container{
+  padding-top: 10px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  padding-right: 53px;
+}
+.pay-info.bx-soa-section-title-container .first, .pay-info.bx-soa-section-title-container .second{
+  margin-bottom: 0px;
+  margin-top: unset;
+  font-weight: bold;
+}
+.pay-info.bx-soa-section-title-container .second{
+  font-size: 13px;
+}
+@media(max-width: 1100px){
+  .pay-info.bx-soa-section-title-container{
+    position: static;
+    text-align: left;
+  }
+  .pay-info.bx-soa-section-title-container .first, .pay-info.bx-soa-section-title-container .second{
+    padding-left: 35px;
+  }
+}
+@media(max-width: 768px){
+  .pay-info.bx-soa-section-title-container .first, .pay-info.bx-soa-section-title-container .second{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

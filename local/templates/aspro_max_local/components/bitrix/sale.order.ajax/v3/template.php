@@ -424,6 +424,18 @@ else
 									<h2 class="bx-soa-section-title"><?=$arParams['MESS_PAYMENT_BLOCK_NAME']?></h2>
 									<div class="change-info btn btn-transparent-border-color"><?=Loc::getMessage('TITLE_SOA_CHANGE_INFO_SECTION')?></div>
 								</div>
+								<span class="pay-info bx-soa-section-title-container">
+									<?if($arResult['ORDER_PAY_TEXT']["UF_MAIN"]):?>
+										<p class="first">
+											<?=$arResult['ORDER_PAY_TEXT']["UF_MAIN"]?>
+										</p>
+									<?endif;?>
+									<?if($arResult['ORDER_PAY_TEXT']["UF_SECOND"]):?>
+										<p class="second">
+											<?=$arResult['ORDER_PAY_TEXT']["UF_SECOND"]?>
+										</p>
+									<?endif;?>
+								</span>
 								<div class="bx-soa-section-content container-fluid"></div>
 								<div class="bx-compact-wrapper"></div>
 							</div>
