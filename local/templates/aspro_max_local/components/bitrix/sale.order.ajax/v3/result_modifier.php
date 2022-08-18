@@ -6,6 +6,9 @@
  * @var SaleOrderAjax $component
  */
 
+use Bitrix\Highloadblock\HighloadBlockTable as HLBT;
+CModule::IncludeModule('highloadblock');
+
 $component = $this->__component;
 $component::scaleImages($arResult['JS_DATA'], $arParams['SERVICES_IMAGES_SCALING']);
 
