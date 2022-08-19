@@ -1,6 +1,13 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?$this->setFrameMode(true);?>
 <?use \Bitrix\Main\Web\Json;?>
+<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+<?
+echo '<pre>';
+var_dump('test1');
+echo '<pre>';
+?>
+<?endif;?>
 <?if($arResult["ITEMS"]){?>
 	<?
 	$currencyList = '';
@@ -274,6 +281,14 @@
 													<?if($arCurrentSKU['ITEM_PRICE_MODE'] == 'Q' && count($arCurrentSKU['PRICE_MATRIX']['ROWS']) > 1):?>
 														<?=CMax::showPriceRangeTop($arCurrentSKU, $arParams, GetMessage("CATALOG_ECONOMY"));?>
 													<?endif;?>
+													<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+													<?
+													echo '<pre>';
+													var_dump('test2');
+													echo '<pre>';
+													die();
+													?>
+													<?endif;?>
 													<?=CMax::showPriceMatrix($arCurrentSKU, $arParams, $strMeasure, $arAddToBasketData);?>
 													<?$arMatrixKey = array_keys($arCurrentSKU['PRICE_MATRIX']['MATRIX']);
 													$min_price_id=current($arMatrixKey);?>
@@ -296,6 +311,14 @@
 										{?>
 											<?if($arItem['ITEM_PRICE_MODE'] == 'Q' && count($arItem['PRICE_MATRIX']['ROWS']) > 1):?>
 												<?=CMax::showPriceRangeTop($arItem, $arParams, GetMessage("CATALOG_ECONOMY"));?>
+											<?endif;?>
+											<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+											<?
+											echo '<pre>';
+											var_dump('test3');
+											echo '<pre>';
+											die();
+											?>
 											<?endif;?>
 											<?=CMax::showPriceMatrix($arItem, $arParams, $strMeasure, $arAddToBasketData);?>
 											<?$arMatrixKey = array_keys($arItem['PRICE_MATRIX']['MATRIX']);
