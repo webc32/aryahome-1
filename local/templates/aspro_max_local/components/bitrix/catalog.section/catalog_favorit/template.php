@@ -272,22 +272,29 @@ echo '<pre>';
 										</div>
 										<div class="js_price_wrapper">
 											<?if($arCurrentSKU){?>
+												<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+												<?
+												echo '<pre>';
+												var_dump('arCurrentSKU');
+												echo '<pre>';
+												?>
+												<?endif;?>
 												<?
 												$item_id = $arCurrentSKU["ID"];
 												$arCurrentSKU['PRICE_MATRIX'] = $arCurrentSKU['PRICE_MATRIX_RAW'];
 												$arCurrentSKU['CATALOG_MEASURE_NAME'] = $arCurrentSKU['MEASURE'];
 												if(isset($arCurrentSKU['PRICE_MATRIX']) && $arCurrentSKU['PRICE_MATRIX']) // USE_PRICE_COUNT
 												{?>
+													<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+														<?
+														echo '<pre>';
+														var_dump('PRICE_MATRIX');
+														echo '<pre>';
+														die();
+														?>
+													<?endif;?>
 													<?if($arCurrentSKU['ITEM_PRICE_MODE'] == 'Q' && count($arCurrentSKU['PRICE_MATRIX']['ROWS']) > 1):?>
 														<?=CMax::showPriceRangeTop($arCurrentSKU, $arParams, GetMessage("CATALOG_ECONOMY"));?>
-													<?endif;?>
-													<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
-													<?
-													echo '<pre>';
-													var_dump('test2');
-													echo '<pre>';
-													die();
-													?>
 													<?endif;?>
 													<?=CMax::showPriceMatrix($arCurrentSKU, $arParams, $strMeasure, $arAddToBasketData);?>
 													<?$arMatrixKey = array_keys($arCurrentSKU['PRICE_MATRIX']['MATRIX']);
@@ -296,30 +303,53 @@ echo '<pre>';
 												}
 												else
 												{
+													if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+														<?
+														echo '<pre>';
+														var_dump('NOT_PRICE_MATRIX');
+														echo '<pre>';
+														die();
+														?>
+													<?endif;
 													$arCountPricesCanAccess = 0;
 													$min_price_id=0;?>
 													<?\Aspro\Functions\CAsproMaxItem::showItemPrices($arParams, $arCurrentSKU["PRICES"], $strMeasure, $min_price_id, ($arParams["SHOW_DISCOUNT_PERCENT_NUMBER"] == "Y" ? "N" : "Y"));?>
 												<?}?>
 											<?}else{?>
+												<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+												<?
+												echo '<pre>';
+												var_dump('NOTarCurrentSKU');
+												echo '<pre>';
+												die();
+												?>
+												<?endif;?>
 													<?\Aspro\Functions\CAsproMaxSku::showItemPrices($arParams, $arItem, $item_id, $min_price_id, array(), ($arParams["SHOW_DISCOUNT_PERCENT_NUMBER"] == "Y" ? "N" : "Y"));?>
 											<?}?>
 										</div>
 									<?}else{?>
+										<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+										<?
+										echo '<pre>';
+										var_dump('NOToffers');
+										echo '<pre>';
+										?>
+										<?endif;?>
 										<?
 										$item_id = $arItem["ID"];
 										if(isset($arItem['PRICE_MATRIX']) && $arItem['PRICE_MATRIX']) // USE_PRICE_COUNT
 										{?>
-											<?if($arItem['ITEM_PRICE_MODE'] == 'Q' && count($arItem['PRICE_MATRIX']['ROWS']) > 1):?>
-												<?=CMax::showPriceRangeTop($arItem, $arParams, GetMessage("CATALOG_ECONOMY"));?>
-											<?endif;?>
 											<?if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
 											<?
 											echo '<pre>';
-											var_dump('test3');
+											var_dump('PRICE_MATRIX');
 											echo '<pre>';
-											die();
 											?>
 											<?endif;?>
+											<?if($arItem['ITEM_PRICE_MODE'] == 'Q' && count($arItem['PRICE_MATRIX']['ROWS']) > 1):?>
+												<?=CMax::showPriceRangeTop($arItem, $arParams, GetMessage("CATALOG_ECONOMY"));?>
+											<?endif;?>
+
 											<?=CMax::showPriceMatrix($arItem, $arParams, $strMeasure, $arAddToBasketData);?>
 											<?$arMatrixKey = array_keys($arItem['PRICE_MATRIX']['MATRIX']);
 											$min_price_id=current($arMatrixKey);?>
@@ -327,6 +357,14 @@ echo '<pre>';
 										}
 										elseif(isset($arItem["MIN_PRICE"]))
 										{
+											if($_SERVER["REMOTE_ADDR"] == "37.112.57.231"):?>
+												<?
+												echo '<pre>';
+												var_dump('MIN_PRICE');
+												echo '<pre>';
+												die();
+												?>
+												<?endif;
 											$arCountPricesCanAccess = 0;
 											$min_price_id=0;?>
 											<?\Aspro\Functions\CAsproMaxItem::showItemPrices($arParams, $arItem["PRICES"], $strMeasure, $min_price_id, ($arParams["SHOW_DISCOUNT_PERCENT_NUMBER"] == "Y" ? "N" : "Y"));?>
