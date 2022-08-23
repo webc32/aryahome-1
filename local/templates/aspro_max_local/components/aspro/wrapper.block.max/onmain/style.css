@@ -128,9 +128,6 @@
   height: 100%;
   display: block;
 }
-.catalog_favorit .hot-wrapper-items .image .thumb{
-  display: none;
-}
 .hot-wrapper-items .counter_wrapp{
   padding: 0;
 }
@@ -206,6 +203,9 @@
   .hot-wrapper-items .image a{
     position: relative;
     min-height: 334px;
+  }
+  .catalog_favorit .hot-wrapper-items .image .thumb{
+    display: none;
   }
   /*new mobile*/
   .hot-wrapper-items .items.mobile-overflow .flexslider,
