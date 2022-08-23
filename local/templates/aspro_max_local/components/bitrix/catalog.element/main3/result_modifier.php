@@ -1420,8 +1420,8 @@ if($arResult["SECTION"])
 			$tableSizes = $arType['XML_ID'];
 		if($tableSizes)
 		{
-			$arResult["SIZE_PATH"] = SITE_DIR."/include/table_sizes/detail_".strtolower($tableSizes).".php";
-			$arResult["SIZE_PATH"] = str_replace("//", "/", $arResult["SIZE_PATH"]);
+			//$arResult["SIZE_PATH"] = SITE_DIR."/include/table_sizes/detail_".strtolower($tableSizes).".php";
+			//$arResult["SIZE_PATH"] = str_replace("//", "/", $arResult["SIZE_PATH"]);
 		}
 	}
 }
