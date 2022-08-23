@@ -772,3 +772,8 @@ div[data-property-id-row="105"]{
 .show_more_stores{
     margin-top: 20px;
 }
+@media(max-width: 600px;){
+.catalog_favorit .hot-wrapper-items .image .thumb{
+    display: none;
+}
+}
