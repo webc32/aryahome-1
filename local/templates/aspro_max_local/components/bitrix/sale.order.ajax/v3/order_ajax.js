@@ -2726,10 +2726,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             if (!this.result.DELIVERY)
                 return;
-
-            if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
-                $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
-            }
             
             var deliveryInfoContainer = BX.create('DIV', {props: {className: 'col-sm-5 bx-soa-pp-desc-container'}})
 
