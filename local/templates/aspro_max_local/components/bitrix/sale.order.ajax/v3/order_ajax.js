@@ -2,12 +2,9 @@ BX.ready(function(){
     //Автозаполнение полного адреса
     
     //Автозаполнения выбора ПВЗ
-    boxberry_map.onclick = function() {
-        Console.log('Спасибо');
-         if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
-            $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
-        }   
-    };
+    $( "#pvz_link" ).change(function() {
+         Console.log('Спасибо');
+    });
 
 })
 
