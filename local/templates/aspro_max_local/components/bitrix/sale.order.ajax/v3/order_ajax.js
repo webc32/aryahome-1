@@ -1,8 +1,8 @@
 BX.ready(function(){
-	//Автозаполнение полного адреса
+    //Автозаполнение полного адреса
     
     //Автозаполнения выбора ПВЗ
-    var clickHandler = BX.bindDelegate(document.body, 'bxchange', {id: 'soa-property-1'}, function()
+    var clickHandler = BX.bindDelegate(document.body, 'bxchange', {id: 'pvz_link'}, function()
     {
         $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
     });
