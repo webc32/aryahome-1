@@ -2,12 +2,13 @@ BX.ready(function(){
     //Автозаполнение полного адреса
     
     //Автозаполнения выбора ПВЗ
-    var clickHandler = BX.bindDelegate(document.body, 'bxchange', {id: 'bx-soa-delivery'}, function()
-    {
-        if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
+    boxberry_map.onclick = function() {
+        Console.log('Спасибо');
+         if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
             $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
         }   
-    });
+    };
+
 })
 
 
