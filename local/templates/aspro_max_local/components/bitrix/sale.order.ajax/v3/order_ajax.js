@@ -1,14 +1,3 @@
-BX.ready(function(){
-    //Автозаполнение полного адреса
-    
-    //Автозаполнения выбора ПВЗ
-    $( "#pvz_link" ).change(function() {
-         Console.log('Спасибо');
-    });
-
-})
-
-
 BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
     "use strict";
     BX.Sale && BX.Sale.Input && BX.Sale.Input.Utils && (BX.Sale.Input.Utils.asMultiple = function (value) {
