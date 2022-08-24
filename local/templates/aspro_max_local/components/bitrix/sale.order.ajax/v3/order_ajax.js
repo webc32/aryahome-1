@@ -4,7 +4,9 @@ BX.ready(function(){
     //Автозаполнения выбора ПВЗ
     var clickHandler = BX.bindDelegate(document.body, 'bxchange', {id: 'pvz_link'}, function()
     {
-        $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
+        if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
+            $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
+        }   
     });
 })
 
