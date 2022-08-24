@@ -1,3 +1,14 @@
+BX.ready(function(){
+	//Автозаполнение полного адреса
+    
+    //Автозаполнения выбора ПВЗ
+    var clickHandler = BX.bindDelegate(document.body, 'bxchange', {id: 'soa-property-1'}, function()
+    {
+        $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
+    });
+})
+
+
 BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
     "use strict";
     BX.Sale && BX.Sale.Input && BX.Sale.Input.Utils && (BX.Sale.Input.Utils.asMultiple = function (value) {
