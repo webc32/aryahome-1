@@ -31,7 +31,7 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 		CMax::Start(SITE_ID);?>
 	<?include_once(str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'].'/'.SITE_DIR.'include/header_include/head.php'));?>
 
-	<!-- <script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script> -->
+	<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
