@@ -772,3 +772,6 @@ div[data-property-id-row="105"]{
 .show_more_stores{
     margin-top: 20px;
 }
+.catalog_favorit .price_matrix_block .price_name{
+    display: none;
+}
