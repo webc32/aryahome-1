@@ -934,7 +934,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 								<div class="shadowed-block">
 									<?if($bComplect):?>
 										<div class="complect_prices_block">
-											<div class="cost prices detail prices_block">
+											<div class="cost prices detail 1 prices_block">
 												<div class="prices-wrapper">
 													<div class="price font-bold font_mxs">
 														<div class="price_value_block values_wrapper">
@@ -1016,7 +1016,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 											</div>
 											<?/*END цвета и размеры*/?>
 
-											<div class="cost prices detail">
+											<div class="cost prices detail 2">
 												<?if($arResult["OFFERS"]):?>
 
 													<?=\Aspro\Functions\CAsproMaxItem::showItemPricesDefault($arParams);?>
