@@ -306,7 +306,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 			</div>
 		</div>
 		<div class="fastview-product__info item_info">
-			<div class="form_head">
+			<div class="form_head 2">
 				<h2><a href="<?=$arResult['DETAIL_PAGE_URL'];?>" class="dark_link fast-view-title"><?=$elementName;?></a></h2>
 
 				<div class="flexbox flexbox--row align-items-center justify-content-between flex-wrap">
