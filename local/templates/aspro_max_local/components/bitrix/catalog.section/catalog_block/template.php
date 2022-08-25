@@ -417,7 +417,7 @@ use \Bitrix\Main\Localization\Loc,
 										<? else : ?>
 											<? //showPriceMatrixCustom($arItem, $arParams, $strMeasure,$min_price, $arAddToBasketData);
 											?>
-											<?= CMax::showPriceMatrix($arItem, $arParams, $strMeasure, $arAddToBasketData); ?>
+											<?= showPriceMatrixCustom2($arItem, $arParams, $strMeasure, $arAddToBasketData); ?>
 										<? endif; ?>
 									<? endif; ?>
 								<? elseif (isset($arResult["PRICES"])) : ?>
