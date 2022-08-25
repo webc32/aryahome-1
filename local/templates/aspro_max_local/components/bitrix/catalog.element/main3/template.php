@@ -1064,7 +1064,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 <!--                                                            --><?//endif;?>
 															<?//CMax::showPriceMatrix($arResult, $arParams, $strMeasure, $arAddToBasketData);?>
 
-                                                        <?if (count($arResult['PRICE_MATRIX']['CAN_BUY']) == 2 && in_array('7',$arResult['PRICE_MATRIX']['CAN_BUY']) && in_array('8',$arResult['PRICE_MATRIX']['CAN_BUY'])):?>
+                                                        <?if (count($arResult['PRICE_MATRIX']['CAN_BUY']) == 2 && in_array('6',$arResult['PRICE_MATRIX']['CAN_BUY']) && in_array('7',$arResult['PRICE_MATRIX']['CAN_BUY']) && in_array('8',$arResult['PRICE_MATRIX']['CAN_BUY'])):?>
                                                                 <?=showPriceMatrixCustom2($arResult, $arParams, $strMeasure, $arAddToBasketData);?>
                                                             <?else:?>
                                                                 <?=CMax::showPriceMatrix($arResult, $arParams, $strMeasure, $arAddToBasketData);?>
