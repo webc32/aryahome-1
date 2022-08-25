@@ -32,6 +32,23 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 	<?include_once(str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'].'/'.SITE_DIR.'include/header_include/head.php'));?>
 
 	<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>
+	<script type="text/javascript">
+	       var rrPartnerId = "62ea871c30566cc417b7e082";       
+	       var rrApi = {}; 
+	       var rrApiOnReady = rrApiOnReady || [];
+	       rrApi.addToBasket = rrApi.order = rrApi.categoryView = rrApi.view = 
+		   rrApi.recomMouseDown = rrApi.recomAddToCart = function() {};
+	       (function(d) {
+		   var ref = d.getElementsByTagName('script')[0];
+		   var apiJs, apiJsId = 'rrApi-jssdk';
+		   if (d.getElementById(apiJsId)) return;
+		   apiJs = d.createElement('script');
+		   apiJs.id = apiJsId;
+		   apiJs.async = true;
+		   apiJs.src = "//cdn.retailrocket.ru/content/javascript/tracking.js";
+		   ref.parentNode.insertBefore(apiJs, ref);
+	       }(document));
+	</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
