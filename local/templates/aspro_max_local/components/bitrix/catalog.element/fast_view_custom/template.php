@@ -215,6 +215,12 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 	<script type="text/javascript">
 	setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, false)?>);
 	</script>
+	
+	<script type="text/javascript">
+	    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+		try{ rrApi.view("<?=$arResult["ID"]?>"); } catch(e) {}
+	    })
+	</script>
 
 	<div class="fastview-product flexbox flexbox--row <?=(!$showCustomOffer ? "noffer" : "");?> <?=($arParams["SHOW_UNABLE_SKU_PROPS"] != "N" ? "show_un_props" : "unshow_un_props");?>" id="<?=$arItemIDs["strMainID"];?>">
 		<div class="fastview-product__image fastview-product__image_custom">
@@ -306,7 +312,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 			</div>
 		</div>
 		<div class="fastview-product__info item_info">
-			<div class="form_head 2">
+			<div class="form_head">
 				<h2><a href="<?=$arResult['DETAIL_PAGE_URL'];?>" class="dark_link fast-view-title"><?=$elementName;?></a></h2>
 
 				<div class="flexbox flexbox--row align-items-center justify-content-between flex-wrap">
