@@ -2368,7 +2368,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 var curDeliveryName = this.getSelectedDelivery()['NAME'];
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
-                    console.log(this.deliveryPropsArray);
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
@@ -3732,6 +3731,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
                 }
             }
+
+
+            console.log(this.deliveryPropsArray);
 
             propsNode.appendChild(propsItemsContainer);
 
