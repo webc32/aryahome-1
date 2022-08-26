@@ -1888,7 +1888,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     while (property = propsIterator())
                     {
                         if(property.getId() == '53'){
-                            this.deliveryPropsArray.push(property);
+                            //this.deliveryPropsArray.push(property);
                         }
                     }
                 }
