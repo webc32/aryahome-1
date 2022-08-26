@@ -1887,7 +1887,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     propsIterator =  group.getIterator();
                     while (property = propsIterator())
                     {
-                        if(property.getId() == '56'){
+                        if(property.getId() == '53'){
                             this.deliveryPropsArray.push(property);
                         }
                     }
@@ -3711,7 +3711,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if (!propsItemsContainer)
                 propsItemsContainer = this.propsBlockNode.querySelector('.col-sm-12.bx-soa-customer');
 
-            var zip = false;
             while (group = groupIterator())
             {
                 propsIterator =  group.getIterator();
@@ -3730,29 +3729,12 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }else{
                         //записал в массив и выкидываю дальше по коду
                         if(property.getId() == 53){
-                            zip = true;
-                        }
-                        
-                        this.deliveryPropsArray.push(property);
-                    }
-                }
-            }
-            if(zip){
-                for (var i in this.deliveryPropsArray){
-                    //console.log(this.deliveryPropsArray[i].getId());
-                    if(this.deliveryPropsArray[i].getId() == 53){
-                        var newzip = this.deliveryPropsArray[i];
-                        delete this.deliveryPropsArray[i];
-                        this.deliveryPropsArray.push(newzip);
-                    }
-                }
-                this.deliveryPropsArray = this.deliveryPropsArray.filter(function (el) {
-                    return (el != null && el != "" || el === 0);
-                });
-            }
 
-            for (var i in this.deliveryPropsArray){
-                //console.log(this.deliveryPropsArray[i].getId());
+                        }else{
+                            this.deliveryPropsArray.push(property);
+                        }
+                    }
+                }
             }
 
             propsNode.appendChild(propsItemsContainer);
