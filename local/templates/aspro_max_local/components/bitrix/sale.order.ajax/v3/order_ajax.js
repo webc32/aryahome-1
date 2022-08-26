@@ -2794,7 +2794,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }
             
             var arThisDate = new Date();
-            console.log(numDeliveryDate);
             var arDateDelivery = new Date(arThisDate.getTime() + (numDeliveryDate * 3600 * 24 * 1000));
 
             var dd = arDateDelivery.getDate(); 
