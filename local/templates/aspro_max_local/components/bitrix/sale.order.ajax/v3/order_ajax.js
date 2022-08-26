@@ -3711,7 +3711,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if (!propsItemsContainer)
                 propsItemsContainer = this.propsBlockNode.querySelector('.col-sm-12.bx-soa-customer');
 
-            zip = false;
+            var zip = false;
             while (group = groupIterator())
             {
                 propsIterator =  group.getIterator();
