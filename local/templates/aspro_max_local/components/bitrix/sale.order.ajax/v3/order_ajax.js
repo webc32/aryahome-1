@@ -2368,6 +2368,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 var curDeliveryName = this.getSelectedDelivery()['NAME'];
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
+
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
@@ -2375,7 +2376,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
                 }
 
-                
+
 
                 this.getBlockFooter(deliveryContent);
             }
@@ -2462,7 +2463,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101' || property.getId()=='53' ) {
+                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='53' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
 
                         this.getPropertyRowNode(property, deliveryItemsContainer, false);
                         deliveryNode.appendChild(deliveryItemsContainer);
@@ -2794,6 +2795,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }
             
             var arThisDate = new Date();
+            console.log(numDeliveryDate);
             var arDateDelivery = new Date(arThisDate.getTime() + (numDeliveryDate * 3600 * 24 * 1000));
 
             var dd = arDateDelivery.getDate(); 
@@ -3709,6 +3711,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             if (!propsItemsContainer)
                 propsItemsContainer = this.propsBlockNode.querySelector('.col-sm-12.bx-soa-customer');
+
             while (group = groupIterator())
             {
                 propsIterator =  group.getIterator();
@@ -3721,7 +3724,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     )
                         continue;
 
-                    if(property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82 && property.getId() != 53){// && property.getId() != 26 && property.getId() != 22
+                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
                         //оставляю как и было
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
@@ -3792,7 +3795,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if(property.getId() == 102 || property.getId() == 103){//property.getId() == 48 || property.getId() == 47 ||
                     BX.addClass(propsItemNode, "col-md-3");
                     propsItemNode.setAttribute("onclick","changeFIO();");
-                }else if(property.getId() == 95 || property.getId() == 96 || property.getId() == 83 || property.getId() == 81 || property.getId() == 82 || property.getId() == 53 ){//property.getId() == 26 ||
+                }else if(property.getId() == 95 || property.getId() == 53 || property.getId() == 96 || property.getId() == 83 || property.getId() == 81 || property.getId() == 82){//property.getId() == 26 ||
                     BX.addClass(propsItemNode, "col-sm-2");
                 }else if(property.getId() == 51 || property.getId() == 52){
                     BX.addClass(propsItemNode, "col-sm-3");
