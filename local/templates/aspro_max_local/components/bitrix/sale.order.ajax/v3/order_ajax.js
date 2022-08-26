@@ -2368,8 +2368,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 var curDeliveryName = this.getSelectedDelivery()['NAME'];
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
-
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
+                        console.log(this.deliveryPropsArray[i].getId());
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
                         }
@@ -2795,7 +2795,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }
             
             var arThisDate = new Date();
-            console.log(numDeliveryDate);
             var arDateDelivery = new Date(arThisDate.getTime() + (numDeliveryDate * 3600 * 24 * 1000));
 
             var dd = arDateDelivery.getDate(); 
@@ -3717,7 +3716,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    //console.log(property.getId());
+                    
                     if (
                         this.deliveryLocationInfo.loc == property.getId()
                         || this.deliveryLocationInfo.city == property.getId()
@@ -3776,6 +3775,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             //         this.insertNumberProperty(property, propsItemNode, disabled)
             // }
             // propsItemsContainer.appendChild(propsItemNode)
+
 
             var propsItemNode = BX.create('DIV'),
                 textHtml = '',
