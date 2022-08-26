@@ -3740,12 +3740,15 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if(zip){
                 for (var i in this.deliveryPropsArray){
                     console.log(this.deliveryPropsArray[i]);
-                    // if(this.deliveryPropsArray[i].getId() == 53){
-                    //     var newzip = this.deliveryPropsArray[i];
-                    //     delete this.deliveryPropsArray[i];
-                    //     this.deliveryPropsArray.push(newzip);
-                    // }
+                    if(this.deliveryPropsArray[i].getId() == 53){
+                        var newzip = this.deliveryPropsArray[i];
+                        delete this.deliveryPropsArray[i];
+                        this.deliveryPropsArray.push(newzip);
+                    }
                 }
+                this.deliveryPropsArray = this.deliveryPropsArray.filter(function (el) {
+                    return (el != null && el != "" || el === 0);
+                });
             }
 
             propsNode.appendChild(propsItemsContainer);
