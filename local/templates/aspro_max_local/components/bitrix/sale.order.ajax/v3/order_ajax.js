@@ -3728,7 +3728,11 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
                         //записал в массив и выкидываю дальше по коду
-                        this.deliveryPropsArray.push(property);
+                        if(property.getId() == 53){
+
+                        }else{
+                            this.deliveryPropsArray.push(property);
+                        }
                     }
                 }
             }
