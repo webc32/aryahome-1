@@ -1887,8 +1887,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     propsIterator =  group.getIterator();
                     while (property = propsIterator())
                     {
-                        if(property.getId() == '53'){
-                            //this.deliveryPropsArray.push(property);
+                        if(property.getId() == '56'){
+                            this.deliveryPropsArray.push(property);
                         }
                     }
                 }
