@@ -2726,8 +2726,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             if (!this.result.DELIVERY)
                 return;
-
-
+            
             var deliveryInfoContainer = BX.create('DIV', {props: {className: 'col-sm-5 bx-soa-pp-desc-container'}})
 
             BX.cleanNode(deliveryInfoContainer);
