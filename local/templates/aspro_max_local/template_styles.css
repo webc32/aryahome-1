@@ -7869,7 +7869,7 @@ body .catalog_item.hover .footer_button {
   float: left;
 }
 .stickers [class*="sticker_"] {
-  background-color: #60c339;
+  background-color: #d0a550;
   width: auto;
   letter-spacing: 0.5px;
   position: relative;
@@ -7909,8 +7909,8 @@ body .catalog_item.hover .footer_button {
 }
 .stickers .sticker_stock,
 .stickers .sticker_aktsiya {
-  background-color: #ffd83a;
-  color: #333;
+  background-color: black;
+  color: white;
 }
 .stickers .sticker_recommend,
 .stickers .sticker_sovetuem {
