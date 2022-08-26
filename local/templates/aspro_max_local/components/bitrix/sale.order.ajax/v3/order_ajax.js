@@ -3732,18 +3732,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         if(property.getId() == 53){
                             zip = true;
                         }
-                        console.log(property.getId());
+                        
                         this.deliveryPropsArray.push(property);
                     }
                 }
             }
-            // if(zip){
-            //     for (var i in this.deliveryPropsArray){
-            //         if(this.deliveryPropsArray[i].getId() == 53){
-
-            //         }
-            //     }
-            // }
+            if(zip){
+                for (var i in this.deliveryPropsArray){
+                    if(this.deliveryPropsArray[i].getId() == 53){
+                        var newzip = this.deliveryPropsArray[i];
+                        delete this.deliveryPropsArray[i];
+                        this.deliveryPropsArray.push(newzip);
+                    }
+                }
+            }
 
             propsNode.appendChild(propsItemsContainer);
 
