@@ -2369,12 +2369,24 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
-                        console.log(this.deliveryPropsArray[i].getId());
+                        if(i == 1 && this.deliveryPropsArray[i].getId() == 53){
+                            delete this.deliveryPropsArray[i];
+                        }
+                    }
+
+                    this.deliveryPropsArray = this.deliveryPropsArray.filter(function (el) {
+                        return (el != null && el != "" || el === 0);
+                    });
+
+
+
+                    for(var i = 1;i<this.deliveryPropsArray.length;i++){
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
                         }
                     }
                 }
+
 
 
 
