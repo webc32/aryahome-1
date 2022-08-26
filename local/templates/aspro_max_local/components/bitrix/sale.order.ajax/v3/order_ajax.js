@@ -3728,9 +3728,16 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
                         //записал в массив и выкидываю дальше по коду
-                        this.deliveryPropsArray.push(property);
+                        if(property.getId() == 53){
+                            var zip = property;
+                        }else{
+                            this.deliveryPropsArray.push(property);
+                        }
                     }
                 }
+            }
+            if(zip){
+                this.deliveryPropsArray.push(zip);
             }
 
             propsNode.appendChild(propsItemsContainer);
