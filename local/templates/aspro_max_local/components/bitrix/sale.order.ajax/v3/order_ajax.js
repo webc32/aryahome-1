@@ -2368,7 +2368,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 var curDeliveryName = this.getSelectedDelivery()['NAME'];
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
-
+                    console.log(this.deliveryPropsArray);
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
@@ -3711,7 +3711,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             if (!propsItemsContainer)
                 propsItemsContainer = this.propsBlockNode.querySelector('.col-sm-12.bx-soa-customer');
-
             while (group = groupIterator())
             {
                 propsIterator =  group.getIterator();
@@ -3795,7 +3794,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if(property.getId() == 102 || property.getId() == 103){//property.getId() == 48 || property.getId() == 47 ||
                     BX.addClass(propsItemNode, "col-md-3");
                     propsItemNode.setAttribute("onclick","changeFIO();");
-                }else if(property.getId() == 95 || property.getId() == 53 || property.getId() == 96 || property.getId() == 83 || property.getId() == 81 || property.getId() == 82){//property.getId() == 26 ||
+                }else if(property.getId() == 95 || property.getId() == 96 || property.getId() == 83 || property.getId() == 81 || property.getId() == 82 || property.getId() == 53 ){//property.getId() == 26 ||
                     BX.addClass(propsItemNode, "col-sm-2");
                 }else if(property.getId() == 51 || property.getId() == 52){
                     BX.addClass(propsItemNode, "col-sm-3");
