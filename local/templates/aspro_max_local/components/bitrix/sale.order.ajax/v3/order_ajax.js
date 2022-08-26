@@ -158,7 +158,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             this.firstLoad = !0, this.refreshOrder(result);
                             break;
                         case"enterCoupon":
-                            result && result.order ? (this.deliveryCachedInfo = [], this.refreshOrderCupon(result)) : this.addCoupon(result);
+                            result && result.order ? (this.deliveryCachedInfo = [], this.refreshOrder(result)) : this.addCoupon(result);
                             break;
                         case"showNextBlock":
                             this.refreshOrder(result), document.querySelector(".pandd .bx-active .change-info").click();
@@ -177,7 +177,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     if(this.firstLoadToHide){
                         $('.deliveries').hide();
                         $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
-                        $('.bx-soa-customer-field[data-property-id-row="80"]').hide();
                             //$('.bx-soa-customer-field[data-property-id-row="26"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="83"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="81"]').hide();
@@ -211,59 +210,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             var form = BX("bx-soa-order-form"), prepared = BX.ajax.prepareForm(form), i;
             for (i in prepared.data) prepared.data.hasOwnProperty(i) && "" == i && delete prepared.data[i];
             return prepared && prepared.data ? prepared.data : {}
-        },
-
-        refreshOrderCupon: function(result){
-            // var fio = $('#soa-property-102').val() + " " + $('#soa-property-103').val();
-            // $('#soa-property-50').val(fio);
-
-            var i,coupon = "",t;
-
-            for(i in result.order.COUPON_LIST){
-                if(!!result.order.COUPON_LIST[i].COUPON && result.order.COUPON_LIST[i].JS_STATUS === "APPLIED"){
-                    coupon = result.order.COUPON_LIST[i].COUPON;
-                }
-            }
-
-            if(coupon && coupon != ""){
-                var arrObjects = [];
-                //собираем данные о товарах для аналитики
-                for (t in this.result.GRID.ROWS) {
-                    arrObjects[t] = {
-                        'name': this.result.GRID.ROWS[t].data.NAME,
-                        'id': this.result.GRID.ROWS[t].data.PRODUCT_ID,
-                        'price': this.result.GRID.ROWS[t].data.PRICE,
-                        //'category': 'СПАЛЬНЯ/Постельное белье/ЖАККАРД',
-                        'quantity': this.result.GRID.ROWS[t].data.QUANTITY,
-                    }
-                }
-
-                window.dataLayer = window.dataLayer || [];  
-                dataLayer.push({  
-                    'ecommerce': {  
-                        'currencyCode': 'RUB',  
-                        'purchase': {  
-                            'actionField': {  
-                                'id': '51564',  
-                                'affiliation': 'AryaHome - online store',  
-                                'revenue': result.order.TOTAL.ORDER_PRICE,  
-                                'shipping': result.order.TOTAL.DELIVERY_PRICE,
-                                'coupon': coupon
-                            },  
-                            'products': arrObjects  
-                        }  
-                    },  
-                    'event': 'gtm-ee-event',  
-                    'gtm-ee-event-category': 'Enhanced Ecommerce',  
-                    'gtm-ee-event-action': 'Purchase',  
-                    'gtm-ee-event-non-interaction': 'False',  
-                });
-            }
-
-            this.refreshOrder(result);
-        },
-
-        refreshOrder: function (result) {
+        }, refreshOrder: function (result) {
             var fio = $('#soa-property-102').val() + " " + $('#soa-property-103').val();
             $('#soa-property-50').val(fio);
             if (result.error) this.showError(this.mainErrorsNode, result.error), this.animateScrollTo(this.mainErrorsNode, 800, 20); else if (result.order.SHOW_AUTH) {
@@ -2463,7 +2410,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='53' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
+                    if (property.getId()=='80' || property.getId()=='81' || property.getId()=='82' || property.getId()=='53' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
 
                         this.getPropertyRowNode(property, deliveryItemsContainer, false);
                         deliveryNode.appendChild(deliveryItemsContainer);
@@ -2681,7 +2628,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             $('#bx-soa-delivery .deliveries').css("display",'block');
             if(targetText == "Доставить курьером"){
                 $('.bx-soa-customer-field[data-property-id-row="56"]').css("display",'block');
-                $('.bx-soa-customer-field[data-property-id-row="80"]').css("display",'block');
                 //$('.bx-soa-customer-field[data-property-id-row="26"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="95"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="96"]').css("display",'block');
@@ -2691,7 +2637,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 $('.bx-soa-customer-field[data-property-id-row="53"]').css("display",'block');
             }else{
                 $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
-                $('.bx-soa-customer-field[data-property-id-row="80"]').hide();
                 //$('.bx-soa-customer-field[data-property-id-row="26"]').hide();
                 $('.bx-soa-customer-field[data-property-id-row="95"]').hide();
                 $('.bx-soa-customer-field[data-property-id-row="96"]').hide();
@@ -3723,7 +3668,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     )
                         continue;
 
-                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
+                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
                         //оставляю как и было
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
@@ -3800,10 +3745,10 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     BX.addClass(propsItemNode, "col-sm-3");
                 }else if(property.getId() == 50 || property.getId() == 99 || property.getId() == 100  || property.getId() == 104){
                     BX.addClass(propsItemNode, "d-none");
-                }else if(property.getId() == 101 || property.getId() == 54){// || property.getId() == 40 || property.getId() == 22 || property.getId() == 77 || property.getId() == 78 || property.getId() == 79
+                }else if(property.getId() == 80 || property.getId() == 101 || property.getId() == 54){// || property.getId() == 40 || property.getId() == 22 || property.getId() == 77 || property.getId() == 78 || property.getId() == 79
                     BX.addClass(propsItemNode, "col-md-6 d-none");
                 }else{
-                     BX.addClass(propsItemNode, "col-md-6");
+                     BX.addClass(propsItemNode, "col-md-12");
                 }
 
                 BX.addClass(propsItemNode, "custom_props_style");
