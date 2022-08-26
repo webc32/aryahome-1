@@ -2375,7 +2375,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
                 }
 
-
+                
 
                 this.getBlockFooter(deliveryContent);
             }
@@ -2462,7 +2462,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='53' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
+                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101' || property.getId()=='53' ) {
 
                         this.getPropertyRowNode(property, deliveryItemsContainer, false);
                         deliveryNode.appendChild(deliveryItemsContainer);
@@ -3731,9 +3731,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
                 }
             }
-
-
-            console.log(this.deliveryPropsArray);
 
             propsNode.appendChild(propsItemsContainer);
 
