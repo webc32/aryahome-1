@@ -2369,7 +2369,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
-                        console.log(this.deliveryPropsArray[i].getId());
+                        //console.log(this.deliveryPropsArray[i].getId());
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
                         }
@@ -3711,6 +3711,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if (!propsItemsContainer)
                 propsItemsContainer = this.propsBlockNode.querySelector('.col-sm-12.bx-soa-customer');
 
+            zip = false;
             while (group = groupIterator())
             {
                 propsIterator =  group.getIterator();
@@ -3729,16 +3730,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }else{
                         //записал в массив и выкидываю дальше по коду
                         if(property.getId() == 53){
-                            var zip = property;
-                        }else{
-                            this.deliveryPropsArray.push(property);
+                            zip = true;
                         }
+                        console.log(property.getId());
+                        this.deliveryPropsArray.push(property);
                     }
                 }
             }
-            if(zip){
-                this.deliveryPropsArray.push(zip);
-            }
+            // if(zip){
+            //     for (var i in this.deliveryPropsArray){
+            //         if(this.deliveryPropsArray[i].getId() == 53){
+
+            //         }
+            //     }
+            // }
 
             propsNode.appendChild(propsItemsContainer);
 
