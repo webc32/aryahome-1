@@ -2368,6 +2368,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 var curDeliveryName = this.getSelectedDelivery()['NAME'];
                 if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
                     //показывать поля везде кроме самовывоза
+
+                    //ебанутый фикс поля индекса
+                    //по какой то причине индекс вылезает в этом массиве несколько раз и при чём в первую очередь, тут я его убираю к хуям
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
                         if(i == 1 && this.deliveryPropsArray[i].getId() == 53){
                             delete this.deliveryPropsArray[i];
@@ -2377,7 +2380,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     this.deliveryPropsArray = this.deliveryPropsArray.filter(function (el) {
                         return (el != null && el != "" || el === 0);
                     });
-
+                    //ебанутый фикс поля индекса end
 
 
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
