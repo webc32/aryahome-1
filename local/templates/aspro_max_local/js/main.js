@@ -2050,7 +2050,7 @@ if (!funcDefined("checkCounters")) {
 }
 
 if (!funcDefined("addBasketCounter")) {
-  function addBasketCounter(id) {
+<!--   function addBasketCounter(id) {
     if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
       var eventdata = { goal: "goal_basket_add", params: { id: id } };
       BX.onCustomEvent("onCounterGoals", [eventdata]);
@@ -2110,7 +2110,7 @@ if (!funcDefined("addBasketCounter")) {
         },
       });
     }
-  }
+  } -->
 }
 
 if (!funcDefined("purchaseCounter")) {
