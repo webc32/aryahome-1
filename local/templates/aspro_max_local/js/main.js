@@ -2198,61 +2198,61 @@ if (!funcDefined("purchaseCounter")) {
 }
 
 if (!funcDefined("viewItemCounter")) {
-  function viewItemCounter(id, price_id) {
-    if (checkCounters()) {
-      $.ajax({
-        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-        dataType: "json",
-        type: "POST",
-        data: { PRODUCT_ID: id, PRICE_ID: price_id },
-        success: function (item) {
-          if (item.ID) {
-            let ecommerce =  {
-              items: [
-                {
-                  item_name: item.NAME, // Name or ID is required.
-                  item_id: item.ID,
-                  price: parseFloat(item.PRICE),
-                  item_brand: item.BRAND,
-                  item_category: item.CATEGORY,
-                  item_list_name: "List Results",
-                  item_list_id: item.IBLOCK_SECTION_ID,
-                  affiliation: item.SHOP_NAME,
-                  index: 1,
-                  quantity: parseFloat(item.QUANTITY),
-                },
-              ],
-            }
-            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
-              ecommerce = {
-                detail: {
-                  products: [
-                    {
-                      id: item.ID,
-                      name: item.NAME,
-                      price: parseFloat(item.PRICE),
-                      brand: item.BRAND,
-                      category: item.CATEGORY,
-                    },
-                  ],
-                },
-              }
-            }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                "event": "view_item",
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
-            });
-          };
-          $(".owl-stage").owlCarousel("reset");
-        },
-      });
-    }
-  }
+//   function viewItemCounter(id, price_id) {
+//     if (checkCounters()) {
+//       $.ajax({
+//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+//         dataType: "json",
+//         type: "POST",
+//         data: { PRODUCT_ID: id, PRICE_ID: price_id },
+//         success: function (item) {
+//           if (item.ID) {
+//             let ecommerce =  {
+//               items: [
+//                 {
+//                   item_name: item.NAME, // Name or ID is required.
+//                   item_id: item.ID,
+//                   price: parseFloat(item.PRICE),
+//                   item_brand: item.BRAND,
+//                   item_category: item.CATEGORY,
+//                   item_list_name: "List Results",
+//                   item_list_id: item.IBLOCK_SECTION_ID,
+//                   affiliation: item.SHOP_NAME,
+//                   index: 1,
+//                   quantity: parseFloat(item.QUANTITY),
+//                 },
+//               ],
+//             }
+//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+//               ecommerce = {
+//                 detail: {
+//                   products: [
+//                     {
+//                       id: item.ID,
+//                       name: item.NAME,
+//                       price: parseFloat(item.PRICE),
+//                       brand: item.BRAND,
+//                       category: item.CATEGORY,
+//                     },
+//                   ],
+//                 },
+//               }
+//             }
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 "event": "view_item",
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
+//             });
+//           };
+//           $(".owl-stage").owlCarousel("reset");
+//         },
+//       });
+//     }
+//   }
 }
 
 if (!funcDefined("checkoutCounter")) {
