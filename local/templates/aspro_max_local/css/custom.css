@@ -776,3 +776,148 @@ div[data-property-id-row="105"]{
     display: none;
 }
 
+.show_more_stores{
+    margin-top: 20px;
+}
+
+#cuponBlock{
+    position: fixed;
+    right: 0;
+    height: 100%;
+    padding: 20px;
+    z-index: 99999;
+    background: white;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+#cuponBlock.active{
+    display: flex;
+}
+@media(max-width: 768px){
+    #cuponBlock{
+        width: 100%;
+    }
+    #closeCupon{
+        margin-left: unset !important;
+    }
+    #cuponBlock .title{
+        padding-top: 45px;
+    }
+}
+
+#cuponBlock .title{
+    margin:10px 0;
+}
+
+#cuponBlock .yellowPrice{
+background: #d0a550;
+    display: inline-block;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#cuponBlock .cuponTerms{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#cuponBlock .cuponName{
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 1px dashed;
+    display: inline-block;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#cuponBlock .cuponDate{
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: #d0a550;
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 15px;
+    color: white;
+}
+
+#cuponBlock .cuponGray{
+    width: 430px;
+    line-height: 20px;
+    color: gray;
+    font-size: 14px;
+}
+
+#cuponBlock .cuponButton{
+margin-top: 20px;
+    background: #d0a550;
+    color: white;
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #d0a550;
+}
+
+#cuponBlock .cuponButton:hover{
+    background: white;
+    color: black;
+}
+#closeCupon{
+    left: 0;
+    position: absolute;
+    background: white;
+    font-size: 30px;
+    margin-left: -78px;
+    padding: 13px 17px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.backgroundGray{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: gray;
+    z-index: 99999;
+    opacity: 0.5;
+    display: none;
+}
+.backgroundGray.active{
+    display: block;
+}
+
+.catalog.wide_menu .dropdown-toggle > div{
+    background: #d0a550;
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.catalog.wide_menu .dropdown-toggle svg path{
+    fill:white !important;
+}
+.catalog.wide_menu .dropdown-toggle:hover svg path{
+    fill:#d0a550 !important;
+}
+.catalog.wide_menu .dropdown-toggle:hover > div{
+    background: white;
+    color: #d0a550;
+}
+.mega-menu table td .wrap > a{
+    padding: 33px 8px 41px;
+}
+
+.sale_block .no_bg_color.sale-number{
+    border: 1px solid black !important;
+    background: black !important;
+}
+.sale_block .no_bg_color.sale-number *{
+    color: white !important;
+}
