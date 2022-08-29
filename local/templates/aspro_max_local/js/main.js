@@ -2050,67 +2050,67 @@ if (!funcDefined("checkCounters")) {
 }
 
 if (!funcDefined("addBasketCounter")) {
-<!--   function addBasketCounter(id) {
-    if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
-      var eventdata = { goal: "goal_basket_add", params: { id: id } };
-      BX.onCustomEvent("onCounterGoals", [eventdata]);
-    }
-    if (checkCounters()) {
-      $.ajax({
-        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-        dataType: "json",
-        type: "POST",
-        data: { ID: id },
-        success: function (item) {
-          if (!!item && !!item.ID) {
-            let ecommerce =  {
-              items: [
-                {
-                  item_name: item.NAME, // Name or ID is required.
-                  item_id: item.ID,
-                  price: parseFloat(item.PRICE),
-                  item_brand: item.BRAND,
-                  item_category: item.CATEGORY,
-                  item_list_name: "List Results",
-                  item_list_id: item.IBLOCK_SECTION_ID,
-                  affiliation: item.SHOP_NAME,
-                  index: 1,
-                  quantity: parseFloat(item.QUANTITY),
-                },
-              ],
-            }
-            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
-              ecommerce = {
-                currencyCode: item.CURRENCY,
-                add: {
-                  products: [
-                    {
-                      id: item.ID,
-                      name: item.NAME,
-                      price: parseFloat(item.PRICE),
-                      brand: item.BRAND,
-                      category: item.CATEGORY,
-                      quantity: parseFloat(item.QUANTITY),
-                    },
-                  ],
-                },
-              }
-            }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                // event: 'add_to_cart',
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["ADD2BASKET"],
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
-            });
-          }
-        },
-      });
-    }
-  } -->
+// function addBasketCounter(id) {
+//     if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
+//       var eventdata = { goal: "goal_basket_add", params: { id: id } };
+//       BX.onCustomEvent("onCounterGoals", [eventdata]);
+//     }
+//     if (checkCounters()) {
+//       $.ajax({
+//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+//         dataType: "json",
+//         type: "POST",
+//         data: { ID: id },
+//         success: function (item) {
+//           if (!!item && !!item.ID) {
+//             let ecommerce =  {
+//               items: [
+//                 {
+//                   item_name: item.NAME, // Name or ID is required.
+//                   item_id: item.ID,
+//                   price: parseFloat(item.PRICE),
+//                   item_brand: item.BRAND,
+//                   item_category: item.CATEGORY,
+//                   item_list_name: "List Results",
+//                   item_list_id: item.IBLOCK_SECTION_ID,
+//                   affiliation: item.SHOP_NAME,
+//                   index: 1,
+//                   quantity: parseFloat(item.QUANTITY),
+//                 },
+//               ],
+//             }
+//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+//               ecommerce = {
+//                 currencyCode: item.CURRENCY,
+//                 add: {
+//                   products: [
+//                     {
+//                       id: item.ID,
+//                       name: item.NAME,
+//                       price: parseFloat(item.PRICE),
+//                       brand: item.BRAND,
+//                       category: item.CATEGORY,
+//                       quantity: parseFloat(item.QUANTITY),
+//                     },
+//                   ],
+//                 },
+//               }
+//             }
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 // event: 'add_to_cart',
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["ADD2BASKET"],
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
+//             });
+//           }
+//         },
+//       });
+//     }
+//   }
 }
 
 if (!funcDefined("purchaseCounter")) {
