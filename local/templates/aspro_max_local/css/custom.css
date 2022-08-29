@@ -921,3 +921,6 @@ margin-top: 20px;
 .sale_block .red_discont.sale-number *{
     color: white !important;
 }
+.sale_block .red_discont .inner-sale{
+    background: black !important;
+}
