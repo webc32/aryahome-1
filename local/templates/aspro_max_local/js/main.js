@@ -2050,36 +2050,36 @@ if (!funcDefined("checkCounters")) {
 }
 
 if (!funcDefined("addBasketCounter")) {
-// function addBasketCounter(id) {
-//     if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
-//       var eventdata = { goal: "goal_basket_add", params: { id: id } };
-//       BX.onCustomEvent("onCounterGoals", [eventdata]);
-//     }
-//     if (checkCounters()) {
-//       $.ajax({
-//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-//         dataType: "json",
-//         type: "POST",
-//         data: { ID: id },
-//         success: function (item) {
-//           if (!!item && !!item.ID) {
-//             let ecommerce =  {
-//               items: [
-//                 {
-//                   item_name: item.NAME, // Name or ID is required.
-//                   item_id: item.ID,
-//                   price: parseFloat(item.PRICE),
-//                   item_brand: item.BRAND,
-//                   item_category: item.CATEGORY,
-//                   item_list_name: "List Results",
-//                   item_list_id: item.IBLOCK_SECTION_ID,
-//                   affiliation: item.SHOP_NAME,
-//                   index: 1,
-//                   quantity: parseFloat(item.QUANTITY),
-//                 },
-//               ],
-//             }
-//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+function addBasketCounter(id) {
+    if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
+      var eventdata = { goal: "goal_basket_add", params: { id: id } };
+      BX.onCustomEvent("onCounterGoals", [eventdata]);
+    }
+    if (checkCounters()) {
+      $.ajax({
+        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+        dataType: "json",
+        type: "POST",
+        data: { ID: id },
+        success: function (item) {
+          if (!!item && !!item.ID) {
+            let ecommerce =  {
+              items: [
+                {
+                  item_name: item.NAME, // Name or ID is required.
+                  item_id: item.ID,
+                  price: parseFloat(item.PRICE),
+                  item_brand: item.BRAND,
+                  item_category: item.CATEGORY,
+                  item_list_name: "List Results",
+                  item_list_id: item.IBLOCK_SECTION_ID,
+                  affiliation: item.SHOP_NAME,
+                  index: 1,
+                  quantity: parseFloat(item.QUANTITY),
+                },
+              ],
+            }
+            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
 //               ecommerce = {
 //                 currencyCode: item.CURRENCY,
 //                 add: {
@@ -2094,8 +2094,8 @@ if (!funcDefined("addBasketCounter")) {
 //                     },
 //                   ],
 //                 },
-//               }
-//             }
+              }
+            }
 //             waitLayer(100, function () {
 //               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
 //               dataLayer.push({
@@ -2106,57 +2106,57 @@ if (!funcDefined("addBasketCounter")) {
 //                 ecommerce: ecommerce,
 //               });
 //             });
-//           }
-//         },
-//       });
-//     }
-//   }
+          }
+        },
+      });
+    }
+  }
 }
 
 if (!funcDefined("purchaseCounter")) {
-//   function purchaseCounter(order_id, type, callback) {
-//     if (checkCounters()) {
-//       $.ajax({
-//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-//         dataType: "json",
-//         type: "POST",
-//         data: { ORDER_ID: order_id, TYPE: type },
-//         success: function (order) {
-//           var products = [];
-//           const items = [];
-//           if (order.ITEMS) {
-//             for (var i in order.ITEMS) {
-//               products.push({
-//                 id: order.ITEMS[i].ID,
-//                 sku: order.ITEMS[i].ID,
-//                 name: order.ITEMS[i].NAME,
-//                 price: order.ITEMS[i].PRICE,
-//                 brand: order.ITEMS[i].BRAND,
-//                 category: order.ITEMS[i].CATEGORY,
-//                 quantity: order.ITEMS[i].QUANTITY,
-//               });
-//               items.push({
-//                 item_id: order.ITEMS[i].ID,
-//                 item_name: order.ITEMS[i].NAME,
-//                 price: parseFloat(order.ITEMS[i].PRICE),
-//                 item_brand: order.ITEMS[i].BRAND,
-//                 item_category: order.ITEMS[i].CATEGORY,
-//                 affiliation: order.SHOP_NAME,
-//                 quantity: parseFloat(order.ITEMS[i].QUANTITY),
-//               });
-//             }
-//           }
-//           if (order.ID) {
-//             let ecommerce =  {
-//               transaction_id: order.ACCOUNT_NUMBER,
-//               affiliation: order.SHOP_NAME,
-//               value: order.PRICE,
-//               tax: order.TAX_VALUE,
-//               shipping: order.PRICE_DELIVERY,
-//               currency: order.CURRENCY,
-//               items: items,
-//             }
-//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+  function purchaseCounter(order_id, type, callback) {
+    if (checkCounters()) {
+      $.ajax({
+        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+        dataType: "json",
+        type: "POST",
+        data: { ORDER_ID: order_id, TYPE: type },
+        success: function (order) {
+          var products = [];
+          const items = [];
+          if (order.ITEMS) {
+            for (var i in order.ITEMS) {
+              products.push({
+                id: order.ITEMS[i].ID,
+                sku: order.ITEMS[i].ID,
+                name: order.ITEMS[i].NAME,
+                price: order.ITEMS[i].PRICE,
+                brand: order.ITEMS[i].BRAND,
+                category: order.ITEMS[i].CATEGORY,
+                quantity: order.ITEMS[i].QUANTITY,
+              });
+              items.push({
+                item_id: order.ITEMS[i].ID,
+                item_name: order.ITEMS[i].NAME,
+                price: parseFloat(order.ITEMS[i].PRICE),
+                item_brand: order.ITEMS[i].BRAND,
+                item_category: order.ITEMS[i].CATEGORY,
+                affiliation: order.SHOP_NAME,
+                quantity: parseFloat(order.ITEMS[i].QUANTITY),
+              });
+            }
+          }
+          if (order.ID) {
+            let ecommerce =  {
+              transaction_id: order.ACCOUNT_NUMBER,
+              affiliation: order.SHOP_NAME,
+              value: order.PRICE,
+              tax: order.TAX_VALUE,
+              shipping: order.PRICE_DELIVERY,
+              currency: order.CURRENCY,
+              items: items,
+            }
+            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
 //               ecommerce = {
 //                 purchase: {
 //                   actionField: {
@@ -2169,7 +2169,7 @@ if (!funcDefined("purchaseCounter")) {
 //                   products: products,
 //                 }
 //               }
-//             }
+            }
 //             waitLayer(100, function () {
 //               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
 //               dataLayer.push({
@@ -2181,49 +2181,49 @@ if (!funcDefined("purchaseCounter")) {
 //                 callback(ecommerce);
 //               }
 //             });
-//           } else {
-//             if (typeof callback !== "undefined") {
-//               callback();
-//             }
-//           }
-//         },
-//         error: function () {
-//           if (typeof callback !== "undefined") {
-//             callback();
-//           }
-//         },
-//       });
-//     }
-//   }
+          } else {
+            if (typeof callback !== "undefined") {
+              callback();
+            }
+          }
+        },
+        error: function () {
+          if (typeof callback !== "undefined") {
+            callback();
+          }
+        },
+      });
+    }
+  }
 }
 
 if (!funcDefined("viewItemCounter")) {
-//   function viewItemCounter(id, price_id) {
-//     if (checkCounters()) {
-//       $.ajax({
-//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-//         dataType: "json",
-//         type: "POST",
-//         data: { PRODUCT_ID: id, PRICE_ID: price_id },
-//         success: function (item) {
-//           if (item.ID) {
-//             let ecommerce =  {
-//               items: [
-//                 {
-//                   item_name: item.NAME, // Name or ID is required.
-//                   item_id: item.ID,
-//                   price: parseFloat(item.PRICE),
-//                   item_brand: item.BRAND,
-//                   item_category: item.CATEGORY,
-//                   item_list_name: "List Results",
-//                   item_list_id: item.IBLOCK_SECTION_ID,
-//                   affiliation: item.SHOP_NAME,
-//                   index: 1,
-//                   quantity: parseFloat(item.QUANTITY),
-//                 },
-//               ],
-//             }
-//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+  function viewItemCounter(id, price_id) {
+    if (checkCounters()) {
+      $.ajax({
+        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+        dataType: "json",
+        type: "POST",
+        data: { PRODUCT_ID: id, PRICE_ID: price_id },
+        success: function (item) {
+          if (item.ID) {
+            let ecommerce =  {
+              items: [
+                {
+                  item_name: item.NAME, // Name or ID is required.
+                  item_id: item.ID,
+                  price: parseFloat(item.PRICE),
+                  item_brand: item.BRAND,
+                  item_category: item.CATEGORY,
+                  item_list_name: "List Results",
+                  item_list_id: item.IBLOCK_SECTION_ID,
+                  affiliation: item.SHOP_NAME,
+                  index: 1,
+                  quantity: parseFloat(item.QUANTITY),
+                },
+              ],
+            }
+            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
 //               ecommerce = {
 //                 detail: {
 //                   products: [
@@ -2236,8 +2236,8 @@ if (!funcDefined("viewItemCounter")) {
 //                     },
 //                   ],
 //                 },
-//               }
-//             }
+              }
+            }
 //             waitLayer(100, function () {
 //               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
 //               dataLayer.push({
@@ -2247,51 +2247,51 @@ if (!funcDefined("viewItemCounter")) {
 //                 ecommerce: ecommerce,
 //               });
 //             });
-//           };
-//           $(".owl-stage").owlCarousel("reset");
-//         },
-//       });
-//     }
-//   }
+          };
+          $(".owl-stage").owlCarousel("reset");
+        },
+      });
+    }
+  }
 }
 
 if (!funcDefined("checkoutCounter")) {
-//   function checkoutCounter(step, option, callback) {
-//     if (checkCounters("google")) {
-//       $.ajax({
-//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-//         dataType: "json",
-//         type: "POST",
-//         data: { BASKET: "Y" },
-//         success: function (basket) {
-//           var products = [];
-//           const items = [];
-//           let summ = 0;
-//           let currency = 'RUB';
-//           if (basket.ITEMS) {
-//             for (var i in basket.ITEMS) {
-//               products.push({
-//                 id: basket.ITEMS[i].ID,
-//                 name: basket.ITEMS[i].NAME,
-//                 price: basket.ITEMS[i].PRICE,
-//                 brand: basket.ITEMS[i].BRAND,
-//                 category: basket.ITEMS[i].CATEGORY,
-//                 quantity: basket.ITEMS[i].QUANTITY,
-//               });
-//               items.push({
-//                 item_id: basket.ITEMS[i].ID,
-//                 item_name: basket.ITEMS[i].NAME,
-//                 price: parseFloat(basket.ITEMS[i].PRICE),
-//                 item_brand: basket.ITEMS[i].BRAND,
-//                 item_category: basket.ITEMS[i].CATEGORY,
-//                 affiliation: basket.SHOP_NAME,
-//                 quantity: parseFloat(basket.ITEMS[i].QUANTITY),
-//               });
-//               summ += basket.ITEMS[i].PRICE;
-//               currency = basket.ITEMS[i].CURRENCY;
-//             }
-//           }
-//           if (products) {
+  function checkoutCounter(step, option, callback) {
+    if (checkCounters("google")) {
+      $.ajax({
+        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+        dataType: "json",
+        type: "POST",
+        data: { BASKET: "Y" },
+        success: function (basket) {
+          var products = [];
+          const items = [];
+          let summ = 0;
+          let currency = 'RUB';
+          if (basket.ITEMS) {
+            for (var i in basket.ITEMS) {
+              products.push({
+                id: basket.ITEMS[i].ID,
+                name: basket.ITEMS[i].NAME,
+                price: basket.ITEMS[i].PRICE,
+                brand: basket.ITEMS[i].BRAND,
+                category: basket.ITEMS[i].CATEGORY,
+                quantity: basket.ITEMS[i].QUANTITY,
+              });
+              items.push({
+                item_id: basket.ITEMS[i].ID,
+                item_name: basket.ITEMS[i].NAME,
+                price: parseFloat(basket.ITEMS[i].PRICE),
+                item_brand: basket.ITEMS[i].BRAND,
+                item_category: basket.ITEMS[i].CATEGORY,
+                affiliation: basket.SHOP_NAME,
+                quantity: parseFloat(basket.ITEMS[i].QUANTITY),
+              });
+              summ += basket.ITEMS[i].PRICE;
+              currency = basket.ITEMS[i].CURRENCY;
+            }
+          }
+          if (products) {
 //             let ecommerce =  {
 //               items: items,
 //             }
@@ -2323,37 +2323,37 @@ if (!funcDefined("checkoutCounter")) {
 //                 callback();
 //               }
 //             });
-//           }
-//         },
-//       });
-//     }
-//   }
+          }
+        },
+      });
+    }
+  }
 }
 
 if (!funcDefined("delFromBasketCounter")) {
-//   function delFromBasketCounter(id, callback) {
-//     if (checkCounters()) {
-//       $.ajax({
-//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-//         dataType: "json",
-//         type: "POST",
-//         data: { ID: id },
-//         success: function (item) {
-//           if (item.ID) {
-//             let ecommerce =  {
-//               items: [
-//                 {
-//                   item_name: item.NAME, // Name or ID is required.
-//                   item_id: item.ID,
-//                   price: parseFloat(item.PRICE),
-//                   item_brand: item.BRAND,
-//                   item_category: item.CATEGORY,
-//                   affiliation: item.SHOP_NAME,
-//                   item_list_name: "List Results",
-//                 },
-//               ],
-//             }
-//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+  function delFromBasketCounter(id, callback) {
+    if (checkCounters()) {
+      $.ajax({
+        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+        dataType: "json",
+        type: "POST",
+        data: { ID: id },
+        success: function (item) {
+          if (item.ID) {
+            let ecommerce =  {
+              items: [
+                {
+                  item_name: item.NAME, // Name or ID is required.
+                  item_id: item.ID,
+                  price: parseFloat(item.PRICE),
+                  item_brand: item.BRAND,
+                  item_category: item.CATEGORY,
+                  affiliation: item.SHOP_NAME,
+                  item_list_name: "List Results",
+                },
+              ],
+            }
+            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
 //               ecommerce = {
 //                 remove: {
 //                   products: [
@@ -2365,7 +2365,7 @@ if (!funcDefined("delFromBasketCounter")) {
 //                   ],
 //                 },
 //               }
-//             }
+            }
 //             waitLayer(100, function () {
 //               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
 //               dataLayer.push({
@@ -2378,11 +2378,11 @@ if (!funcDefined("delFromBasketCounter")) {
 //                 callback();
 //               }
 //             });
-//           }
-//         },
-//       });
-//     }
-//   }
+          }
+        },
+      });
+    }
+  }
 }
 
 if (!funcDefined("setHeightCompany")) {
