@@ -2256,133 +2256,133 @@ if (!funcDefined("viewItemCounter")) {
 }
 
 if (!funcDefined("checkoutCounter")) {
-  function checkoutCounter(step, option, callback) {
-    if (checkCounters("google")) {
-      $.ajax({
-        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-        dataType: "json",
-        type: "POST",
-        data: { BASKET: "Y" },
-        success: function (basket) {
-          var products = [];
-          const items = [];
-          let summ = 0;
-          let currency = 'RUB';
-          if (basket.ITEMS) {
-            for (var i in basket.ITEMS) {
-              products.push({
-                id: basket.ITEMS[i].ID,
-                name: basket.ITEMS[i].NAME,
-                price: basket.ITEMS[i].PRICE,
-                brand: basket.ITEMS[i].BRAND,
-                category: basket.ITEMS[i].CATEGORY,
-                quantity: basket.ITEMS[i].QUANTITY,
-              });
-              items.push({
-                item_id: basket.ITEMS[i].ID,
-                item_name: basket.ITEMS[i].NAME,
-                price: parseFloat(basket.ITEMS[i].PRICE),
-                item_brand: basket.ITEMS[i].BRAND,
-                item_category: basket.ITEMS[i].CATEGORY,
-                affiliation: basket.SHOP_NAME,
-                quantity: parseFloat(basket.ITEMS[i].QUANTITY),
-              });
-              summ += basket.ITEMS[i].PRICE;
-              currency = basket.ITEMS[i].CURRENCY;
-            }
-          }
-          if (products) {
-            let ecommerce =  {
-              items: items,
-            }
-            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
-              ecommerce = {
-                checkout: {
-                  actionField: {
-                    step: step,
-                    option: option,
-                  },
-                  products: products,
-                },
-              }
-            }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["CHECKOUT_ORDER"],
-                currency: currency,
-                value: parseFloat(summ),
-                ecommerce: ecommerce,
-                /*"eventCallback": function() {
-                    if((typeof callback !== 'undefined') && (typeof callback === 'function')){
-                      callback();
-                    }
-                 }*/
-              });
-              if((typeof callback !== 'undefined') && (typeof callback === 'function')){
-                callback();
-              }
-            });
-          }
-        },
-      });
-    }
-  }
+//   function checkoutCounter(step, option, callback) {
+//     if (checkCounters("google")) {
+//       $.ajax({
+//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+//         dataType: "json",
+//         type: "POST",
+//         data: { BASKET: "Y" },
+//         success: function (basket) {
+//           var products = [];
+//           const items = [];
+//           let summ = 0;
+//           let currency = 'RUB';
+//           if (basket.ITEMS) {
+//             for (var i in basket.ITEMS) {
+//               products.push({
+//                 id: basket.ITEMS[i].ID,
+//                 name: basket.ITEMS[i].NAME,
+//                 price: basket.ITEMS[i].PRICE,
+//                 brand: basket.ITEMS[i].BRAND,
+//                 category: basket.ITEMS[i].CATEGORY,
+//                 quantity: basket.ITEMS[i].QUANTITY,
+//               });
+//               items.push({
+//                 item_id: basket.ITEMS[i].ID,
+//                 item_name: basket.ITEMS[i].NAME,
+//                 price: parseFloat(basket.ITEMS[i].PRICE),
+//                 item_brand: basket.ITEMS[i].BRAND,
+//                 item_category: basket.ITEMS[i].CATEGORY,
+//                 affiliation: basket.SHOP_NAME,
+//                 quantity: parseFloat(basket.ITEMS[i].QUANTITY),
+//               });
+//               summ += basket.ITEMS[i].PRICE;
+//               currency = basket.ITEMS[i].CURRENCY;
+//             }
+//           }
+//           if (products) {
+//             let ecommerce =  {
+//               items: items,
+//             }
+//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+//               ecommerce = {
+//                 checkout: {
+//                   actionField: {
+//                     step: step,
+//                     option: option,
+//                   },
+//                   products: products,
+//                 },
+//               }
+//             }
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["CHECKOUT_ORDER"],
+//                 currency: currency,
+//                 value: parseFloat(summ),
+//                 ecommerce: ecommerce,
+//                 /*"eventCallback": function() {
+//                     if((typeof callback !== 'undefined') && (typeof callback === 'function')){
+//                       callback();
+//                     }
+//                  }*/
+//               });
+//               if((typeof callback !== 'undefined') && (typeof callback === 'function')){
+//                 callback();
+//               }
+//             });
+//           }
+//         },
+//       });
+//     }
+//   }
 }
 
 if (!funcDefined("delFromBasketCounter")) {
-  function delFromBasketCounter(id, callback) {
-    if (checkCounters()) {
-      $.ajax({
-        url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
-        dataType: "json",
-        type: "POST",
-        data: { ID: id },
-        success: function (item) {
-          if (item.ID) {
-            let ecommerce =  {
-              items: [
-                {
-                  item_name: item.NAME, // Name or ID is required.
-                  item_id: item.ID,
-                  price: parseFloat(item.PRICE),
-                  item_brand: item.BRAND,
-                  item_category: item.CATEGORY,
-                  affiliation: item.SHOP_NAME,
-                  item_list_name: "List Results",
-                },
-              ],
-            }
-            if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
-              ecommerce = {
-                remove: {
-                  products: [
-                    {
-                      id: item.ID,
-                      name: item.NAME,
-                      category: item.CATEGORY,
-                    },
-                  ],
-                },
-              }
-            }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
-              if (typeof callback == "function") {
-                callback();
-              }
-            });
-          }
-        },
-      });
-    }
-  }
+//   function delFromBasketCounter(id, callback) {
+//     if (checkCounters()) {
+//       $.ajax({
+//         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
+//         dataType: "json",
+//         type: "POST",
+//         data: { ID: id },
+//         success: function (item) {
+//           if (item.ID) {
+//             let ecommerce =  {
+//               items: [
+//                 {
+//                   item_name: item.NAME, // Name or ID is required.
+//                   item_id: item.ID,
+//                   price: parseFloat(item.PRICE),
+//                   item_brand: item.BRAND,
+//                   item_category: item.CATEGORY,
+//                   affiliation: item.SHOP_NAME,
+//                   item_list_name: "List Results",
+//                 },
+//               ],
+//             }
+//             if (arAsproOptions["COUNTERS"]["GA_VERSION"] === "v3") {
+//               ecommerce = {
+//                 remove: {
+//                   products: [
+//                     {
+//                       id: item.ID,
+//                       name: item.NAME,
+//                       category: item.CATEGORY,
+//                     },
+//                   ],
+//                 },
+//               }
+//             }
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
+//               if (typeof callback == "function") {
+//                 callback();
+//               }
+//             });
+//           }
+//         },
+//       });
+//     }
+//   }
 }
 
 if (!funcDefined("setHeightCompany")) {
