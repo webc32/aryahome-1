@@ -3880,6 +3880,7 @@ function CIBlockElementGetListSize(id, name, namecode, colorActive, sizecode, si
         },
         success: function(data) {
             data = JSON.parse(data);
+	    var objectIds = [];
             var objectSizes = '';
             var previousSize = '';
             data.products.forEach(function(item, i, arr) {
@@ -3893,10 +3894,17 @@ function CIBlockElementGetListSize(id, name, namecode, colorActive, sizecode, si
                             objectSizes += '<a href="'+url+'" class="position-relative mb-1 '+active+'" data-id="'+id+'"><span class="d-block bg-graylight text-gold px-2 py-2">'+size+'</span></a>';
                             //}
                         previousSize = size;
+			objectIds.push(id);
                     }
                 }
             });
-            console.log(objectSizes);
+            //console.log(objectSizes);
+	    console.log(id);
+	    if (objectIds != '') {
+		(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+			try{ rrApi.groupView(objectIds); } catch(e) {}
+		})
+	    }
             if (objectSizes != '') {
                 form.find('.size .value div').append(objectSizes);
             }
