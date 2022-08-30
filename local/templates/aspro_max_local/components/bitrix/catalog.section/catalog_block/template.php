@@ -977,3 +977,10 @@ use \Bitrix\Main\Localization\Loc,
         try { rrApi.categoryView("<?$arParams["SECTION_ID"]?>"); } catch(e) {}
     })
 </script>
+<div style="display:none;">
+	<pre>
+	<?
+	print_r($arParams);
+	?>
+	</pre>
+</div>
