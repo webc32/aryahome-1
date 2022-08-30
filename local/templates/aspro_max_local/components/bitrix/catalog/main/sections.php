@@ -115,7 +115,6 @@ $sort_elem_order = 'asc';
         try { rrApi.categoryView("<?$arResult["VARIABLES"]["SECTION_ID"]?>"); } catch(e) {}
     })
 </script>
-		<div class="123123"></div>
 		<?//дополнительные элементы?>
 			<?$APPLICATION->IncludeComponent(
 					"bitrix:catalog.section",
