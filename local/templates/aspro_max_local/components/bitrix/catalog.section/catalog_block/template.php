@@ -980,7 +980,7 @@ use \Bitrix\Main\Localization\Loc,
 <div style="display:none;" class="123123123">
 	<pre>
 	<?
-	print_r($arParams);
+// 	print_r($arParams);
 	?>
 	</pre>
 </div>
