@@ -110,7 +110,11 @@ $sort_elem_order = 'asc';
 
 
 ?>
-
+<script type="text/javascript">
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+        try { rrApi.categoryView("<?$arResult["VARIABLES"]["SECTION_ID"]?>"); } catch(e) {}
+    })
+</script>
 		<?//дополнительные элементы?>
 			<?$APPLICATION->IncludeComponent(
 					"bitrix:catalog.section",
