@@ -37,6 +37,32 @@ $git = 'git ';
 ?>
 <?$bIndexBot = CMax::checkIndexBot();?>
 <body class="<?=($bIndexBot ? "wbot" : "");?> site_<?=SITE_ID?> <?=($bIncludedModule ? CMax::getCurrentBodyClass() : '')?>" id="main" data-site="<?=SITE_DIR?>">
+
+
+	<script>
+		var showCupon = BX.getCookie('showCupon');
+		if(typeof(showCupon) == 'undefined'){
+			//showCupon after 10 seconds
+			setTimeout(function(){
+				$('#cuponBlock, .backgroundGray').addClass('active');
+			},10000);
+		}
+	</script>
+
+
+		
+		<?$APPLICATION->IncludeComponent(
+			"bitrix:main.include",
+			"",
+			Array(
+				"AREA_FILE_SHOW" => "file",
+				"AREA_FILE_SUFFIX" => "inc",
+				"EDIT_TEMPLATE" => "",
+				"PATH" => "/include/cupon.php"
+			)
+		);?>
+
+		
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52Q5Q4N"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
