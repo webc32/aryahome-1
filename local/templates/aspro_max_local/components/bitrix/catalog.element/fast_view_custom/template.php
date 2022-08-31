@@ -215,12 +215,6 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 	<script type="text/javascript">
 	setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, false)?>);
 	</script>
-	
-	<script type="text/javascript">
-	    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-		try{ rrApi.view("<?=$arResult["ID"]?>"); } catch(e) {}
-	    })
-	</script>
 
 	<div class="fastview-product flexbox flexbox--row <?=(!$showCustomOffer ? "noffer" : "");?> <?=($arParams["SHOW_UNABLE_SKU_PROPS"] != "N" ? "show_un_props" : "unshow_un_props");?>" id="<?=$arItemIDs["strMainID"];?>">
 		<div class="fastview-product__image fastview-product__image_custom">
