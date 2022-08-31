@@ -174,8 +174,11 @@
     margin-right: -16px;
     padding-left: 16px;
   }
+  body .item-views.float_banners2 .items > .row .item{
+    justify-content: space-between;
+  }
   body .item-views.float_banners2 .items > .row > div {
-    width: 276px;
+    /*width: 276px;*/
     flex-shrink: 0;
     padding-left: 0px;
     padding-right: 16px;
