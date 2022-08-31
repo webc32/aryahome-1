@@ -16,6 +16,7 @@ use Bitrix\Main\Localization\Loc;
  * @var array $giftParameters
  */
 
+
 //    echo '<pre>';
 //    var_dump($arResult['ITEMS']);
 //    echo '</pre>';
