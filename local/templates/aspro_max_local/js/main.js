@@ -2238,15 +2238,15 @@ if (!funcDefined("viewItemCounter")) {
                 },
               }
             }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                "event": "view_item",
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
-            });
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 "event": "view_item",
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
+//             });
           };
           $(".owl-stage").owlCarousel("reset");
         },
