@@ -11,7 +11,7 @@
 		<div class="maxwidth-theme">
 			<div class="item-views float_banners2 swipeignore <?=($arResult['MIXED_BLOCKS'] ? ' sm-block' : '');?> <?=$arParams['BG_BLOCK_POSITION'];?> <?=$bOnlyOne ? 'one-item' : ''?>">
 				<div class="items">
-					<div class="row flexbox mobile-overflow">
+					<div class="row flexbox">
 						<?foreach($arResult['ITEMS'] as $arItem)
 						{
 							$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem['IBLOCK_ID'], 'ELEMENT_EDIT'));
@@ -34,7 +34,7 @@
 									unset($arItem['PREVIEW_TEXT']);
 							}
 							?>
-							<div class="col-md-<?=$col;?> col-xs-6 col-xxs-12">
+							<div class="col-md-<?=$col;?> col-xs-6 col-xxs-6">
 								<div id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="item <?=($col == 6 || $col == 12 ? 'big' : 'sm');?> <?=$arParams['BG_BLOCK_POSITION'];?> hover_zoom rounded3 lazy flexbox" <?if($arItem['DETAIL_PICTURE']['SRC']):?>data-src="<?=$arItem['DETAIL_PICTURE']['SRC']?>" style="background-image:url(<?=\Aspro\Functions\CAsproMax::showBlankImg($arItem['DETAIL_PICTURE']['SRC']);?>)"<?endif;?>>
 									<?if(is_array($arItem['PREVIEW_PICTURE'])):?>
 										<div class="image">
