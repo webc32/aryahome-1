@@ -5137,8 +5137,8 @@ $(document).ready(function () {
             d = val;
           }
           if (typeof d === "object") {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({ event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"], ecommerce: d });
+//             window.dataLayer = window.dataLayer || [];
+//             dataLayer.push({ event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"], ecommerce: d });
           }
 
           if (typeof localStorage !== "undefined") {
