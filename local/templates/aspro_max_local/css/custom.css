@@ -482,7 +482,7 @@ input.border-gray {
                max-width: 275px;
            }
            .price_matrix_wrapper.strike_block{
-            display: inline-block;
+            /*display: inline-block;*/
             padding-left: 15px;
         }
         .price_name.font_xs.darken {

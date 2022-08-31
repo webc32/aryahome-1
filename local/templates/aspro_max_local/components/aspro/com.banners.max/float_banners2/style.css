@@ -191,7 +191,7 @@
     margin-top: 1px;
   }
   body .item-views.float_banners2 .item.flexbox div.inner-text {
-    padding: 27px 30px 90%;
+    padding: 12px 15px 90%;
   }
   .item-views.float_banners2 .item .top-text {
     margin: 0px 0px 7px 1px;
@@ -202,7 +202,7 @@
   body .item-views.float_banners2 .item.flexbox div.image {
     position: relative;
     bottom: 0;
-    padding: 0px 0 20px;
+    padding: 0;
   }
   .item-views.float_banners2 .item .lazy,
   .item-views.float_banners2 .item .lazyloaded {
@@ -212,7 +212,7 @@
     padding-bottom: 17px;
   }
   body .item-views.float_banners2 .item.flexbox div.inner-text {
-    padding-bottom: 21px;
+    padding-bottom: 10px;
   }
 
   .item-views.float_banners2.top .item .lazy,
