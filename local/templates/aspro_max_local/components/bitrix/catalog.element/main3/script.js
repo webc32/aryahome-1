@@ -3858,6 +3858,9 @@ function CIBlockElementGetListColor(id, name, namecode, colorActive, sizecode, s
                             objectColors += '<a href="'+url+'" class="d-inline-block position-relative '+active+'" data-name="'+name+'" data-color="'+color+'"><img width="56px" height="56px" src="'+PREVIEW_PICTURE+'" loading="lazy" title="'+color+'"></a>';
                         //}
                         previousСolor = color;
+			(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+				try{ rrApi.groupView(id); } catch(e) {}
+			})
                     }
                 }
             });
@@ -3893,6 +3896,9 @@ function CIBlockElementGetListSize(id, name, namecode, colorActive, sizecode, si
                             objectSizes += '<a href="'+url+'" class="position-relative mb-1 '+active+'" data-id="'+id+'"><span class="d-block bg-graylight text-gold px-2 py-2">'+size+'</span></a>';
                             //}
                         previousSize = size;
+			(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+				try{ rrApi.groupView(id); } catch(e) {}
+			})
                     }
                 }
             });
