@@ -2171,11 +2171,11 @@ if (!funcDefined("purchaseCounter")) {
               }
             }
             waitLayer(100, function () {
-//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-//               dataLayer.push({
-//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
-//                 ecommerce: ecommerce,
-//               });
+              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+              dataLayer.push({
+                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
+                ecommerce: ecommerce,
+              });
 
               if (typeof callback !== "undefined") {
                 callback(ecommerce);
@@ -2239,13 +2239,13 @@ if (!funcDefined("viewItemCounter")) {
               }
             }
             waitLayer(100, function () {
-//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-//               dataLayer.push({
-//                 "event": "view_item",
-//                 currency: item.CURRENCY,
-//                 value: parseFloat(item.PRICE),
-//                 ecommerce: ecommerce,
-//               });
+              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+              dataLayer.push({
+                "event": "view_item",
+                currency: item.CURRENCY,
+                value: parseFloat(item.PRICE),
+                ecommerce: ecommerce,
+              });
             });
           };
           $(".owl-stage").owlCarousel("reset");
@@ -2307,18 +2307,18 @@ if (!funcDefined("checkoutCounter")) {
               }
             }
             waitLayer(100, function () {
-//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-//               dataLayer.push({
-//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["CHECKOUT_ORDER"],
-//                 currency: currency,
-//                 value: parseFloat(summ),
-//                 ecommerce: ecommerce,
-//                 /*"eventCallback": function() {
-//                     if((typeof callback !== 'undefined') && (typeof callback === 'function')){
-//                       callback();
-//                     }
-//                  }*/
-//               });
+              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+              dataLayer.push({
+                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["CHECKOUT_ORDER"],
+                currency: currency,
+                value: parseFloat(summ),
+                ecommerce: ecommerce,
+                /*"eventCallback": function() {
+                    if((typeof callback !== 'undefined') && (typeof callback === 'function')){
+                      callback();
+                    }
+                 }*/
+              });
               if((typeof callback !== 'undefined') && (typeof callback === 'function')){
                 callback();
               }
@@ -2367,13 +2367,13 @@ if (!funcDefined("delFromBasketCounter")) {
               }
             }
             waitLayer(100, function () {
-//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-//               dataLayer.push({
-//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
-//                 currency: item.CURRENCY,
-//                 value: parseFloat(item.PRICE),
-//                 ecommerce: ecommerce,
-//               });
+              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+              dataLayer.push({
+                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
+                currency: item.CURRENCY,
+                value: parseFloat(item.PRICE),
+                ecommerce: ecommerce,
+              });
               if (typeof callback == "function") {
                 callback();
               }
