@@ -2171,11 +2171,11 @@ if (!funcDefined("purchaseCounter")) {
               }
             }
             waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
-                ecommerce: ecommerce,
-              });
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
+//                 ecommerce: ecommerce,
+//               });
 
               if (typeof callback !== "undefined") {
                 callback(ecommerce);
