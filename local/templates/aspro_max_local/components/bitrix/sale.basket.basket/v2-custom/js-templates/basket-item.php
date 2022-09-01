@@ -214,7 +214,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 															</ul>
 														</div>
 												</div>
-
+												{{#CUSTOM_SKU_RAZMER}}
 												<div class="basket-item-property basket-item-property-scu-image basket-item-property-scu-size" data-entity="basket-item-sku-block-size">
 													<div class="basket-item-property-name">Размер</div>
 													<div class="basket-item-property-value">
@@ -222,10 +222,10 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 															{{#CUSTOM_SKU}}
 															{{#SELECTED}}
 															{{#SIZE}}
-															<li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}"
+															<li class="basket-item-scu-item{{#SELECTED_RAZMER}} selected{{/SELECTED_RAZMER}}"
 															title="{{RAZMER}}"
 															data-entity="basket-item-sku-field"
-															data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
+															data-initial="{{#SELECTED_RAZMER}}true{{/SELECTED_RAZMER}}{{^SELECTED_RAZMER}}false{{/SELECTED_RAZMER}}"
 															data-value-id="{{PRODUCT_ID}}"
 															onclick="refreshSku(this)"
 															>
@@ -236,6 +236,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 														{{/CUSTOM_SKU}}
 													</ul>
 												</div>
+												{{/CUSTOM_SKU_RAZMER}}
 											</div>
 											{{/CUSTOM_OFFERS}}
 											<?

@@ -380,7 +380,7 @@ dataLayer.push({
        // 'brand': 'Название бренда',  
        // 'category': 'Категория 1',  
        'quantity': "<?=$arItem['QUANTITY']?>" ,
-     }
+     },
      <?endforeach;?>
      ]  
    }  
