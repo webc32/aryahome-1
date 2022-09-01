@@ -137,7 +137,7 @@ foreach ($this->basketItems as $key => $row) {
         // "PROPERTY_TSVET" => $color
         );
         $res = CIBlockElement::GetList($arSort, $arFilter, false, false, $arSelect);
-        $razmer = false;
+
         while($ob = $res->GetNextElement()){
             $arFields = $ob->GetFields();
             if(!$this->basketItems[$key]['CUSTOM_SKU'][$arFields["PROPERTY_TSVET_VALUE"]]){
@@ -152,8 +152,7 @@ foreach ($this->basketItems as $key => $row) {
                 $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"] = $arFields["PROPERTY_RAZMER_VALUE"];
             }
 
-            if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"] && $this->basketItems[$key]["PROPERTY_RAZMER_VALUE"]){
-                $razmer = true;
+            if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
                 $this->basketItems[$key]['CUSTOM_SKU'][$arFields["PROPERTY_TSVET_VALUE"]]["SIZE"][] = 
                 array(
                     "PRODUCT_ID" => $arFields['ID'],
@@ -167,12 +166,6 @@ foreach ($this->basketItems as $key => $row) {
         foreach ($this->basketItems[$key]['CUSTOM_SKU'] as &$value) {
             $selected = ($value["NAME_COLOR"] == $this->basketItems[$key]["PROPERTY_TSVET_VALUE"]);
             $value['SELECTED'] = $selected;
-        }
-
-        if(!$razmer){
-            $this->basketItems[$key]['CUSTOM_SKU_RAZMER'] = false;
-        }else{
-            $this->basketItems[$key]['CUSTOM_SKU_RAZMER'] = true;
         }
 
         $this->basketItems[$key]['CUSTOM_SKU'] = array_values($this->basketItems[$key]['CUSTOM_SKU']);
