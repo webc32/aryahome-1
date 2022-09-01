@@ -222,10 +222,10 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 															{{#CUSTOM_SKU}}
 															{{#SELECTED}}
 															{{#SIZE}}
-															<li class="basket-item-scu-item{{#SELECTED_RAZMER}} selected{{/SELECTED_RAZMER}}"
+															<li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}"
 															title="{{RAZMER}}"
 															data-entity="basket-item-sku-field"
-															data-initial="{{#SELECTED_RAZMER}}true{{/SELECTED_RAZMER}}{{^SELECTED_RAZMER}}false{{/SELECTED_RAZMER}}"
+															data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
 															data-value-id="{{PRODUCT_ID}}"
 															onclick="refreshSku(this)"
 															>
