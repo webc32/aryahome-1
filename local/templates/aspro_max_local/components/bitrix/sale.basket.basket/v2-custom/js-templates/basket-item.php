@@ -214,7 +214,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 															</ul>
 														</div>
 												</div>
-												{{#CUSTOM_SKU_RAZMER}}
+												
 												<div class="basket-item-property basket-item-property-scu-image basket-item-property-scu-size" data-entity="basket-item-sku-block-size">
 													<div class="basket-item-property-name">Размер</div>
 													<div class="basket-item-property-value">
@@ -236,7 +236,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 														{{/CUSTOM_SKU}}
 													</ul>
 												</div>
-												{{/CUSTOM_SKU_RAZMER}}
+												
 											</div>
 											{{/CUSTOM_OFFERS}}
 											<?
