@@ -391,3 +391,13 @@ dataLayer.push({
  'gtm-ee-event-non-interaction': 'False',  
 });  
 </script>
+
+<script>
+	$(document).ready(function(){
+		var cupon = BX.getCookie('useCupon');
+		if(typeof(cupon) != 'undefined'){
+			$('input[data-entity="basket-coupon-input"]').val(cupon);
+			$('.basket-coupon-block-coupon-btn').trigger('click');
+		}
+	})
+</script>

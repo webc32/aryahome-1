@@ -11,6 +11,41 @@
 /* Hide compare button */
 /* a.compare_item { display: none !important;  }*/
 
+@font-face {
+    font-family: GothaProBol;
+    font-display: swap;
+    src: url(../fonts/Playfair/PlayfairDisplay-Black.eot);
+    src: url(../fonts/Playfair/PlayfairDisplay-Black.eot?#iefix) format('embedded-opentype'), url(../fonts/Playfair/PlayfairDisplay-Black.woff) format('woff'), url(../fonts/Playfair/PlayfairDisplay-Black.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: GothaProBol;
+    font-display: swap;
+    src: url(../fonts/Playfair/PlayfairDisplay-Italic.eot);
+    src: url(../fonts/Playfair/PlayfairDisplay-Italic.eot?#iefix) format('embedded-opentype'), url(../fonts/Playfair/PlayfairDisplay-Italic.woff) format('woff'), url(../fonts/Playfair/PlayfairDisplay-Italic.ttf) format('truetype');
+    font-weight: 400;
+    font-style: italic
+}
+@font-face {
+    font-family: GothaProBol;
+    font-display: swap;
+    src: url(../fonts/Playfair/PlayfairDisplay-Bold.eot);
+    src: url(../fonts/Playfair/PlayfairDisplay-Bold.eot?#iefix) format('embedded-opentype'), url(../fonts/Playfair/PlayfairDisplay-Bold.woff) format('woff'), url(../fonts/Playfair/PlayfairDisplay-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal
+}
+@font-face {
+    font-family: GothaProBol;
+    font-display: swap;
+    src: url(../fonts/Playfair/PlayfairDisplay-BoldItalic.eot);
+    src: url(../fonts/Playfair/PlayfairDisplay-BoldItalic.eot?#iefix) format('embedded-opentype'), url(../fonts/Playfair/PlayfairDisplay-BoldItalic.woff) format('woff'), url(../fonts/Playfair/PlayfairDisplay-BoldItalic.ttf) format('truetype');
+    font-weight: bold;
+    font-style: italic
+}
+
+
 .text-gold{
     color: #D0A550;
 }
