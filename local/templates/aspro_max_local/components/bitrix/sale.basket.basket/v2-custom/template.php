@@ -394,12 +394,13 @@ dataLayer.push({
 
 <script>
 	$(document).ready(function(){
-		setTimeout(function(){
-			var cupon = BX.getCookie('useCupon');
-			if(typeof(cupon) != 'undefined'){
-				$('input[data-entity="basket-coupon-input"]').val(cupon);
-				$('.basket-coupon-block-coupon-btn').trigger('click');
-			}
-		},200)
+		var cupon = BX.getCookie('useCupon');
+		if(typeof(cupon) != 'undefined'){
+			$('input[data-entity="basket-coupon-input"]').val(cupon);
+			setTimeout(BX.delegate((function() {
+                BX.Sale.BasketComponent.addCouponAction(event)
+            }
+            ), BX.Sale.BasketComponent), 10)
+		}
 	})
 </script>
