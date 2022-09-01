@@ -7869,7 +7869,7 @@ body .catalog_item.hover .footer_button {
   float: left;
 }
 .stickers [class*="sticker_"] {
-  background-color: #d0a550;
+  background-color: black;/*#d0a550*/
   width: auto;
   letter-spacing: 0.5px;
   position: relative;
