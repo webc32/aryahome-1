@@ -394,10 +394,12 @@ dataLayer.push({
 
 <script>
 	$(document).ready(function(){
-		var cupon = BX.getCookie('useCupon');
-		if(typeof(cupon) != 'undefined'){
-			$('input[data-entity="basket-coupon-input"]').val(cupon);
-			$('.basket-coupon-block-coupon-btn').trigger('click');
-		}
+		setTimeout(function(){
+			var cupon = BX.getCookie('useCupon');
+			if(typeof(cupon) != 'undefined'){
+				$('input[data-entity="basket-coupon-input"]').val(cupon);
+				$('.basket-coupon-block-coupon-btn').trigger('click');
+			}
+		},200)
 	})
 </script>
