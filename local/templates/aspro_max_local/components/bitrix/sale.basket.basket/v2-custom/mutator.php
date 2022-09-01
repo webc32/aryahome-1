@@ -177,9 +177,6 @@ foreach ($this->basketItems as $key => $row) {
 
         $this->basketItems[$key]['CUSTOM_SKU'] = array_values($this->basketItems[$key]['CUSTOM_SKU']);
         $this->basketItems[$key]['CUSTOM_OFFERS'] = "Y";
-echo '<pre>';
-var_dump($this->basketItems[$key]['CUSTOM_SKU']);
-echo '</pre>';
     }
 }
 
