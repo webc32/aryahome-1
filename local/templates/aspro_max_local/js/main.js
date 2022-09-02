@@ -2332,7 +2332,6 @@ if (!funcDefined("checkoutCounter")) {
 
 if (!funcDefined("delFromBasketCounter")) {
   function delFromBasketCounter(id, callback) {
-    console.log(1);
     if (checkCounters()) {
       $.ajax({
         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
@@ -2367,15 +2366,14 @@ if (!funcDefined("delFromBasketCounter")) {
                 },
               }
             }
-	    console.log(2);
             waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
               if (typeof callback == "function") {
                 callback();
               }
