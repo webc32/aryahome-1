@@ -2373,7 +2373,7 @@ if (!funcDefined("delFromBasketCounter")) {
                 currency: item.CURRENCY,
                 value: parseFloat(item.PRICE),
                 ecommerce: ecommerce,
-//               });
+              });
               if (typeof callback == "function") {
                 callback();
               }
