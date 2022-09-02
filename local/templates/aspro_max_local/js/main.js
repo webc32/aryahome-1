@@ -2332,6 +2332,7 @@ if (!funcDefined("checkoutCounter")) {
 
 if (!funcDefined("delFromBasketCounter")) {
   function delFromBasketCounter(id, callback) {
+    console.log(1);
     if (checkCounters()) {
       $.ajax({
         url: arAsproOptions["SITE_DIR"] + "ajax/goals.php",
@@ -2366,6 +2367,7 @@ if (!funcDefined("delFromBasketCounter")) {
                 },
               }
             }
+	    console.log(2);
             waitLayer(100, function () {
               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
               dataLayer.push({
