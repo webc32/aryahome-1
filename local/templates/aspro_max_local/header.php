@@ -15,9 +15,8 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-52Q5Q4N');</script>
-<!-- End Google Tag Manager -->
-
+	})(window,document,'script','dataLayer','GTM-52Q5Q4N');</script>
+	<!-- End Google Tag Manager -->
 
 	<title><?$APPLICATION->ShowTitle()?></title>
 	<?$APPLICATION->ShowMeta("viewport");?>
@@ -32,22 +31,6 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 	<?include_once(str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'].'/'.SITE_DIR.'include/header_include/head.php'));?>
 
 	<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-  ym(28747751, "init", {
-        clickmap:true,
-       trackLinks:true,
-       accurateTrackBounce:true,
-       webvisor:true,
-       ecommerce:"dataLayer"
-  });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/28747751" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 </head>
 <?
 $git = 'git ';

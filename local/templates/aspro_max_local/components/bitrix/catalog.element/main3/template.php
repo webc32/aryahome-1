@@ -1947,7 +1947,6 @@ dataLayer.push({
 });  
 </script>  
 
-
 <script>
 	$(document).on("click", ".to-cart:not(.read_more), .basket_item_add", function (e) {
 		window.dataLayer = window.dataLayer || [];  
@@ -1971,4 +1970,10 @@ dataLayer.push({
 			'gtm-ee-event-non-interaction': 'False',  
 		});
 	})
+</script>
+
+<script type="text/javascript">
+	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+        try{ rrApi.groupView("<?=$arResult["ID"]?>"); } catch(e) {}
+    })
 </script>

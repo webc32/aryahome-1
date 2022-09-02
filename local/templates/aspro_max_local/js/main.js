@@ -2050,7 +2050,7 @@ if (!funcDefined("checkCounters")) {
 }
 
 if (!funcDefined("addBasketCounter")) {
-  function addBasketCounter(id) {
+function addBasketCounter(id) {
     if (arAsproOptions["COUNTERS"]["USE_BASKET_GOALS"] !== "N") {
       var eventdata = { goal: "goal_basket_add", params: { id: id } };
       BX.onCustomEvent("onCounterGoals", [eventdata]);
@@ -2097,14 +2097,14 @@ if (!funcDefined("addBasketCounter")) {
               }
             }
             waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                // event: 'add_to_cart',
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["ADD2BASKET"],
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 // event: 'add_to_cart',
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["ADD2BASKET"],
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
             });
           }
         },
@@ -2171,11 +2171,11 @@ if (!funcDefined("purchaseCounter")) {
               }
             }
             waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
-                ecommerce: ecommerce,
-              });
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"],
+//                 ecommerce: ecommerce,
+//               });
 
               if (typeof callback !== "undefined") {
                 callback(ecommerce);
@@ -2238,15 +2238,15 @@ if (!funcDefined("viewItemCounter")) {
                 },
               }
             }
-            waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                "event": "view_item",
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
-            });
+//             waitLayer(100, function () {
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 "event": "view_item",
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
+//             });
           };
           $(".owl-stage").owlCarousel("reset");
         },
@@ -2367,13 +2367,13 @@ if (!funcDefined("delFromBasketCounter")) {
               }
             }
             waitLayer(100, function () {
-              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-              dataLayer.push({
-                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
-                currency: item.CURRENCY,
-                value: parseFloat(item.PRICE),
-                ecommerce: ecommerce,
-              });
+//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+//               dataLayer.push({
+//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
+//                 currency: item.CURRENCY,
+//                 value: parseFloat(item.PRICE),
+//                 ecommerce: ecommerce,
+//               });
               if (typeof callback == "function") {
                 callback();
               }
@@ -5137,8 +5137,8 @@ $(document).ready(function () {
             d = val;
           }
           if (typeof d === "object") {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({ event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"], ecommerce: d });
+//             window.dataLayer = window.dataLayer || [];
+//             dataLayer.push({ event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["PURCHASE"], ecommerce: d });
           }
 
           if (typeof localStorage !== "undefined") {

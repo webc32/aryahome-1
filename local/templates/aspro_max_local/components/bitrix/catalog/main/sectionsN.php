@@ -70,6 +70,12 @@ if(
 		<?@include_once('page_blocks/'.$sViewElementTemplate.'.php');?>
 		<br/><br/>
 		
+<script type="text/javascript">
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+        try { rrApi.categoryView("<?$arResult["VARIABLES"]["SECTION_ID"]?>"); } catch(e) {}
+    })
+</script>
+		
 		<?//дополнительные элементы?>
 			<?$APPLICATION->IncludeComponent(
 					"bitrix:catalog.section",

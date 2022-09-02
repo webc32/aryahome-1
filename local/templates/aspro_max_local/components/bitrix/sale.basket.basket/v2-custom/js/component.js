@@ -1402,8 +1402,8 @@
         restore = false;
         final = true;
       }
-
-      // console.log(this.items[itemId]);
+      console.log(213);
+      console.log(this.items[itemId]);
   
       window.dataLayer = window.dataLayer || [];  
       dataLayer.push({  

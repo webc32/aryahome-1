@@ -49,7 +49,7 @@ use \Bitrix\Main\Localization\Loc,
 	<? if ($arParams["AJAX_REQUEST"] != "Y") : ?>
 		<? $bSlide = (isset($arParams['SLIDE_ITEMS']) && $arParams['SLIDE_ITEMS']); ?>
 		<? $bGiftblock = (isset($arParams['GIFT_ITEMS']) && $arParams['GIFT_ITEMS']); ?>
-		<div class="top_wrapper items_wrapper <?= $templateName; ?>_template <?= $arParams['IS_COMPACT_SLIDER'] ? 'compact-catalog-slider' : '' ?>">
+		<div class="top_wrapper items_wrapper 12 <?= $templateName; ?>_template <?= $arParams['IS_COMPACT_SLIDER'] ? 'compact-catalog-slider' : '' ?>">
 			<div class="fast_view_params" data-params="<?= urlencode(serialize($arTransferParams)); ?>"></div>
 			<div class="catalog_block items row <?= $arParams['IS_COMPACT_SLIDER'] ? 'swipeignore mobile-overflow' : '' ?> margin0 <?= $bHasBottomPager ? 'has-bottom-nav' : '' ?> js_append ajax_load block flexbox<?= ($bSlide ? ' owl-carousel owl-theme owl-bg-nav visible-nav short-nav hidden-dots swipeignore ' : ''); ?>" <? if ($bSlide) : ?>data-plugin-options='{"nav": true, "autoplay" : false,  "autoplayTimeout" : "3000", "smartSpeed":1000, <?= (count($arResult["ITEMS"]) > 4 ? "\"loop\": true," : "") ?> "responsiveClass": true, "responsive":{"0":{"items": 2},"600":{"items": 2},"768":{"items": 3},"1200":{"items": 4}}}' <? endif; ?>>
 			<? endif; ?>
@@ -972,3 +972,15 @@ use \Bitrix\Main\Localization\Loc,
 		})
 	})
 </script>
+<script type="text/javascript">
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+        try { rrApi.categoryView("<?$arParams["SECTION_ID"]?>"); } catch(e) {}
+    })
+</script>
+<div style="display:none;" class="123123123">
+	<pre>
+	<?
+// 	print_r($arParams);
+	?>
+	</pre>
+</div>
