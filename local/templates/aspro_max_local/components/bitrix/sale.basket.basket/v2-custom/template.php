@@ -367,28 +367,28 @@ else
 <script>  
 window.dataLayer = window.dataLayer || [];  
 dataLayer.push({  
- 'ecommerce': {  
-   'currencyCode': 'RUB',  
-   'checkout': {  
-     'actionField': {'step': 1},  
-     'products': [
-     <?foreach ($arResult['GRID']["ROWS"] as $key => $arItem):?>
-     {  
-       'name': "<?=$arItem['NAME']?>",  
-       'id': "<?=$arItem['PRODUCT_ID']?>",  
-       'price': "<?=$arItem['FULL_PRICE']?>",  
-       // 'brand': 'Название бренда',  
-       // 'category': 'Категория 1',  
-       'quantity': "<?=$arItem['QUANTITY']?>" ,
-     },
-     <?endforeach;?>
-     ]  
-   }  
- },  
- 'event': 'gtm-ee-event',  
- 'gtm-ee-event-category': 'Enhanced Ecommerce',  
- 'gtm-ee-event-action': 'Checkout - Step 1',  
- 'gtm-ee-event-non-interaction': 'False',  
+//  'ecommerce': {  
+//    'currencyCode': 'RUB',  
+//    'checkout': {  
+//      'actionField': {'step': 1},  
+//      'products': [
+//      <?foreach ($arResult['GRID']["ROWS"] as $key => $arItem):?>
+//      {  
+//        'name': "<?=$arItem['NAME']?>",  
+//        'id': "<?=$arItem['PRODUCT_ID']?>",  
+//        'price': "<?=$arItem['FULL_PRICE']?>",  
+//        // 'brand': 'Название бренда',  
+//        // 'category': 'Категория 1',  
+//        'quantity': "<?=$arItem['QUANTITY']?>" ,
+//      },
+//      <?endforeach;?>
+//      ]  
+//    }  
+//  },  
+//  'event': 'gtm-ee-event',  
+//  'gtm-ee-event-category': 'Enhanced Ecommerce',  
+//  'gtm-ee-event-action': 'Checkout - Step 1',  
+//  'gtm-ee-event-non-interaction': 'False',  
 });  
 </script>
 
