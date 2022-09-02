@@ -684,16 +684,16 @@ $(".set_block").ready(function () {
   //         this.obPrice.discount = BX(this.visual.DISCOUNT_VALUE_ID);
   //         if (!!this.obPrice.full) BX.adjust(this.obPrice.full, { style: { display: "none" }, html: "" });
   //         /*if (!this.obPrice.full || !this.obPrice.discount)
-  // 			{
-  // 				this.config.showOldPrice = false;
-  // 			}*/
+  //      {
+  //        this.config.showOldPrice = false;
+  //      }*/
   //       }
   //       if (this.config.showPercent) {
   //         this.obPrice.percent = BX(this.visual.DISCOUNT_PERC_ID);
   //         /*if (!this.obPrice.percent)
-  // 			{
-  // 				this.config.showPercent = false;
-  // 			}*/
+  //      {
+  //        this.config.showPercent = false;
+  //      }*/
   //       }
   //     }
   //     this.obBasketActions = BX(this.visual.BASKET_ACTIONS_ID);
@@ -881,9 +881,9 @@ $(".set_block").ready(function () {
   //     }
 
   //     /*this.setMainPictHandler();
-  // 	setTimeout(function(){
-  // 		$('.offers_img.wof').css('opacity', 1);
-  // 	},400);*/
+  //  setTimeout(function(){
+  //    $('.offers_img.wof').css('opacity', 1);
+  //  },400);*/
   //   }
   // };
 
@@ -1929,7 +1929,7 @@ $(".set_block").ready(function () {
   //         this.stepQuantity = parseInt(this.offers[index].STEP_QUANTITY, 10);
   //       }
   //       /*this.obQuantity.value = this.stepQuantity;
-  // 		this.obQuantity.disabled = !this.canBuy;*/
+  //    this.obQuantity.disabled = !this.canBuy;*/
   //       if (!!this.obMeasure) {
   //         if (!!this.offers[index].MEASURE) {
   //           BX.adjust(this.obMeasure, { html: this.offers[index].MEASURE });
@@ -2101,9 +2101,9 @@ $(".set_block").ready(function () {
   //       }
 
   //       /*if (0 <= this.showStart[index])
-  // 		{
-  // 			BX.adjust(this.obTreeRows[index].LEFT, { style: this.treeDisableArrow });
-  // 		}*/
+  //    {
+  //      BX.adjust(this.obTreeRows[index].LEFT, { style: this.treeDisableArrow });
+  //    }*/
   //     }
   //   }
   // };
@@ -2129,9 +2129,9 @@ $(".set_block").ready(function () {
   //       }
 
   //       /*if ((this.treeRowShowSize - this.showStart[index]) >= this.showCount[index])
-  // 		{
-  // 			BX.adjust(this.obTreeRows[index].RIGHT, { style: this.treeDisableArrow });
-  // 		}*/
+  //    {
+  //      BX.adjust(this.obTreeRows[index].RIGHT, { style: this.treeDisableArrow });
+  //    }*/
   //     }
   //   }
   // };
@@ -2428,7 +2428,7 @@ $(".set_block").ready(function () {
   //   if (this.treeProps) {
   //     for (var i in this.treeProps) {
   //       /*if(this.treeProps[i].SHOW_MODE == 'PICT')
-  // 		{*/
+  //    {*/
   //       var cont = $("#" + this.visual.ID + "_prop_" + this.treeProps[i].ID + "_cont"),
   //         color = cont
   //           .find(
@@ -2482,14 +2482,14 @@ $(".set_block").ready(function () {
   //         BX.adjust(BX(this.visual.OFFER_GROUP + this.offers[index].ID), { style: { display: "" } });
   //     }
   //     /*if (0 < this.offers[index].SLIDER_COUNT)
-  // 	{
-  // 		this.SetMainPict(this.offers[index].ID, this.offers[index].SLIDER[0].ID);
-  // 	}
-  // 	else
-  // 	{
-  // 		this.SetMainPictFromItem(index);
-  // 	}
-  // 	*/
+  //  {
+  //    this.SetMainPict(this.offers[index].ID, this.offers[index].SLIDER[0].ID);
+  //  }
+  //  else
+  //  {
+  //    this.SetMainPictFromItem(index);
+  //  }
+  //  */
 
   //     this.SetAdditionalGallery(index);
 
@@ -3058,21 +3058,21 @@ $(".set_block").ready(function () {
   //   if (obj.CONFIG.ACTION !== "NOTHING") {
   //     buyBlock.append(obj.ONE_CLICK_BUY_HTML);
   //     /*if(obj.CONFIG.ACTION == "ADD" && obj.CAN_BUY && obj.SHOW_ONE_CLICK_BUY!="N")
-  // 	{
-  // 		var ocb='<span class="transparent btn-lg type_block btn btn-default white one_click transition_bg" data-offers="Y" data-item="'+obj.ID+'" data-iblockID="'+obj.IBLOCK_ID+'" data-quantity="'+obj.CONFIG.MIN_QUANTITY_BUY+'" data-props="'+obj.OFFER_PROPS+'" onclick="oneClickBuy('+obj.ID+', '+obj.IBLOCK_ID+', this)">'+
-  // 			'<span>'+obj.ONE_CLICK_BUY+'</span>'+
-  // 			'</span>';
-  // 		if(buyBlock.find('.wrapp_one_click').length){
-  // 			buyBlock.find('.wrapp_one_click').html(ocb);
-  // 		}else{
-  // 			buyBlock.append('<div class="wrapp_one_click">'+ocb+'</div>');
-  // 		}
-  // 	}
-  // 	else
-  // 	{
-  // 		if(buyBlock.find('.wrapp_one_click').length)
-  // 			buyBlock.find('.wrapp_one_click').remove();
-  // 	}*/
+  //  {
+  //    var ocb='<span class="transparent btn-lg type_block btn btn-default white one_click transition_bg" data-offers="Y" data-item="'+obj.ID+'" data-iblockID="'+obj.IBLOCK_ID+'" data-quantity="'+obj.CONFIG.MIN_QUANTITY_BUY+'" data-props="'+obj.OFFER_PROPS+'" onclick="oneClickBuy('+obj.ID+', '+obj.IBLOCK_ID+', this)">'+
+  //      '<span>'+obj.ONE_CLICK_BUY+'</span>'+
+  //      '</span>';
+  //    if(buyBlock.find('.wrapp_one_click').length){
+  //      buyBlock.find('.wrapp_one_click').html(ocb);
+  //    }else{
+  //      buyBlock.append('<div class="wrapp_one_click">'+ocb+'</div>');
+  //    }
+  //  }
+  //  else
+  //  {
+  //    if(buyBlock.find('.wrapp_one_click').length)
+  //      buyBlock.find('.wrapp_one_click').remove();
+  //  }*/
   //   } else {
   //     if (buyBlock.find(".wrapp-one-click").length) buyBlock.find(".wrapp-one-click").remove();
   //   }
@@ -3245,10 +3245,10 @@ $(".set_block").ready(function () {
   //       }
   //       reloadTopBasket("add", $("#basket_line"), 200, 2000, "Y");
   //       /*if($(window).outerWidth() > 520){
-  // 			//if(arMaxOptions['THEME']['SHOW_BASKET_ONADDTOCART'] !== 'N'){
-  // 				preAnimateBasketPopup('', $('.card_popup_frame'), 0, 200);
-  // 			//}
-  // 		};*/
+  //      //if(arMaxOptions['THEME']['SHOW_BASKET_ONADDTOCART'] !== 'N'){
+  //        preAnimateBasketPopup('', $('.card_popup_frame'), 0, 200);
+  //      //}
+  //    };*/
   //     }
   //     animateBasketLine(200);
   //   }
@@ -3425,106 +3425,106 @@ $(".set_block").ready(function () {
   //     if (typeof obPrices == "object") {
   //       product.find(".with_matrix").hide();
   //       /*var strPrice = '',
-  // 			count = Object.keys(obPrices).length,
-  // 			arStikePrices = [];
+  //      count = Object.keys(obPrices).length,
+  //      arStikePrices = [];
 
-  // 		if(arMaxOptions['THEME']['DISCOUNT_PRICE'])
-  // 		{
-  // 			arStikePrices = arMaxOptions['THEME']['DISCOUNT_PRICE'].split(',');
-  // 		}
+  //    if(arMaxOptions['THEME']['DISCOUNT_PRICE'])
+  //    {
+  //      arStikePrices = arMaxOptions['THEME']['DISCOUNT_PRICE'].split(',');
+  //    }
 
-  // 		strPrice = '<div class="offers_price_wrapper">';
-  // 		$(this.obProduct).find('.with_matrix').hide();
-  // 		$(this.obProduct).find('.not_matrix').show();
-  // 		for(var j in obPrices)
-  // 		{
-  // 			if(obPrices[j] && obPrices[j].VALUE > 0)
-  // 			{
-  // 				if('GROUP_NAME' in obPrices[j])
-  // 				{
-  // 					if(count > 1)
-  // 					{
-  // 						strPrice += '<div class="offers_price_title">';
-  // 						strPrice += obPrices[j].GROUP_NAME;
-  // 						strPrice += '</div>';
-  // 					}
-  // 				}
-  // 				strPrice += '<div class="offers_price'+(arStikePrices ? (BX.util.in_array(obPrices[j].PRICE_ID, arStikePrices) ? ' strike_block' : '') : '')+'">';
-  // 					strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_VALUE, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_VALUE)+'</span>';
-  // 					if(measure)
-  // 						strPrice += '<span class="price_measure">/'+measure+'</span>';
+  //    strPrice = '<div class="offers_price_wrapper">';
+  //    $(this.obProduct).find('.with_matrix').hide();
+  //    $(this.obProduct).find('.not_matrix').show();
+  //    for(var j in obPrices)
+  //    {
+  //      if(obPrices[j] && obPrices[j].VALUE > 0)
+  //      {
+  //        if('GROUP_NAME' in obPrices[j])
+  //        {
+  //          if(count > 1)
+  //          {
+  //            strPrice += '<div class="offers_price_title">';
+  //            strPrice += obPrices[j].GROUP_NAME;
+  //            strPrice += '</div>';
+  //          }
+  //        }
+  //        strPrice += '<div class="offers_price'+(arStikePrices ? (BX.util.in_array(obPrices[j].PRICE_ID, arStikePrices) ? ' strike_block' : '') : '')+'">';
+  //          strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_VALUE, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_VALUE)+'</span>';
+  //          if(measure)
+  //            strPrice += '<span class="price_measure">/'+measure+'</span>';
 
-  // 				strPrice += '</div>';
-  // 				if (obPrices[j].DISCOUNT_VALUE !== obPrices[j].VALUE)
-  // 				{
-  // 					if(this.config.showOldPrice)
-  // 					{
-  // 						strPrice += '<div class="offers_price_old">';
-  // 							strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].VALUE, obPrices[j].CURRENCY, obPrices[j].PRINT_VALUE)+'</span>';
-  // 						strPrice += '</div>';
-  // 					}
-  // 					if(this.config.showPercent)
-  // 					{
-  // 						if(!this.config.showPercentNumber || (this.config.showPercentNumber && (obPrices[j].DISCOUNT_DIFF_PERCENT <= 0 && obPrices[j].DISCOUNT_DIFF_PERCENT >= 100)))
-  // 						{
-  // 							strPrice += '<div class="sale_block matrix"><div class="sale_wrapper">';
-  // 								strPrice += '<span class="title">'+BX.message('ITEM_ECONOMY')+'</span>';
-  // 								strPrice += '<div class="text">';
-  // 									strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_DIFF, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_DIFF)+'</span>';
-  // 								strPrice += '</div>';
-  // 							strPrice += '<div class="clearfix"></div></div></div>';
-  // 						}
-  // 						else
-  // 						{
-  // 							strPrice += '<div class="sale_block matrix"><div class="sale_wrapper">';
-  // 								strPrice += '<div class="value">-<span>'+obPrices[j].DISCOUNT_DIFF_PERCENT+'</span>%</div>';
-  // 								strPrice += '<div class="text">';
-  // 									strPrice += '<span class="title">'+BX.message('ITEM_ECONOMY')+'</span> ';
-  // 									strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_DIFF, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_DIFF)+'</span>';
-  // 								strPrice += '</div>';
-  // 							strPrice += '<div class="clearfix"></div></div></div>';
-  // 						}
-  // 					}
-  // 				}
-  // 				else
-  // 				{
-  // 					if (this.config.showOldPrice)
-  // 					{
-  // 						if (!!this.obPrice.full)
-  // 						{
-  // 							BX.adjust(this.obPrice.full, {style: {display: 'none'}, html: ''});
-  // 						}
-  // 						if (!!this.obPrice.discount)
-  // 						{
-  // 							BX.adjust(this.obPrice.discount, {style: {display: 'none'}, html: ''});
-  // 						}
-  // 					}
-  // 				}
-  // 				$('.prices_block .cost.prices').show();
-  // 			}
-  // 			else
-  // 			{
-  // 				$('.prices_block .cost.prices').hide();
-  // 			}
-  // 		}
-  // 		if (this.config.showPercent)
-  // 		{
-  // 			if (!!this.obPrice.percent)
-  // 			{
-  // 				BX.adjust(this.obPrice.percent, {style: {display: 'none'}, html: ''});
-  // 			}
-  // 			$(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix)').hide();
-  // 			$(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix) .value').html('');
-  // 			$(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix) .text span').html('');
-  // 		}
-  // 		strPrice += '</div>';
-  // 		BX.adjust(this.obPrice.price, {html: strPrice});
+  //        strPrice += '</div>';
+  //        if (obPrices[j].DISCOUNT_VALUE !== obPrices[j].VALUE)
+  //        {
+  //          if(this.config.showOldPrice)
+  //          {
+  //            strPrice += '<div class="offers_price_old">';
+  //              strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].VALUE, obPrices[j].CURRENCY, obPrices[j].PRINT_VALUE)+'</span>';
+  //            strPrice += '</div>';
+  //          }
+  //          if(this.config.showPercent)
+  //          {
+  //            if(!this.config.showPercentNumber || (this.config.showPercentNumber && (obPrices[j].DISCOUNT_DIFF_PERCENT <= 0 && obPrices[j].DISCOUNT_DIFF_PERCENT >= 100)))
+  //            {
+  //              strPrice += '<div class="sale_block matrix"><div class="sale_wrapper">';
+  //                strPrice += '<span class="title">'+BX.message('ITEM_ECONOMY')+'</span>';
+  //                strPrice += '<div class="text">';
+  //                  strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_DIFF, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_DIFF)+'</span>';
+  //                strPrice += '</div>';
+  //              strPrice += '<div class="clearfix"></div></div></div>';
+  //            }
+  //            else
+  //            {
+  //              strPrice += '<div class="sale_block matrix"><div class="sale_wrapper">';
+  //                strPrice += '<div class="value">-<span>'+obPrices[j].DISCOUNT_DIFF_PERCENT+'</span>%</div>';
+  //                strPrice += '<div class="text">';
+  //                  strPrice += '<span class="title">'+BX.message('ITEM_ECONOMY')+'</span> ';
+  //                  strPrice += '<span class="values_wrapper">'+getCurrentPrice(obPrices[j].DISCOUNT_DIFF, obPrices[j].CURRENCY, obPrices[j].PRINT_DISCOUNT_DIFF)+'</span>';
+  //                strPrice += '</div>';
+  //              strPrice += '<div class="clearfix"></div></div></div>';
+  //            }
+  //          }
+  //        }
+  //        else
+  //        {
+  //          if (this.config.showOldPrice)
+  //          {
+  //            if (!!this.obPrice.full)
+  //            {
+  //              BX.adjust(this.obPrice.full, {style: {display: 'none'}, html: ''});
+  //            }
+  //            if (!!this.obPrice.discount)
+  //            {
+  //              BX.adjust(this.obPrice.discount, {style: {display: 'none'}, html: ''});
+  //            }
+  //          }
+  //        }
+  //        $('.prices_block .cost.prices').show();
+  //      }
+  //      else
+  //      {
+  //        $('.prices_block .cost.prices').hide();
+  //      }
+  //    }
+  //    if (this.config.showPercent)
+  //    {
+  //      if (!!this.obPrice.percent)
+  //      {
+  //        BX.adjust(this.obPrice.percent, {style: {display: 'none'}, html: ''});
+  //      }
+  //      $(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix)').hide();
+  //      $(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix) .value').html('');
+  //      $(this.obPrice.full).closest('.cost').find('.sale_block:not(.matrix) .text span').html('');
+  //    }
+  //    strPrice += '</div>';
+  //    BX.adjust(this.obPrice.price, {html: strPrice});
 
-  // 		$(this.obPrice.full).hide().html('');
-  // 		if(this.showPercent)
-  // 			$(this.obPrice.full).closest('.cost').find('.sale_block').hide();
+  //    $(this.obPrice.full).hide().html('');
+  //    if(this.showPercent)
+  //      $(this.obPrice.full).closest('.cost').find('.sale_block').hide();
 
-  // 		*/
+  //    */
   //       product.find(".cost").removeClass("sku_matrix");
   //       product.find(".cost .js_price_wrapper").html(this.offers[this.offerNum].PRICES_HTML);
 
@@ -3902,7 +3902,7 @@ function CIBlockElementGetListSize(id, name, namecode, colorActive, sizecode, si
                     }
                 }
             });
-            //console.log(objectSizes);
+
             if (objectSizes != '') {
                 form.find('.size .value div').append(objectSizes);
             }
@@ -3919,41 +3919,41 @@ $(document).ready(function () {
 
     $('.product-detail-gallery__thmb-container .owl-item').mouseover(function () {
         $(this).click();
-		
+    
 
 
     })
-	var elem_video_path = $('.product-detail-gallery__slider_custom').find('.owl-item .frame_custom_detail').attr('src');
-	var elem_video= $('.product-detail-gallery__slider_custom').find('.owl-item .frame_custom_detail');
-	
-	$('.product-detail-gallery__slider_custom').on("translated.owl.carousel", function (event) {
-		var active_elem_video = $(this).find('.owl-item.active .frame_custom_detail');
-		console.log(active_elem_video.length)
-		
-		if(active_elem_video.length) {
-			elem_video.attr('src', elem_video_path+='&autoplay=1');
-		} else {
-			
-			var substr = elem_video_path.replace('&autoplay=1','');
-			
-			elem_video.attr('src', substr);
-			console.log(substr, 'test1234455')
+  var elem_video_path = $('.product-detail-gallery__slider_custom').find('.owl-item .frame_custom_detail').attr('src');
+  var elem_video= $('.product-detail-gallery__slider_custom').find('.owl-item .frame_custom_detail');
+  
+  $('.product-detail-gallery__slider_custom').on("translated.owl.carousel", function (event) {
+    var active_elem_video = $(this).find('.owl-item.active .frame_custom_detail');
+    console.log(active_elem_video.length)
+    
+    if(active_elem_video.length) {
+      elem_video.attr('src', elem_video_path+='&autoplay=1');
+    } else {
+      
+      var substr = elem_video_path.replace('&autoplay=1','');
+      
+      elem_video.attr('src', substr);
+      console.log(substr, 'test1234455')
 
-			
-		}
-	});
-	
-	//$('.product-detail-gallery__slider_custom').trigger('to.owl.carousel', [2, 0]);
-	var first_elem = $('.product-detail-gallery__slider_custom').find('#photo-0');
-	if(first_elem.find('.frame_custom_detail').length) {
-		$('.product-detail-gallery__slider_custom').trigger('to.owl.carousel', [1, 0]);
-	}
-	$('.video-block_popup_custom').on('click', 'a', function(e){
-		e.preventDefault();
-		var owl_car = $(this).closest('.product-detail-gallery ').find('.product-detail-gallery__slider_custom');
-		
-		owl_car.trigger('to.owl.carousel', [0, 250])
-	
-	})
+      
+    }
+  });
+  
+  //$('.product-detail-gallery__slider_custom').trigger('to.owl.carousel', [2, 0]);
+  var first_elem = $('.product-detail-gallery__slider_custom').find('#photo-0');
+  if(first_elem.find('.frame_custom_detail').length) {
+    $('.product-detail-gallery__slider_custom').trigger('to.owl.carousel', [1, 0]);
+  }
+  $('.video-block_popup_custom').on('click', 'a', function(e){
+    e.preventDefault();
+    var owl_car = $(this).closest('.product-detail-gallery ').find('.product-detail-gallery__slider_custom');
+    
+    owl_car.trigger('to.owl.carousel', [0, 250])
+  
+  })
 })
 
