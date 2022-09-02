@@ -122,6 +122,12 @@ foreach ($this->basketItems as $key => $row) {
     while($ob = $res->GetNextElement()){
         $arFields = $ob->GetFields();
         $nameForSite = $arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE'];
+        if($arFields['PROPERTY_RAZMER_VALUE']){
+            $this->basketItems[$key]["PROPERTY_RAZMER_VALUE"] = $arFields['PROPERTY_RAZMER_VALUE'];
+        }else{
+            $this->basketItems[$key]["PROPERTY_RAZMER_VALUE"] = $arFields['PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE'];
+        }
+        $this->basketItems[$key]["PROPERTY_TSVET_VALUE"] = $arFields['PROPERTY_TSVET_VALUE'];
     }
 
 
@@ -150,6 +156,9 @@ foreach ($this->basketItems as $key => $row) {
 
             if(!$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
                 $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"] = $arFields["PROPERTY_RAZMER_VALUE"];
+            }
+            if(!$arFields["PROPERTY_RAZMER_VALUE"]){
+                $arFields["PROPERTY_RAZMER_VALUE"] = $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"];
             }
 
             if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){

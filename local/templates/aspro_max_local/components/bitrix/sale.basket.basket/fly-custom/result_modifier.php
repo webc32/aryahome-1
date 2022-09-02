@@ -342,10 +342,13 @@ if (is_array($arResult["GRID"]["ROWS"])) {
         if($ob = $res->GetNextElement()){
             $arFields = $ob->GetFields();
             $nameForSite = $arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE'];
-            $arResult["GRID"]["ROWS"][$key]["PROPERTY_RAZMER_VALUE"] = $arFields['PROPERTY_RAZMER_VALUE'];
+            if($arFields['PROPERTY_RAZMER_VALUE']){
+                $arResult["GRID"]["ROWS"][$key]["PROPERTY_RAZMER_VALUE"] = $arFields['PROPERTY_RAZMER_VALUE'];
+            }else{
+                $arResult["GRID"]["ROWS"][$key]["PROPERTY_RAZMER_VALUE"] = $arFields['PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE'];
+            }
             $arResult["GRID"]["ROWS"][$key]["PROPERTY_TSVET_VALUE"] = $arFields['PROPERTY_TSVET_VALUE'];
         }
-
 
         if($nameForSite){
             $arSort= Array("NAME"=>"ASC");
@@ -371,6 +374,9 @@ if (is_array($arResult["GRID"]["ROWS"])) {
 
                 if(!$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
                     $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"] = $arFields["PROPERTY_RAZMER_VALUE"];
+                }
+                if(!$arFields["PROPERTY_RAZMER_VALUE"]){
+                    $arFields["PROPERTY_RAZMER_VALUE"] = $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"];
                 }
 
                 if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
