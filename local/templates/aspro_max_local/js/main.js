@@ -2367,12 +2367,12 @@ if (!funcDefined("delFromBasketCounter")) {
               }
             }
             waitLayer(100, function () {
-//               dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-//               dataLayer.push({
-//                 event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
-//                 currency: item.CURRENCY,
-//                 value: parseFloat(item.PRICE),
-//                 ecommerce: ecommerce,
+              dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+              dataLayer.push({
+                event: arAsproOptions["COUNTERS"]["GOOGLE_EVENTS"]["REMOVE_BASKET"],
+                currency: item.CURRENCY,
+                value: parseFloat(item.PRICE),
+                ecommerce: ecommerce,
 //               });
               if (typeof callback == "function") {
                 callback();
