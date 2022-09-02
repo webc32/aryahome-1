@@ -32,20 +32,15 @@ $namecode = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_PAGE_TITLE'])
 	: 'NAME';
 
 //Размер
-$array = array(
-	'1,5-спальное',
-	'Евро',
-	'Евро (2-спальное)',
-	'Семейное',
-	'Семейное (2-пододеяльника)'
-);
-if (in_array($arResult["PROPERTIES"]['OBSHCHIY_RAZMER_DLYA_SAYTA']['VALUE'], $array)) {
-	$RAZMER = $arResult["PROPERTIES"]['OBSHCHIY_RAZMER_DLYA_SAYTA']['VALUE'];
+// $array = array(
+// 	'1,5-спальное',
+// 	'Евро',
+// 	'Евро (2-спальное)',
+// 	'Семейное',
+// 	'Семейное (2-пододеяльника)'
+// );
+$RAZMER = $arResult["PROPERTIES"]['OBSHCHIY_RAZMER_DLYA_SAYTA']['VALUE'];
 	$RAZMERCODE = "OBSHCHIY_RAZMER_DLYA_SAYTA";
-} else {
-	$RAZMER = $arResult["PROPERTIES"]['RAZMER']['VALUE'];
-	$RAZMERCODE = "RAZMER";
-}
 ?>
 
 <div class="basket_props_block" id="bx_basket_div_<?=$arResult["ID"];?>" style="display: none;">
