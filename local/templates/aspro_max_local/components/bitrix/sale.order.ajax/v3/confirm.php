@@ -122,23 +122,26 @@ if($_GET['test'] == 'y'){
 		$arOrder[$item["CODE"]] = $item;
 	}
 	
-	echo '<pre>';
-	var_dump($arOrder);
-	echo '</pre>';
-
-	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
-
-	while($arIt = $dbItemsInOrder->fetch()){
-		$rsElement = CIBlockElement::GetList(array(), array('ID' => $arIt["ID"]), false, false, array('ID', 'IBLOCK_SECTION_ID'));
+	foreach ($arOrder['id'] as $id) {
+		$rsElement = CIBlockElement::GetList(array(), array('ID' => $id), false, false, array('ID', 'IBLOCK_SECTION_ID'));
 		if($arElement = $rsElement->Fetch())
-		{
-			echo $arElement['IBLOCK_SECTION_ID'];
+		{		
+			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
+			   while($v = $nav->GetNext()) {
+
+			       if($v['ID']) {
+				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+				   $arItemSection[] = $v['NAME'];
+			       }
+			   }
+			echo '<pre>';
+			var_dump($arItemSection);
+			echo '</pre>';
 		}
 	}
 	
-// 	echo '<pre>';
-// 	var_dump($arItems);
-// 	echo '</pre>';
 }
 ?>
 <? else: ?>
