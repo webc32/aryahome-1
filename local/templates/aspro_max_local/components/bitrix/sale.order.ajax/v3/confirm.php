@@ -116,33 +116,33 @@ if ($arParams["SET_TITLE"] == "Y")
 <?
 if($_GET['test'] == 'y'){
 	$orderID = $arResult["ORDER"]["ID"];
-	$resOrder = CSaleOrderPropsValue::GetList( array("DATE_UPDATE" => "DESC"), array( "ORDER_ID" => $orderID ) );
+	
+	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
 
-	while( $item = $resOrder->fetch() ){
-		$arrayOrder[] = $item;
+	$arItems =array();
+	while($arIt = $dbItemsInOrder->fetch()){
+		$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 	}
-	echo '<pre>';
-	print_r($arrayOrder);
-	echo '</pre>';
-	foreach ($arOrder as $product) {
+	
+	foreach ($arItems as $product) {
 		echo $product['id'];
-// 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
-// 		if($arElement = $rsElement->Fetch())
-// 		{		
-// 			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
-// 			   while($v = $nav->GetNext()) {
+		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
+		if($arElement = $rsElement->Fetch())
+		{		
+			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
+			   while($v = $nav->GetNext()) {
 
-// 			       if($v['ID']) {
-// 				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-// 				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-// 				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-// 				   $arItemSection[] = $v['NAME'];
-// 			       }
-// 			   }
-// 			echo '<pre>';
-// 			var_dump($arItemSection);
-// 			echo '</pre>';
-// 		}
+			       if($v['ID']) {
+				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+				   $arItemSection[] = $v['NAME'];
+			       }
+			   }
+			echo '<pre>';
+			var_dump($arItemSection);
+			echo '</pre>';
+		}
 	}
 	
 }
