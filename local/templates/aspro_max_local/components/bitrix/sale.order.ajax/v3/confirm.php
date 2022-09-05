@@ -149,6 +149,12 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 			$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 		}
 		$arOrderSum = CSaleOrder::GetByID($orderID);
+		
+		if($_GET['test'] == 'y'){
+			echo '<pre>';
+			var_dump($arOrderSum);
+			echo '</pre>';
+		}
 	}
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
