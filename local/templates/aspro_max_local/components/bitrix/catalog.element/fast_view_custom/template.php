@@ -780,29 +780,41 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 
 <?if($_POST['fast_view_custom']){
 	die();
-}?>
+}
 
-<script>  
-	window.dataLayer = window.dataLayer || [];  
-	dataLayer.push({  
-	 'ecommerce': {  
-	   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
-	   'detail': {  
-	     'actionField': {'list': 'Catalog'},  
-	     'products': [{  
-	       'name': "<?=$arResult["NAME"]?>",  
-	       'id': "<?=$arResult["ID"]?>",  
-	       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
-	       // 'brand': 'Бренд 1',  
-	       'category': "<?=$arResult["SECTION"]['NAME'];?>"  
-	     }]  
-	   }  
-	 },  
-	 'event': 'gtm-ee-event',  
-	 'gtm-ee-event-category': 'Enhanced Ecommerce',  
-	 'gtm-ee-event-action': 'Product Details',  
-	 'gtm-ee-event-non-interaction': 'True',  
-	});  
+$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
+   while($v = $nav->GetNext()) {
+
+       if($v['ID']) {
+	   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+	   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+	   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+	   $resultSections[] = $v['NAME'];
+       }
+   }
+?>
+
+<script>
+window.dataLayer = window.dataLayer || [];  
+dataLayer.push({  
+ 'ecommerce': {  
+   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
+   'detail': {  
+     'actionField': {'list': 'Catalog'},  
+     'products': [{  
+       'name': "<?=$arResult["NAME"]?>",  
+       'id': "<?=$arResult["ID"]?>",  
+       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
+       // 'brand': 'Бренд 1',  
+       'category': "<?=implode("/", $resultSections);?>" 
+     }]  
+   }  
+ },  
+ 'event': 'gtm-ee-event',  
+ 'gtm-ee-event-category': 'Enhanced Ecommerce',  
+ 'gtm-ee-event-action': 'Product Details',  
+ 'gtm-ee-event-non-interaction': 'True',  
+});  
 </script>  
 
 <script>
@@ -817,7 +829,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 						'id': "<?=$arResult["ID"]?>",  
 						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
 						// 'brand': 'Бренд 1',  
-						'category': "<?=$arResult["SECTION"]['NAME'];?>", 
+						'category': "<?=implode("/", $resultSections);?>", 
 						'quantity': $(this).attr("data-quantity")  
 					}]  
 				}  
