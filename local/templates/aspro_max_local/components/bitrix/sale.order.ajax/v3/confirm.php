@@ -129,23 +129,12 @@ if($_GET['test'] == 'y'){
 		if($arElement = $rsElement->Fetch())
 		{
 			echo $arElement['IBLOCK_SECTION_ID'];
-			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
-			   while($v = $nav->GetNext()) {
-
-			       if($v['ID']) {
-				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-				   $resultSections[] = $v['NAME'];
-			       }
-			   }
-			   $arItems= $resultSections;
 		}
 	}
 	
-	echo '<pre>';
-	var_dump($arItems);
-	echo '</pre>';
+// 	echo '<pre>';
+// 	var_dump($arItems);
+// 	echo '</pre>';
 }
 ?>
 <? else: ?>
