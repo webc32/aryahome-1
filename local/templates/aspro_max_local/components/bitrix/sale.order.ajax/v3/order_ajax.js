@@ -237,7 +237,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         'quantity': this.result.GRID.ROWS[t].data.QUANTITY,
                     }
                 }
-
+            }
             this.refreshOrder(result);
         },
 
