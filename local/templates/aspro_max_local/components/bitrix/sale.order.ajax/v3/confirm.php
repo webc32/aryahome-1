@@ -127,7 +127,31 @@ if ($arParams["SET_TITLE"] == "Y")
 			</td>
 		</tr>
 	</table>
+<?
+if($_GET['test'] == 'y'){
+	$orderID = $arResult["ORDER"]["ID"];
 
+	if( $orderID ){
+		$resOrder = CSaleOrderPropsValue::GetList( array("DATE_UPDATE" => "DESC"), array( "ORDER_ID" => $orderID ) );
+
+		while( $item = $resOrder->fetch() ){
+			$arOrder[$item["CODE"]] = $item;
+		}
+
+		$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
+
+		$arItems =array();
+		while($arIt = $dbItemsInOrder->fetch()){
+			$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+		}
+		$arOrderSum = CSaleOrder::GetByID($orderID);
+
+	}
+	echo '<pre>';
+	var_dump($arOrderSum);
+	echo '</pre>';
+}
+?>
 <? endif ?>
 
 
@@ -150,11 +174,6 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 		}
 		$arOrderSum = CSaleOrder::GetByID($orderID);
 		
-		if($_GET['test'] == 'y'){
-			echo '<pre>';
-			var_dump($arOrderSum);
-			echo '</pre>';
-		}
 	}
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
