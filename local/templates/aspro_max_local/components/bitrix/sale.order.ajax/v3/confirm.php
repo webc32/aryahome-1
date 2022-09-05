@@ -125,21 +125,25 @@ if($_GET['test'] == 'y'){
 	}
 	
 	foreach ($arItems as $product) {
-		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
-		if($arElement = $rsElement->Fetch())
-		{		
-			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
-			   while($v = $nav->GetNext()) {
-
-			       if($v['ID']) {
-				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-				   $arItemSection[] = $v['NAME'];
-			       }
-			   }
-			print_r($arItemSection);
+		
+		$res = CIBlockElement::GetByID($product['id']);
+		if($arRes = $res->Fetch()){   
+			$res = CIBlockSection::GetByID($arRes["SECTION_ID"]);   
+			if($arRes = $res->Fetch())   {
+				$IBLOCK_SECTION_ID = $arRes["CODE"];   
+			}
 		}
+		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
+		   while($v = $nav->GetNext()) {
+
+		       if($v['ID']) {
+			   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+			   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+			   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+			   $arItemSection[] = $v['NAME'];
+		       }
+		   }
+		print_r($arItemSection);
 	}
 	
 }
