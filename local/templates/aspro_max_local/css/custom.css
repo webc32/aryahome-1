@@ -11,6 +11,20 @@
 /* Hide compare button */
 /* a.compare_item { display: none !important;  }*/
 
+@font-face {
+    font-family: Playfair;
+    font-display: swap;
+    src: url(../fonts/Playfair/PlayfairDisplay-Regular.eot);
+    src: url(../fonts/Playfair/PlayfairDisplay-Regular.eot?#iefix) format('embedded-opentype'), url(../fonts/Playfair/PlayfairDisplay-Regular.woff) format('woff'), url(../fonts/Playfair/PlayfairDisplay-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+
+
+
+h1, h2, h3, h4, h5, h6, .title a, .title span{
+    font-family: Playfair !important;
+}
 
 .text-gold{
     color: #D0A550;
