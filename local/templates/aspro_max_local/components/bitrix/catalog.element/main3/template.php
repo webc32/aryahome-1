@@ -1961,7 +1961,7 @@ dataLayer.push({
        'id': "<?=$arResult["ID"]?>",  
        'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
        // 'brand': 'Бренд 1',  
-       'category': "<?=$arResult["SECTION"]['NAME'];?>"  
+       'category': "<?implode("/", $resultSections);?>" 
      }]  
    }  
  },  
