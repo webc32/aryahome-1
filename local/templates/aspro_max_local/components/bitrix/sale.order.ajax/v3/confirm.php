@@ -124,11 +124,11 @@ if($_GET['test'] == 'y'){
 
 	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
 
-	$arItems =array();
 	while($arIt = $dbItemsInOrder->fetch()){
 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $arIt["ID"]), false, false, array('ID', 'IBLOCK_SECTION_ID'));
 		if($arElement = $rsElement->Fetch())
 		{
+			echo $arElement['IBLOCK_SECTION_ID'];
 			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
 			   while($v = $nav->GetNext()) {
 
