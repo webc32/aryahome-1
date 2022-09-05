@@ -126,10 +126,10 @@ if($_GET['test'] == 'y'){
 
 	foreach ($arItems as $product) {
 		echo $product['id'];
-		
+		CModule::IncludeModule("iblock");
 		$res = CIBlockElement::GetByID($product['id']);
 		if($ar_res = $res->GetNext()){
-			print_r($ar_res);
+			echo $ar_res['NAME'];
 		}
 		
 // 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
