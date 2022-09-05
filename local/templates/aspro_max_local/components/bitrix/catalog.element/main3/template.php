@@ -1918,9 +1918,9 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 
 <?
 if($_GET['test'] == 'y'){
-	echo '<pre>';
-	var_dump($arResult);
-	echo '</pre>';
+// 	echo '<pre>';
+// 	var_dump($arResult);
+// 	echo '</pre>';
 	
 	$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
 	   while($v = $nav->GetNext()) {
@@ -1929,11 +1929,11 @@ if($_GET['test'] == 'y'){
 		   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
 		   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
 		   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-		   $result[] = $v['ID'];
+		   $result[] = $v['NAME'];
 	       }
 	   }
 	echo '<pre>';
-	var_dump($result);
+	print_r($result);
 	echo '</pre>';
 }
 ?>
