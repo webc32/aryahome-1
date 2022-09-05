@@ -1921,33 +1921,20 @@ if($_GET['test'] == 'y'){
 	echo '<pre>';
 	var_dump($arResult);
 	echo '</pre>';
-	?>
-		<script type="text/javascript">
-			/**
-			* Получаем все родительские секции, до текущей от корня
-			* @param $section_id
-			*/
-			function getParentSections($section_id){
+	
+	$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
+	   while($v = $nav->GetNext()) {
 
-			   $result = array();
-
-			   $nav = CIBlockSection::GetNavChain(false, $section_id);
-			   while($v = $nav->GetNext()) {
-
-			       if($v['ID']) {
-				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-				   $result[] = $v['ID'];
-			       }
-			   }
-
-			   return $result;
-			}
-
-			cosnole.log($arResult["SECTION"]['ID']);
-		</script>
-	<?
+	       if($v['ID']) {
+		   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+		   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+		   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+		   $result[] = $v['ID'];
+	       }
+	   }
+	echo '<pre>';
+	var_dump($result);
+	echo '</pre>';
 }
 ?>
 
