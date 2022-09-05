@@ -781,3 +781,50 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 <?if($_POST['fast_view_custom']){
 	die();
 }?>
+<script>  
+window.dataLayer = window.dataLayer || [];  
+dataLayer.push({  
+ 'ecommerce': {  
+   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
+   'detail': {  
+     'actionField': {'list': 'Catalog'},  
+     'products': [{  
+       'name': "<?=$arResult["NAME"]?>",  
+       'id': "<?=$arResult["ID"]?>",  
+       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
+       // 'brand': 'Бренд 1',  
+       'category': "<?=$arResult["SECTION"]['NAME'];?>"  
+     }]  
+   }  
+ },  
+ 'event': 'gtm-ee-event',  
+ 'gtm-ee-event-category': 'Enhanced Ecommerce',  
+ 'gtm-ee-event-action': 'Product Details',  
+ 'gtm-ee-event-non-interaction': 'True',  
+});  
+</script>  
+
+<script>
+	$(document).on("click", ".to-cart:not(.read_more), .basket_item_add", function (e) {
+		window.dataLayer = window.dataLayer || [];  
+		dataLayer.push({  
+			'ecommerce': {  
+				'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
+				'add': {  
+					'products': [{  
+						'name': "<?=$arResult["NAME"]?>",  
+						'id': "<?=$arResult["ID"]?>",  
+						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
+						// 'brand': 'Бренд 1',  
+						'category': "<?=$arResult["SECTION"]['NAME'];?>", 
+						'quantity': $(this).attr("data-quantity")  
+					}]  
+				}  
+			},  
+			'event': 'gtm-ee-event',  
+			'gtm-ee-event-category': 'Enhanced Ecommerce',  
+			'gtm-ee-event-action': 'Add to Cart',  
+			'gtm-ee-event-non-interaction': 'False',  
+		});
+	})
+</script>
