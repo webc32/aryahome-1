@@ -116,6 +116,22 @@ if ($arParams["SET_TITLE"] == "Y")
 <?
 if($_GET['test'] == 'y'){
 	$orderID = $arResult["ORDER"]["ID"];
+	$resOrder = CSaleOrderPropsValue::GetList( array("DATE_UPDATE" => "DESC"), array( "ORDER_ID" => $orderID ) );
+
+	while( $item = $resOrder->fetch() ){
+		$arOrder[$item["CODE"]] = $item;
+	}
+
+	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
+
+	$arItems =array();
+	while($arIt = $dbItemsInOrder->fetch()){
+		$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+	}
+	
+	echo '<pre>';
+	var_dump($arItems);
+	echo '</pre>';
 }
 ?>
 <? else: ?>
