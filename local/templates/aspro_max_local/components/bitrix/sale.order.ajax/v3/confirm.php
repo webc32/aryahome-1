@@ -119,10 +119,10 @@ if($_GET['test'] == 'y'){
 	$resOrder = CSaleOrderPropsValue::GetList( array("DATE_UPDATE" => "DESC"), array( "ORDER_ID" => $orderID ) );
 
 	while( $item = $resOrder->fetch() ){
-		$arOrder[$item["CODE"]] = $item;
+		$arrayOrder[] = $item;
 	}
 	echo '<pre>';
-	print_r($arOrder);
+	print_r($arrayOrder);
 	echo '</pre>';
 	foreach ($arOrder as $product) {
 		echo $product['id'];
