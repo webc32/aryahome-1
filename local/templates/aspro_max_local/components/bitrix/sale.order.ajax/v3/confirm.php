@@ -126,7 +126,21 @@ if($_GET['test'] == 'y'){
 
 	$arItems =array();
 	while($arIt = $dbItemsInOrder->fetch()){
-		$arItems[]= $arIt;
+		$rsElement = CIBlockElement::GetList(array(), array('ID' => $arIt["ID"]), false, false, array('ID', 'IBLOCK_SECTION_ID'));
+		if($arElement = $rsElement->Fetch())
+		{
+			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
+			   while($v = $nav->GetNext()) {
+
+			       if($v['ID']) {
+				   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+				   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+				   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+				   $resultSections[] = $v['NAME'];
+			       }
+			   }
+			   $arItems= $resultSections;
+		}
 	}
 	
 	echo '<pre>';
