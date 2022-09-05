@@ -121,6 +121,10 @@ if($_GET['test'] == 'y'){
 	while( $item = $resOrder->fetch() ){
 		$arOrder[$item["CODE"]] = $item;
 	}
+	
+	echo '<pre>';
+	var_dump($arOrder);
+	echo '</pre>';
 
 	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
 
