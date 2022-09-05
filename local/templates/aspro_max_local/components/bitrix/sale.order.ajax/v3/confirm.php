@@ -126,11 +126,12 @@ if($_GET['test'] == 'y'){
 	CModule::IncludeModule("iblock");
 	CModule::IncludeModule("catalog");
 	foreach ($arItems as $product) {
+		echo $product['id'];
 		$arSelect = Array(
 		"ID",
 		"IBLOCK_SECTION_ID");
 		$arFilter = Array("IBLOCK_ID"=>3, "ID"=>$product['id']);
-		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>20000), $arSelect);
+		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
 		while($ob = $res->GetNextElement())
 		{
 			$arFields = $ob->GetFields();
