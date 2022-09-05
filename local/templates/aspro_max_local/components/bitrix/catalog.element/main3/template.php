@@ -1921,20 +1921,6 @@ if($_GET['test'] == 'y'){
 // 	echo '<pre>';
 // 	var_dump($arResult);
 // 	echo '</pre>';
-	
-	$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
-	   while($v = $nav->GetNext()) {
-
-	       if($v['ID']) {
-		   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-		   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-		   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-		   $resultSections[] = $v['NAME'];
-	       }
-	   }
-	echo '<pre>';
-	print_r($resultSections);
-	echo '</pre>';
 }
 
 $nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
@@ -1961,7 +1947,7 @@ dataLayer.push({
        'id': "<?=$arResult["ID"]?>",  
        'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
        // 'brand': 'Бренд 1',  
-       'category': "<?implode("/", $resultSections);?>" 
+       'category': "<?=implode("/", $resultSections);?>" 
      }]  
    }  
  },  
@@ -1984,7 +1970,7 @@ dataLayer.push({
 						'id': "<?=$arResult["ID"]?>",  
 						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
 						// 'brand': 'Бренд 1',  
-						'category': "<?implode("/", $resultSections);?>", 
+						'category': "<?=implode("/", $resultSections);?>", 
 						'quantity': $(this).attr("data-quantity")  
 					}]  
 				}  
