@@ -161,7 +161,7 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 				'purchase': {  
 					'actionField': {  
 						'id': "<?=$arResult['ORDER']['ID']?>",  
-						'affiliation': 'NL Store',  
+						'affiliation': 'AryaHome - online store',  
 						'revenue': "<?=$arOrderSum['PRICE']?>",  
 						'shipping': "<?=$arOrderSum['PRICE_DELIVERY']?>"  
 					},  
