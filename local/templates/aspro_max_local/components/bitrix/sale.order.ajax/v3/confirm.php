@@ -123,12 +123,20 @@ if($_GET['test'] == 'y'){
 	while($arIt = $dbItemsInOrder->fetch()){
 		$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 	}
-	
+	CModule::IncludeModule("iblock");
+	CModule::IncludeModule("catalog");
 	foreach ($arItems as $product) {
-		
-		$res = CIBlockElement::GetList(array(), array("ID" => $product['id']), false, false, array("SECTION_ID"));{  
-			$res = CIBlockSection::GetList(array(), array("ID" => $arRes["SECTION_ID"]), false, array("CODE"));   
-			if($arRes = $res->GetNext())   {      echo $arRes["SECTION_ID"];  $IBLOCK_SECTION_ID = $arRes["SECTION_ID"]; }}
+		$arSelect = Array(
+		"ID",
+		"IBLOCK_SECTION_ID");
+		$arFilter = Array("IBLOCK_ID"=>3, "ID"=>$product['id']);
+		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>20000), $arSelect);
+		while($ob = $res->GetNextElement())
+		{
+			$arFields = $ob->GetFields();
+			echo $arFields['IBLOCK_SECTION_ID'];
+			$IBLOCK_SECTION_ID = $arFields['IBLOCK_SECTION_ID'];
+		}
 		
 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
 		   while($v = $nav->GetNext()) {
