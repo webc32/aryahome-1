@@ -121,13 +121,11 @@ if($_GET['test'] == 'y'){
 
 	$arItems =array();
 	while($arIt = $dbItemsInOrder->fetch()){
+		rint_r($arIt);
 		$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 	}
-	
-	print_r($arItems);
 
 	foreach ($arItems as $product) {
-		echo $product['id'];
 		$arSelect = Array(
 		"ID",
 		"IBLOCK_SECTION_ID");
