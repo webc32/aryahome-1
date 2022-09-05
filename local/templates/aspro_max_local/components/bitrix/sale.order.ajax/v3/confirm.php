@@ -121,7 +121,7 @@ if($_GET['test'] == 'y'){
 	while( $item = $resOrder->fetch() ){
 		$arOrder[$item["CODE"]] = $item;
 	}
-	
+	CModule::IncludeModule('iblock');
 	foreach ($arOrder['id'] as $id) {
 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $id), false, false, array('ID', 'IBLOCK_SECTION_ID'));
 		if($arElement = $rsElement->Fetch())
