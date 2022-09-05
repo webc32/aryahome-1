@@ -121,6 +121,9 @@ if($_GET['test'] == 'y'){
 	while( $item = $resOrder->fetch() ){
 		$arOrder[$item["CODE"]] = $item;
 	}
+	echo '<pre>';
+	print_r($arOrder);
+	echo '</pre>';
 	foreach ($arOrder as $product) {
 		echo $product['id'];
 // 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
