@@ -113,20 +113,6 @@ if ($arParams["SET_TITLE"] == "Y")
 		<?
 	}
 	?>
-
-<? else: ?>
-
-	<b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
-	<br /><br />
-
-	<table class="sale_order_full_table">
-		<tr>
-			<td>
-				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST", ["#ORDER_ID#" => htmlspecialcharsbx($arResult["ACCOUNT_NUMBER"])])?>
-				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
-			</td>
-		</tr>
-	</table>
 <?
 if($_GET['test'] == 'y'){
 	$orderID = $arResult["ORDER"]["ID"];
@@ -152,6 +138,19 @@ if($_GET['test'] == 'y'){
 	echo '</pre>';
 }
 ?>
+<? else: ?>
+
+	<b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
+	<br /><br />
+
+	<table class="sale_order_full_table">
+		<tr>
+			<td>
+				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST", ["#ORDER_ID#" => htmlspecialcharsbx($arResult["ACCOUNT_NUMBER"])])?>
+				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?>
+			</td>
+		</tr>
+	</table>
 <? endif ?>
 
 
