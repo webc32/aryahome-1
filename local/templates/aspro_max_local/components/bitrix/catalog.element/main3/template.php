@@ -1944,7 +1944,7 @@ if($_GET['test'] == 'y'){
 	   return $result;
 	}
 	
-	cosnole.log(getParentSections($arResult["SECTION"]['ID']));
+	cosnole.log($arResult["SECTION"]['ID']);
 }
 ?>
 
