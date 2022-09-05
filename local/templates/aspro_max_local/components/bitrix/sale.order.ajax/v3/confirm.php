@@ -128,10 +128,7 @@ if($_GET['test'] == 'y'){
 		
 		$res = CIBlockElement::GetByID($product['id']);
 		if($arRes = $res->Fetch()){   
-			$res = CIBlockSection::GetByID($arRes["SECTION_ID"]);   
-			if($arRes = $res->Fetch())   {
-				$IBLOCK_SECTION_ID = $arRes["CODE"];   
-			}
+			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
 		}
 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
 		   while($v = $nav->GetNext()) {
