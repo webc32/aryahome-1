@@ -125,7 +125,6 @@ if($_GET['test'] == 'y'){
 	}
 	
 	foreach ($arItems as $product) {
-		echo $product['id'];
 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
 		if($arElement = $rsElement->Fetch())
 		{		
@@ -139,9 +138,7 @@ if($_GET['test'] == 'y'){
 				   $arItemSection[] = $v['NAME'];
 			       }
 			   }
-			echo '<pre>';
-			var_dump($arItemSection);
-			echo '</pre>';
+			print_r($arItemSection);
 		}
 	}
 	
