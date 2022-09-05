@@ -127,7 +127,7 @@ if($_GET['test'] == 'y'){
 	foreach ($arItems as $product) {
 		echo $product['id'];
 		CModule::IncludeModule("iblock");
-		$res = CIBlockElement::GetByID($product['id']);
+		$res = CIBlockElement::GetByID(60);
 		if($ar_res = $res->GetNext()){
 			echo $ar_res['NAME'];
 		}
