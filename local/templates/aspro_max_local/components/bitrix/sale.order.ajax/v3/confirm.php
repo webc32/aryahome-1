@@ -121,15 +121,14 @@ if($_GET['test'] == 'y'){
 
 	$arItems =array();
 	while($arIt = $dbItemsInOrder->fetch()){
-		print_r($arIt);
-		$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+		$arItems[]= array("id"=>$arIt["ID"],"id"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 	}
 
 	foreach ($arItems as $product) {
 		$arSelect = Array(
 		"ID",
 		"IBLOCK_SECTION_ID");
-		$arFilter = Array("IBLOCK_ID"=>3, "ID"=>$product['product_id']);
+		$arFilter = Array("IBLOCK_ID"=>3, "ID"=>$product['PRODUCT_ID']);
 		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
 		while($ob = $res->GetNextElement())
 		{
