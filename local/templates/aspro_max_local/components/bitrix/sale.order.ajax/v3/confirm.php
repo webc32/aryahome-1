@@ -122,7 +122,7 @@ if($_GET['test'] == 'y'){
 		$arOrder[$item["CODE"]] = $item;
 	}
 	CModule::IncludeModule('iblock');
-	var $arItemSection = [];
+	$arItemSection = [];
 	foreach ($arOrder as $product) {
 		echo $product['id'];
 		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
