@@ -122,8 +122,8 @@ if($_GET['test'] == 'y'){
 		$arOrder[$item["CODE"]] = $item;
 	}
 	CModule::IncludeModule('iblock');
-	foreach ($arOrder['id'] as $id) {
-		$rsElement = CIBlockElement::GetList(array(), array('ID' => $id), false, false, array('ID', 'IBLOCK_SECTION_ID'));
+	foreach ($arOrder as $product) {
+		$rsElement = CIBlockElement::GetList(array(), array('ID' => $product['id']), false, false, array('ID', 'IBLOCK_SECTION_ID'));
 		if($arElement = $rsElement->Fetch())
 		{		
 			$nav = CIBlockSection::GetNavChain(false, $arElement['IBLOCK_SECTION_ID']);
