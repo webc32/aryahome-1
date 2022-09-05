@@ -126,10 +126,10 @@ if($_GET['test'] == 'y'){
 	
 	foreach ($arItems as $product) {
 		
-		$res = CIBlockElement::GetByID($product['id']);
-		if($arRes = $res->Fetch()){   
-			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
-		}
+		$res = CIBlockElement::GetList(array(), array("ID" => $product['id']), false, false, array("SECTION_ID"));{  
+			$res = CIBlockSection::GetList(array(), array("ID" => $arRes["SECTION_ID"]), false, array("CODE"));   
+			if($arRes = $res->GetNext())   {      echo $arRes["SECTION_ID"];  $IBLOCK_SECTION_ID = $arRes["SECTION_ID"]; }}
+		
 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
 		   while($v = $nav->GetNext()) {
 
