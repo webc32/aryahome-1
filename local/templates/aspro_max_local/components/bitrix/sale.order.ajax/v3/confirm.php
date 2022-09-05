@@ -116,15 +116,6 @@ if ($arParams["SET_TITLE"] == "Y")
 <?
 if($_GET['test'] == 'y'){
 	$orderID = $arResult["ORDER"]["ID"];
-	
-	$couponList = \Bitrix\Sale\Internals\OrderCouponsTable::getList(array(
-	    'select' => array('COUPON'),
-	    'filter' => array('=ORDER_ID' => $orderID)
-	));
-	while ($coupon = $couponList->fetch())
-	{
-	   echo $coupon['COUPON'];
-	}
 }
 ?>
 <? else: ?>
@@ -163,6 +154,16 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 		$arOrderSum = CSaleOrder::GetByID($orderID);
 		
 	}
+		
+	$couponList = \Bitrix\Sale\Internals\OrderCouponsTable::getList(array(
+	    'select' => array('COUPON'),
+	    'filter' => array('=ORDER_ID' => $orderID)
+	));
+	while ($coupon = $couponList->fetch())
+	{
+	   $purchasecoupon = $coupon['COUPON'];
+	
+	}
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
 
@@ -176,7 +177,8 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 						'id': "<?=$arResult['ORDER']['ID']?>",  
 						'affiliation': "AryaHome - online store",  
 						'revenue': "<?=$arOrderSum['PRICE']?>",  
-						'shipping': "<?=$arOrderSum['PRICE_DELIVERY']?>"  
+						'shipping': "<?=$arOrderSum['PRICE_DELIVERY']?>",
+						'coupon': "<?=$purchasecoupon?>"
 					},  
 					'products': [
 					<?foreach($arItems as $arItem):?>
