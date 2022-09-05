@@ -130,7 +130,7 @@ if($_GET['test'] == 'y'){
 		if($arRes = $res->Fetch()){
 			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
 		}
-
+		echo $IBLOCK_SECTION_ID;
 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
 		   while($v = $nav->GetNext()) {
 
