@@ -3858,9 +3858,6 @@ function CIBlockElementGetListColor(id, name, namecode, colorActive, sizecode, s
                             objectColors += '<a href="'+url+'" class="d-inline-block position-relative '+active+'" data-name="'+name+'" data-color="'+color+'"><img width="56px" height="56px" src="'+PREVIEW_PICTURE+'" loading="lazy" title="'+color+'"></a>';
                         //}
                         previousСolor = color;
-// 			(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-// 				try{ rrApi.groupView(id); } catch(e) {}
-// 			})
                     }
                 }
             });
@@ -3896,15 +3893,12 @@ function CIBlockElementGetListSize(id, name, namecode, colorActive, sizecode, si
                             objectSizes += '<a href="'+url+'" class="position-relative mb-1 '+active+'" data-id="'+id+'"><span class="d-block bg-graylight text-gold px-2 py-2">'+size+'</span></a>';
                             //}
                         previousSize = size;
-// 			(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-// 				try{ rrApi.groupView(id); } catch(e) {}
-// 			})
                     }
                 }
             });
-
             if (objectSizes != '') {
-                form.find('.size .value div').append(objectSizes);
+                objectSizes = '<div class="name text-gray col-12 mb-2"><div class="row">Размер:</div></div><div class="value w-100 mb-2"><div class="w-100 d-flex flex-wrap">' + objectSizes + '</div></div>';
+                form.find('.prices_block .size').append(objectSizes);
             }
         }
     });
