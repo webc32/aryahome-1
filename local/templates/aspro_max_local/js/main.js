@@ -2248,7 +2248,6 @@ if (!funcDefined("viewItemCounter")) {
 //               });
 //             });
           };
-          $(".owl-stage").owlCarousel("reset");
         },
       });
     }
@@ -4010,7 +4009,9 @@ InitOwlSlider = function () {
       }
     });
     slider.owlCarousel(config);
-
+    setTimeout(function(){
+      $(".owl-stage").owlCarousel("reset");
+    },300);
     slider.on("change.owl.carousel", function (event) {
       var eventdata = { slider: event };
       BX.onCustomEvent("onSlideChange", [eventdata]);
