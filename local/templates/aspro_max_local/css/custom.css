@@ -11,6 +11,7 @@
 /* Hide compare button */
 /* a.compare_item { display: none !important;  }*/
 
+
 @font-face {
     font-family: Playfair;
     font-display: swap;
@@ -262,7 +263,7 @@ input.border-gray {
     font-weight: 800;
 }
 .custom_d-flex {
-	flex-direction: column;
+    flex-direction: column;
 }
 
 .discount-by-old-price__val b,
@@ -497,7 +498,7 @@ input.border-gray {
                max-width: 275px;
            }
            .price_matrix_wrapper.strike_block{
-            /*display: inline-block;*/
+            display: inline-block;
             padding-left: 15px;
         }
         .price_name.font_xs.darken {
@@ -632,43 +633,43 @@ input.border-gray {
     background: unset !important;
 }
 #mobileheader {
-	height: 80px;
+    height: 80px;
 }
 @media(max-width: 768px) {
-	.version_site_color {
-		font-size: 12px;
-	}
-	
+    .version_site_color {
+        font-size: 12px;
+    }
+    
 }
 body .product-container .product-detail-gallery__container--vertical .product-detail-gallery__thmb-container
  .video-block.popup_video.video-block_custom {
-	position: relative !important;
-	top: 0 !important;	
-	left: 0 !important;
-	width: 110px;
-	height: 110px;
-	line-height: 110px;
+    position: relative !important;
+    top: 0 !important;  
+    left: 0 !important;
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
 }
 .video-block_custom .image .play:after {
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	margin: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
 }
 /*
 .product-container .video-block_custom.popup_video .play {
-	position: relative;
-	width: 100%;
-	height: 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }*/
 .video-block_custom .image {
-	transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 .video-block_custom .image .play:hover:after, 
 .video-block_custom .image .play:hover:before
 {
-	transform: scale(1) !important;
+    transform: scale(1) !important;
 }
 
 /* @media (max-width: 600px){
@@ -678,12 +679,12 @@ body .product-container .product-detail-gallery__container--vertical .product-de
     }
 }*/
 .product-detail-gallery__slider_custom .owl-carousel .owl-stage {
-	transition: all 0s ease 0s !important;
+    transition: all 0s ease 0s !important;
 }
 .product-container .product-detail-gallery__item.product-detail-gallery__item--thmb.slide_custom {
-	width: 110px;
-	height: 110px;
-	line-height: 110px;
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
 }
 .custom_props_style textarea {
     margin: unset;
@@ -692,68 +693,68 @@ body .product-container .product-detail-gallery__container--vertical .product-de
     margin-top: 30px;
 }
 .frame_custom_fast_view {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .video-block_popup_custom {
-	position: absolute;
-	bottom: 12px;
-	z-index: 10;
-	right: 110px;
+    position: absolute;
+    bottom: 12px;
+    z-index: 10;
+    right: 110px;
 }
 .fast_view_frame.popup .fastview-product .fastview-product__image .video-block_popup_custom .image .play {
-	font-size: 14px;
-	display: flex;
-	align-items: center;
-	background-color: #d0a550;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background-color: #d0a550;
     border-color: #d0a550;
-	border-radius: 26px;
-	width: fit-content;
-	height: fit-content;
-	padding: 5px 10px;
+    border-radius: 26px;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
 }
 .fast_view_frame.popup .fastview-product .fastview-product__image .video-block_popup_custom .image .play:before {
-	position: relative;
-	top: 0;
-	left: 0;
-	margin: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
 }
 .fast_view_frame.popup .fastview-product .fastview-product__image .video-block_popup_custom .image .play:after {
-	display: none;
+    display: none;
 }
 .video-block_popup_custom a {
-	color: #333 !important;
+    color: #333 !important;
 }
 .preview_video {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-size: auto 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .preview_video svg {
-	cursor: pointer;
-	transition: 300ms;
+    cursor: pointer;
+    transition: 300ms;
 }
 .preview_video svg:hover {
-	transform: scale(1.2);
+    transform: scale(1.2);
 }
 @media(max-width: 600px) {
-	.price_matrix_block .sale_block .no_bg_color .value::after {
-		display: none;
-	}	
+    .price_matrix_block .sale_block .no_bg_color .value::after {
+        display: none;
+    }   
 }
 .navigation-wrapper-fast-view .fast-view-nav .svg * {
-	width: 20px;
-	height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .navigation-wrapper-fast-view .fast-view-nav.prev .svg {
-	margin-bottom: -2px;
+    margin-bottom: -2px;
     margin-left: 0px;
 }
 
@@ -762,19 +763,19 @@ body .product-container .product-detail-gallery__container--vertical .product-de
     margin-right: 0px;
 }
 .navigation-wrapper-fast-view {
-	top: 45%;
+    top: 45%;
     margin-top: 3px;
 }
 .navigation-wrapper-fast-view .fast-view-nav {
-	opacity: 0.6;
-	transition: 200ms;
-	background: #fff !important;
+    opacity: 0.6;
+    transition: 200ms;
+    background: #fff !important;
 }
 .navigation-wrapper-fast-view .fast-view-nav:hover {
-	opacity: 1;
+    opacity: 1;
 }
 .navigation-wrapper-fast-view .fast-view-nav:hover svg * {
-	fill: #d0a550;
+    fill: #d0a550;
 }
 div[data-property-id-row="105"]{
     display: none;
@@ -784,13 +785,6 @@ div[data-property-id-row="105"]{
     max-height: 337px;
     overflow: auto;
 }
-.show_more_stores{
-    margin-top: 20px;
-}
-.catalog_favorit .price_matrix_block .price_name{
-    display: none;
-}
-
 .show_more_stores{
     margin-top: 20px;
 }
@@ -929,13 +923,13 @@ margin-top: 20px;
     padding: 33px 8px 41px;
 }
 
-.sale_block .red_discont.sale-number{
+.sale_block .no_bg_color.sale-number{
     border: 1px solid black !important;
     background: black !important;
 }
-.sale_block .red_discont.sale-number *{
+.sale_block .no_bg_color.sale-number *{
     color: white !important;
 }
-.sale_block .red_discont .inner-sale{
-    background: black !important;
+.sticker_new {
+    background-color: #d0a550 !important;
 }

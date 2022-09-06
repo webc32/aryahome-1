@@ -39,8 +39,14 @@ $namecode = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_PAGE_TITLE'])
 // 	'Семейное',
 // 	'Семейное (2-пододеяльника)'
 // );
+
+
 $RAZMER = $arResult["PROPERTIES"]['OBSHCHIY_RAZMER_DLYA_SAYTA']['VALUE'];
 	$RAZMERCODE = "OBSHCHIY_RAZMER_DLYA_SAYTA";
+if(!$RAZMER){
+	$RAZMER = $arResult["PROPERTIES"]['RAZMER']['VALUE'];
+	$RAZMERCODE = "RAZMER";
+}
 ?>
 
 <div class="basket_props_block" id="bx_basket_div_<?=$arResult["ID"];?>" style="display: none;">
@@ -628,12 +634,6 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					
 					<div class="product-detail-gallery__slider product-detail-gallery__slider_custom<?if(!$bMagnifier):?> owl-carousel owl-theme big owl-bg-nav short-nav<?else:?> hidden-xs<?endif;?> <?=$arParams['PICTURE_RATIO'];?>" data-plugin-options='{"items": "1", "dots": false, "nav": true, "relatedTo": ".product-detail-gallery__slider.thmb", "loop": false}'>
 						
-						<?if($popupVideo) {?>
-							<div id="photo-0" class="product-detail-gallery__item product-detail-gallery__item--middle text-center">
-								<iframe class="frame_custom_detail product-detail-gallery__item product-detail-gallery__item--middle" allowfullscreen="allowfullscreen" src="<?=$popupVideo;?>?&modestbranding=1&showinfo=0&controls=0&rel=0&mute=1&rel=0&autohide=1" allow="autoplay" frameborder="0" scrolling="auto">
-								</iframe>
-							</div>
-						<?}?>
 						<?if($arResult["MORE_PHOTO"]){?>
 						
 						<?//Увеличиваем ключи на 1 если есть видео чтобы не сломать слайдер?>
@@ -663,7 +663,12 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 									<?}?>
 								</div>
 							<?}?>
-							
+													<?if($popupVideo) {?>
+							<div id="photo-0" class="product-detail-gallery__item product-detail-gallery__item--middle text-center">
+								<iframe class="frame_custom_detail product-detail-gallery__item product-detail-gallery__item--middle" allowfullscreen="allowfullscreen" src="<?=$popupVideo;?>?&modestbranding=1&showinfo=0&controls=0&rel=0&mute=1&rel=0&autohide=1" allow="autoplay" frameborder="0" scrolling="auto">
+								</iframe>
+							</div>
+						<?}?>
 						<?}?>
 					</div>
 					<?if($bMagnifier):?>
@@ -696,11 +701,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 						<div class="product-detail-gallery__thmb-inner<?=($bVertical ? ' vertical' : '');?>">
 							<?if($countPhoto > 1 || $showCustomOffer || $popupVideo):?>
 								<div class="product-detail-gallery__slider custom_owl-carousel owl-carousel owl-theme thmb<?=($bVertical ? ' product-detail-gallery__slider--vertical' : '');?><?=($countPhoto > 3 ? ' m-photo' : '');?>" data-size="<?=$countPhoto;?>" data-plugin-options='{"items": "4", "nav": true, "loop": false, "clickTo": ".product-detail-gallery__slider.big", "dots": false, "autoWidth": true, "margin": 10<?//if($bVertical):?>, "mouseDrag": false, "pullDrag": false<?//endif;?><?if($bMagnifier):?>, "magnifier": true<?endif;?>}' 
-								style="max-width:<?=ceil((($countPhoto <= 4 ? $countPhoto : 4) * 120) - 10)?>px; left:-180px; ">
-									<?if($popupVideo):?>
-										<div id="photo-0" class="video-block video-block_custom popup_video product-detail-gallery__item text-center  product-detail-gallery__item--thmb"><a class="various video_link image dark_link" href="<?=$popupVideo;?>" title="<?=Loc::getMessage("VIDEO")?>"><span class="play text-upper font_xs"><?=Loc::getMessage("VIDEO")?></span></a></div>
-									<?endif;?>
-									
+								style="max-width:<?=ceil((($countPhoto <= 4 ? $countPhoto : 4) * 120) - 10)?>px; left:-180px; ">								
 									<?if($arResult["MORE_PHOTO"] && $popupVideo) {
 
 										$arResult["MORE_PHOTO"] = array_combine(range(1, count($arResult["MORE_PHOTO"])), $arResult["MORE_PHOTO"]);
@@ -719,6 +720,9 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 										<?endforeach;?>
 									<?endif;?>
 									
+									<?if($popupVideo):?>
+									<div id="photo-0" class="video-block video-block_custom popup_video product-detail-gallery__item text-center  product-detail-gallery__item--thmb"><a class="various video_link image dark_link" href="<?=$popupVideo;?>" title="<?=Loc::getMessage("VIDEO")?>"><span class="play text-upper font_xs"><?=Loc::getMessage("VIDEO")?></span></a></div>
+									<?endif;?>
 									
 								</div>
 							<?endif;?>
@@ -923,7 +927,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					<?endif;?>
 
 					<?//discount,buy|order|subscribe?>
-					<div class="product-action flex-50">
+					<div class="product-action">
 						<div class="info_item">
 							<div class="middle-info-wrapper main_item_wrapper">	
 								<div class="shadowed-block">
@@ -995,18 +999,12 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 											</div>
 											<div class="size w-100">
 												<?php if (!empty($RAZMER)) : ?>
-													<div class="name text-gray col-12 mb-2">
-														<div class="row">Размер:</div>
-													</div>
-													<div class="value w-100 mb-2">
-														<div class="w-100 d-flex flex-wrap">
+													
 															<? if ($_POST['ajax'] == 'Y') { ?>
 																<a href="" onclick="UpdateParamAjaxCatalogElement(this); return false" class="active position-relative mb-1" data-id="<?= $arResult["ID"] ?>"><span class="d-block bg-graylight text-gold px-2 py-2"><?= $RAZMER ?></span></a>
 															<? } else { /*?>
 																<a href="<?= $APPLICATION->GetCurPage(false); ?>" class="active position-relative mb-1" data-id="<?= $arResult["ID"] ?>"><span class="d-block bg-graylight text-gold px-2 py-2"><?= $RAZMER ?></span></a>
 															<? */} ?>
-														</div>
-													</div>
 												<?php endif ?>
 											</div>
 											<?/*END цвета и размеры*/?>
@@ -1898,14 +1896,32 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 
 <style>
     .product-view--type2 .product-info.product-info--type2>.flexbox .product-detail-gallery__slider{
-        max-width:550px;
+        max-width:750px;
       
     }
     .product-container .product-detail-gallery__item.product-detail-gallery__item--middle{
-        max-width: 550px;
-        width:550px;
-        height:480px;
+        max-width: 750px;
+        width:750px;
+        height:650px;
 
+    }
+    .product-detail-gallery__slider.owl-carousel .owl-nav{
+    	top: calc(70% - 20px);
+    }
+
+    @media(max-width: 1200px){
+    	.product-view--type2 .product-info.product-info--type2>.flexbox .product-detail-gallery__slider{
+    		max-width:550px;
+    	}
+    	.product-container .product-detail-gallery__item.product-detail-gallery__item--middle{
+    		max-width: 550px;
+    		width:550px;
+    		height:480px;
+
+    	}
+    	.product-container .product-detail-gallery__item .product-detail-gallery__picture{
+    		max-height: 460px
+    	}
     }
     .product-info.product-info--type2>.flexbox>.product-detail-gallery .product-detail-gallery__container{
         padding-top: 2.133rem;
@@ -1916,13 +1932,6 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
     }*/
 </style>
 
-<?
-if($_GET['test'] == 'y'){
-	echo '<pre>';
-	var_dump($arResult);
-	echo '</pre>';
-}
-?>
 
 <script>  
 window.dataLayer = window.dataLayer || [];  
@@ -1946,6 +1955,7 @@ dataLayer.push({
  'gtm-ee-event-non-interaction': 'True',  
 });  
 </script>  
+
 
 <script>
 	$(document).on("click", ".to-cart:not(.read_more), .basket_item_add", function (e) {
