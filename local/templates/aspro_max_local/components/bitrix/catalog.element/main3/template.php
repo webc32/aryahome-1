@@ -1933,7 +1933,22 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 </style>
 
 
-<script>  
+<?
+
+
+$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
+   while($v = $nav->GetNext()) {
+
+       if($v['ID']) {
+	   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+	   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+	   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+	   $resultSections[] = $v['NAME'];
+       }
+   }
+?>
+
+<script>
 window.dataLayer = window.dataLayer || [];  
 dataLayer.push({  
  'ecommerce': {  
@@ -1945,7 +1960,7 @@ dataLayer.push({
        'id': "<?=$arResult["ID"]?>",  
        'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
        // 'brand': 'Бренд 1',  
-       'category': "<?=$arResult["SECTION"]['NAME'];?>"  
+       'category': "<?=implode("/", $resultSections);?>" 
      }]  
    }  
  },  
@@ -1969,7 +1984,7 @@ dataLayer.push({
 						'id': "<?=$arResult["ID"]?>",  
 						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
 						// 'brand': 'Бренд 1',  
-						'category': "<?=$arResult["SECTION"]['NAME'];?>", 
+						'category': "<?=implode("/", $resultSections);?>", 
 						'quantity': $(this).attr("data-quantity")  
 					}]  
 				}  

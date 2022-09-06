@@ -113,7 +113,40 @@ if ($arParams["SET_TITLE"] == "Y")
 		<?
 	}
 	?>
+<?
+if($_GET['test'] == 'y'){
+	$orderID = $arResult["ORDER"]["ID"];
+	
+	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
 
+	$arItems =array();
+	while($arIt = $dbItemsInOrder->fetch()){
+		$arItems[]= array("id"=>$arIt["ID"],"id"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+	}
+
+	foreach ($arItems as $product) {
+
+		$res = CIBlockElement::GetByID($product['PRODUCT_ID']);
+		if($arRes = $res->Fetch()){
+			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
+		}
+		echo $IBLOCK_SECTION_ID;
+		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
+		   while($v = $nav->GetNext()) {
+
+		       if($v['ID']) {
+			   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+			   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+			   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+			   $arItemSection[] = $v['NAME'];
+		       }
+		   }
+		print_r($arItemSection);
+		
+	}
+	
+}
+?>
 <? else: ?>
 
 	<b><?=Loc::getMessage("SOA_ERROR_ORDER")?></b>
@@ -127,7 +160,6 @@ if ($arParams["SET_TITLE"] == "Y")
 			</td>
 		</tr>
 	</table>
-
 <? endif ?>
 
 
@@ -149,6 +181,17 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 			$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 		}
 		$arOrderSum = CSaleOrder::GetByID($orderID);
+		
+	}
+		
+	$couponList = \Bitrix\Sale\Internals\OrderCouponsTable::getList(array(
+	    'select' => array('COUPON'),
+	    'filter' => array('=ORDER_ID' => $orderID)
+	));
+	while ($coupon = $couponList->fetch())
+	{
+	   $purchasecoupon = $coupon['COUPON'];
+	
 	}
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
@@ -161,9 +204,10 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 				'purchase': {  
 					'actionField': {  
 						'id': "<?=$arResult['ORDER']['ID']?>",  
-						'affiliation': 'NL Store',  
+						'affiliation': "AryaHome - online store",  
 						'revenue': "<?=$arOrderSum['PRICE']?>",  
-						'shipping': "<?=$arOrderSum['PRICE_DELIVERY']?>"  
+						'shipping': "<?=$arOrderSum['PRICE_DELIVERY']?>",
+						'coupon': "<?=$purchasecoupon?>"
 					},  
 					'products': [
 					<?foreach($arItems as $arItem):?>
@@ -186,4 +230,4 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 		});  
 	</script>
 
-	<?endif;?>
+<?endif;?>

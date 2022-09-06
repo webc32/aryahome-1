@@ -237,29 +237,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         'quantity': this.result.GRID.ROWS[t].data.QUANTITY,
                     }
                 }
-
-                window.dataLayer = window.dataLayer || [];  
-                dataLayer.push({  
-                    'ecommerce': {  
-                        'currencyCode': 'RUB',  
-                        'purchase': {  
-                            'actionField': {  
-                                'id': '51564',  
-                                'affiliation': 'AryaHome - online store',  
-                                'revenue': result.order.TOTAL.ORDER_PRICE,  
-                                'shipping': result.order.TOTAL.DELIVERY_PRICE,
-                                'coupon': coupon
-                            },  
-                            'products': arrObjects  
-                        }  
-                    },  
-                    'event': 'gtm-ee-event',  
-                    'gtm-ee-event-category': 'Enhanced Ecommerce',  
-                    'gtm-ee-event-action': 'Purchase',  
-                    'gtm-ee-event-non-interaction': 'False',  
-                });
             }
-
             this.refreshOrder(result);
         },
 

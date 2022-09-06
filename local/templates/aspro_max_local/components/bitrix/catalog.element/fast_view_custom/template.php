@@ -533,7 +533,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 									<?=\Aspro\Functions\CAsproMax::showItemCounter($arAddToBasketData, $arResult["ID"], $arItemIDs, $arParams, 'md', '', true, true);?>
 								<?endif;?>
 
-								<div id="<? echo $arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block <?=(($arAddToBasketData["ACTION"] == "ORDER" /*&& !$arResult["CAN_BUY"]*/) || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || ($arAddToBasketData["ACTION"] == "SUBSCRIBE" && $arResult["CATALOG_SUBSCRIBE"] == "Y")  ? "wide" : "");?>">
+								<div id="<? echo $arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block basket_item_add <?=(($arAddToBasketData["ACTION"] == "ORDER" /*&& !$arResult["CAN_BUY"]*/) || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || ($arAddToBasketData["ACTION"] == "SUBSCRIBE" && $arResult["CATALOG_SUBSCRIBE"] == "Y")  ? "wide" : "");?>">
 									<!--noindex-->
 										<?=$arAddToBasketData["HTML"]?>
 									<!--/noindex-->
@@ -562,7 +562,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 							<div class="offer_buy_block buys_wrapp">
 								<div class="counter_wrapp list big clearfix">
 									<?=\Aspro\Functions\CAsproMax::showItemCounter($arAddToBasketData, $arResult["OFFERS"][$arResult["OFFERS_SELECTED"]]["ID"], $arItemIDs, $arParams, 'md', '', true, true);?>
-									<div id="<?=$arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block <?=($arAddToBasketData["ACTION"] == "ORDER" || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || $arAddToBasketData["ACTION"] == "SUBSCRIBE" ? "wide" : "");?>">
+									<div id="<?=$arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block basket_item_add <?=($arAddToBasketData["ACTION"] == "ORDER" || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || $arAddToBasketData["ACTION"] == "SUBSCRIBE" ? "wide" : "");?>">
 										<!--noindex-->
 											<?=$arAddToBasketData["HTML"]?>
 										<!--/noindex-->
@@ -780,4 +780,64 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 
 <?if($_POST['fast_view_custom']){
 	die();
-}?>
+}
+
+$nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
+   while($v = $nav->GetNext()) {
+
+       if($v['ID']) {
+	   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+	   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+	   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+	   $resultSections[] = $v['NAME'];
+       }
+   }
+?>
+
+<script>
+window.dataLayer = window.dataLayer || [];  
+dataLayer.push({  
+ 'ecommerce': {  
+   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
+   'detail': {  
+     'actionField': {'list': 'Catalog'},  
+     'products': [{  
+       'name': "<?=$arResult["NAME"]?>",  
+       'id': "<?=$arResult["ID"]?>",  
+       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
+       // 'brand': 'Бренд 1',  
+       'category': "<?=implode("/", $resultSections);?>" 
+     }]  
+   }  
+ },  
+ 'event': 'gtm-ee-event',  
+ 'gtm-ee-event-category': 'Enhanced Ecommerce',  
+ 'gtm-ee-event-action': 'Product Details',  
+ 'gtm-ee-event-non-interaction': 'True',  
+});  
+</script>  
+
+<script>
+	$(document).on("click", ".to-cart:not(.read_more), .basket_item_add", function (e) {
+		window.dataLayer = window.dataLayer || [];  
+		dataLayer.push({  
+			'ecommerce': {  
+				'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
+				'add': {  
+					'products': [{  
+						'name': "<?=$arResult["NAME"]?>",  
+						'id': "<?=$arResult["ID"]?>",  
+						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
+						// 'brand': 'Бренд 1',  
+						'category': "<?=implode("/", $resultSections);?>", 
+						'quantity': $(this).attr("data-quantity")  
+					}]  
+				}  
+			},  
+			'event': 'gtm-ee-event',  
+			'gtm-ee-event-category': 'Enhanced Ecommerce',  
+			'gtm-ee-event-action': 'Add to Cart',  
+			'gtm-ee-event-non-interaction': 'False',  
+		});
+	})
+</script>
