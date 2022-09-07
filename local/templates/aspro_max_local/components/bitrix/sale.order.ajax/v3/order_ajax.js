@@ -3569,6 +3569,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
         }, checkEmptyProps: function () {
             return this.isValidPropertiesBlock(!0, this.propsBlockNode, !0).length
         }, showSaveProfile: function (node) {
+            console.log('showSaveProfile');
             node.appendChild(BX.create("DIV", {
                 props: {className: "bx-soa-more"},
                 children: [BX.create("DIV", {
