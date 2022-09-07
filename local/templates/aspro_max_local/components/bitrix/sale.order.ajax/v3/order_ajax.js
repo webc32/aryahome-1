@@ -729,6 +729,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
             if ("bx-soa-delivery" === actionSection.id) {
+                console.log(bx-soa-delivery);
                 const propsErrors = this.isValidRegionBlock();
                 if (propsErrors.length) return;
                 actionSection.querySelector(".alert.alert-danger").style.display = "none", BX.cleanNode(actionSection.querySelector(".alert.alert-danger")), BX.removeClass(actionSection, "bx-step-error")
