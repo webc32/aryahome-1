@@ -163,9 +163,44 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 	   $purchasecoupon = $coupon['COUPON'];
 	
 	}
+	global $USER;
+	    $values = [];
+	    if(is_object($USER))
+	    {
+		$rsUser = CUser::GetList($by, $order,
+		    array(
+			"ID" => $USER->GetID(),
+		    ),
+		    array(
+			"SELECT" => array(
+			    "EMAIL"
+			),
+		    )
+		);
+		if($arUser = $rsUser->Fetch())
+		{
+		    foreach($arUser as $key=>$value){
+			$values[$key] = $value;
+		    }
+		}
+	    }
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
-
+	<script type="text/javascript">
+	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+	    try {
+		rrApi.setEmail("<?=$values['EMAIL']?>");
+		rrApi.order({
+		    "transaction": "<transaction_id>",
+		    "items": [
+			<?foreach($arItems as $arItem):?>
+				{"id": '<?=$arItem["PRODUCT_ID"]?>', "qnt": "<?=$arItem['quantity']?>",  "price": "<?=$arItem['price']?>"},
+			<?endforeach;?>
+		    ]
+		});
+	    } catch(e) {}
+	})
+	</script>
 	<script>  
 		window.dataLayer = window.dataLayer || [];  
 		dataLayer.push({  
