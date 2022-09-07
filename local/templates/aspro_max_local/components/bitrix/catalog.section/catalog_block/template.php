@@ -975,7 +975,7 @@ use \Bitrix\Main\Localization\Loc,
 <div class="132456" style="display:none">
 <pre>
 <?
-print_r($arResult);	
+print_r($arResult[ID]);	
 ?>
 </pre>
 </div>
