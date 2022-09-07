@@ -725,6 +725,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
         }, doSaveAction: function () {
             this.isOrderSaveAllowed() && (this.reachGoal("order"), this.sendRequest("saveOrderAjax"))
         }, clickNextAction: function (event) {
+            console.log(actionSection.id);
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
