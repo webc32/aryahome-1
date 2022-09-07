@@ -973,9 +973,11 @@ use \Bitrix\Main\Localization\Loc,
 	})
 </script>
 <div class="132456" style="display:none">
+<pre>
 <?
 print_r($arResult);	
 ?>
+</pre>
 </div>
 <script type="text/javascript">
     (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
