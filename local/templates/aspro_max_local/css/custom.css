@@ -923,11 +923,11 @@ margin-top: 20px;
     padding: 33px 8px 41px;
 }
 
-.sale_block .no_bg_color.sale-number{
+.sale_block .red_discont.sale-number{
     border: 1px solid black !important;
     background: black !important;
 }
-.sale_block .no_bg_color.sale-number *{
+.sale_block .red_discont.sale-number *{
     color: white !important;
 }
 .sticker_new {
