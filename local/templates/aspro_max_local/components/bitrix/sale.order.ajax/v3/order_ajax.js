@@ -724,11 +724,11 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             return this.isValidForm() && (this.allowOrderSave(), "Y" === this.params.USER_CONSENT && BX.UserConsent ? BX.onCustomEvent("bx-soa-order-save", []) : this.doSaveAction()), BX.PreventDefault(event)
         }, doSaveAction: function () {
             this.isOrderSaveAllowed() && (this.reachGoal("order"), this.sendRequest("saveOrderAjax"))
-        }, clickNextAction: function (event) {
-            console.log(actionSection.id);
+        }, clickNextAction: function (event) { 
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
+            console.log(actionSection.id);
             if ("bx-soa-delivery" === actionSection.id) {
                     var delivery = this.getSelectedDelivery();
                     var info, i, products = [], dataVariant, item;
