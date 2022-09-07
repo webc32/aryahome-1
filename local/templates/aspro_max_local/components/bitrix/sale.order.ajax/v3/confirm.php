@@ -125,6 +125,7 @@ if($_GET['test'] == 'y'){
 	}
 
 	foreach ($arItems as $product) {
+		echo $product["PRODUCT_ID"];
 		$arSelect = Array(
 			"ID",
 			"IBLOCK_SECTION_ID");
