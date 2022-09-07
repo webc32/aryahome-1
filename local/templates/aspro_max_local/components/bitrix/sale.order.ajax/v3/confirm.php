@@ -125,12 +125,20 @@ if($_GET['test'] == 'y'){
 	}
 
 	foreach ($arItems as $product) {
+		$arSelect = Array(
+			"ID",
+			"IBLOCK_SECTION_ID");
+		$arFilter = Array("IBLOCK_ID"=>3, "ID" => $product["PRODUCT_ID"]);
+		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
+		while($ob = $res->GetNextElement())
+		{
 
-		$res = CIBlockElement::GetByID($product['PRODUCT_ID']);
-		if($arRes = $res->Fetch()){
-			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
+			$arFields = $ob->GetFields();
+			$IBLOCK_SECTION_ID = $arFields["IBLOCK_SECTION_ID"];
+			echo $IBLOCK_SECTION_ID;
+			
+			
 		}
-		echo $IBLOCK_SECTION_ID;
 		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
 		   while($v = $nav->GetNext()) {
 
