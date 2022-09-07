@@ -746,7 +746,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             'ecommerce': {  
                                 'currencyCode': 'RUB',  
                                 'checkout': {  
-                                'actionField': {'step': 4, 'option': currentDelivery.NAME},
+                                'actionField': {'step': 4, 'option': 'Доставка'},
                                 'products': products 
                                 }  
                             },  
