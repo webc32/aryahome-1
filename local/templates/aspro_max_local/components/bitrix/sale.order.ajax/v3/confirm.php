@@ -115,45 +115,6 @@ if ($arParams["SET_TITLE"] == "Y")
 	?>
 <?
 if($_GET['test'] == 'y'){
-	$orderID = $arResult["ORDER"]["ID"];
-	
-	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
-
-	$arItems =array();
-	while($arIt = $dbItemsInOrder->fetch()){
-		$arItems[]= array("id"=>$arIt["ID"],"PRODUCT_ID"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
-	}
-
-	foreach ($arItems as $product) {
-		echo $product["PRODUCT_ID"];
-		$arSelect = Array(
-			"ID",
-			"IBLOCK_SECTION_ID");
-		$arFilter = Array("IBLOCK_ID"=>3, "ID" => $product["PRODUCT_ID"]);
-		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
-		while($ob = $res->GetNextElement())
-		{
-
-			$arFields = $ob->GetFields();
-			$IBLOCK_SECTION_ID = $arFields["IBLOCK_SECTION_ID"];
-			echo $IBLOCK_SECTION_ID;
-			
-			
-		}
-		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
-		   while($v = $nav->GetNext()) {
-
-		       if($v['ID']) {
-			   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-			   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-			   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-			   $arItemSection[] = $v['NAME'];
-		       }
-		   }
-		print_r($arItemSection);
-		
-	}
-	
 }
 ?>
 <? else: ?>
@@ -187,7 +148,7 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 
 		$arItems =array();
 		while($arIt = $dbItemsInOrder->fetch()){
-			$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+			$arItems[]= array("id"=>$arIt["ID"],"PRODUCT_ID"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 		}
 		$arOrderSum = CSaleOrder::GetByID($orderID);
 		
@@ -220,12 +181,34 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 					},  
 					'products': [
 					<?foreach($arItems as $arItem):?>
+					<?
+						$arSelect = Array(
+							"ID",
+							"IBLOCK_SECTION_ID");
+						$arFilter = Array("IBLOCK_ID"=>3, "ID" => $arItem["PRODUCT_ID"]);
+						$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
+						while($ob = $res->GetNextElement())
+						{
+							$arFields = $ob->GetFields();
+							$IBLOCK_SECTION_ID = $arFields["IBLOCK_SECTION_ID"];
+						}
+						$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
+						   while($v = $nav->GetNext()) {
+
+						       if($v['ID']) {
+							   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+							   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+							   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+							   $arItemSection[] = $v['NAME'];
+						       }
+						   }	
+					?>
 					{    
 						'name': "<?=$arItem['name']?>",  
 						'id': "<?=$arItem['id']?>",  
 						'price': "<?=$arItem['price']?>",  
 						// 'brand': 'Название бренда',  
-						// 'category': 'Категория 1',  
+						'category': "<?=implode("/", $arItemSection);?>",  
 						'quantity': "<?=$arItem['quantity']?>"  
 					}
 					<?endforeach;?>
