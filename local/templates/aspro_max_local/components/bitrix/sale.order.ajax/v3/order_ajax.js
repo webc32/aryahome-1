@@ -762,6 +762,35 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if (propsErrors.length) return;
                 actionSection.querySelector(".alert.alert-danger").style.display = "none", BX.cleanNode(actionSection.querySelector(".alert.alert-danger")), BX.removeClass(actionSection, "bx-step-error")
             }
+            if ("bx-soa-paysystem" === actionSection.id) {
+                    var paysystem = this.getSelectedDelivery();
+                    var info, i, products = [], dataVariant, item;
+                    for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                        for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                        products.push({
+                            id: item.data.PRODUCT_ID,
+                            name: item.data.NAME,
+                            price: item.data.PRICE,
+                            brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                            variant: dataVariant.join("/"),
+                            quantity: item.data.QUANTITY
+                        })
+                    }
+                	window.dataLayer = window.dataLayer || [];  
+                        dataLayer.push({  
+                            'ecommerce': {  
+                                'currencyCode': 'RUB',  
+                                'checkout': {  
+                                'actionField': {'step': 5, 'option': paysystem.NAME},
+                                'products': products 
+                                }  
+                            },  
+                        'event': 'gtm-ee-event',  
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                        'gtm-ee-event-action': 'Checkout - Step 5',  
+                        'gtm-ee-event-non-interaction': 'False',  
+                    });  
+            }
             return this.reachGoal("next", actionSection), this.result.IS_AUTHORIZED && void 0 === this.result.LAST_ORDER_DATA.FAIL || "false" != section.next.getAttribute("data-visited") || (allSections = this.orderBlockNode.querySelectorAll(".bx-soa-section.bx-active"), section.next.id == allSections[allSections.length - 1].id && this.switchOrderSaveButtons(!0)), this.fade(actionSection, actionSection), this.show(actionSection), section.prev && section.next.querySelector(".change-info").click(), BX.PreventDefault(event)
         }, clickPrevAction: function (event) {
             var target = event.target || event.srcElement,
