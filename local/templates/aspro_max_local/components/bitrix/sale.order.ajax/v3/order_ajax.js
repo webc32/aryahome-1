@@ -729,7 +729,27 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
             if ("bx-soa-delivery" === actionSection.id) {
-                console.log(bx-soa-delivery);
+//                 	window.dataLayer = window.dataLayer || [];  
+//                         dataLayer.push({  
+//                             'ecommerce': {  
+//                                 'currencyCode': 'RUB',  
+//                                 'checkout': {  
+//                                 'actionField': {'step': 4, 'option': 'Забрать в ПВЗ - ПВЗ Boxberry'},
+//                                 'products': [{  
+//                                     'name': 'Постельное Белье Arya Royalty 2 Сп. 200X220 Malani',  
+//                                     'id': '19',  
+//                                     'price': '11429.00',  
+//                                     'category': 'СПАЛЬНЯ/Постельное белье/ЖАККАРД',  
+//                                     'quantity': 1  
+//                                 }]  
+//                                 }  
+//                             },  
+//                         'event': 'gtm-ee-event',  
+//                         'gtm-ee-event-category': 'Enhanced Ecommerce',  
+//                         'gtm-ee-event-action': 'Checkout - Step 4',  
+//                         'gtm-ee-event-non-interaction': 'False',  
+//                     });  
+
                 const propsErrors = this.isValidRegionBlock();
                 if (propsErrors.length) return;
                 actionSection.querySelector(".alert.alert-danger").style.display = "none", BX.cleanNode(actionSection.querySelector(".alert.alert-danger")), BX.removeClass(actionSection, "bx-step-error")
