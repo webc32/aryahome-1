@@ -763,7 +763,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 actionSection.querySelector(".alert.alert-danger").style.display = "none", BX.cleanNode(actionSection.querySelector(".alert.alert-danger")), BX.removeClass(actionSection, "bx-step-error")
             }
             if ("bx-soa-paysystem" === actionSection.id) {
-                    var paysystem = this.getSelectedDelivery();
+                    var paysystem = this.getSelectedPaySystem();
                     var info, i, products = [], dataVariant, item;
                     for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
                         for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
