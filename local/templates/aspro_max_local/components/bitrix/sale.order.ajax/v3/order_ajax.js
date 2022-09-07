@@ -729,26 +729,32 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
             if ("bx-soa-delivery" === actionSection.id) {
-//                 	window.dataLayer = window.dataLayer || [];  
-//                         dataLayer.push({  
-//                             'ecommerce': {  
-//                                 'currencyCode': 'RUB',  
-//                                 'checkout': {  
-//                                 'actionField': {'step': 4, 'option': 'Забрать в ПВЗ - ПВЗ Boxberry'},
-//                                 'products': [{  
-//                                     'name': 'Постельное Белье Arya Royalty 2 Сп. 200X220 Malani',  
-//                                     'id': '19',  
-//                                     'price': '11429.00',  
-//                                     'category': 'СПАЛЬНЯ/Постельное белье/ЖАККАРД',  
-//                                     'quantity': 1  
-//                                 }]  
-//                                 }  
-//                             },  
-//                         'event': 'gtm-ee-event',  
-//                         'gtm-ee-event-category': 'Enhanced Ecommerce',  
-//                         'gtm-ee-event-action': 'Checkout - Step 4',  
-//                         'gtm-ee-event-non-interaction': 'False',  
-//                     });  
+                    var info, i, products = [], dataVariant, item;
+                    for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                        for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                        products.push({
+                            id: item.data.PRODUCT_ID,
+                            name: item.data.NAME,
+                            price: item.data.PRICE,
+                            brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                            variant: dataVariant.join("/"),
+                            quantity: item.data.QUANTITY
+                        })
+                    }
+                	window.dataLayer = window.dataLayer || [];  
+                        dataLayer.push({  
+                            'ecommerce': {  
+                                'currencyCode': 'RUB',  
+                                'checkout': {  
+                                'actionField': {'step': 4, 'option': currentDelivery.NAME},
+                                'products': products 
+                                }  
+                            },  
+                        'event': 'gtm-ee-event',  
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                        'gtm-ee-event-action': 'Checkout - Step 4',  
+                        'gtm-ee-event-non-interaction': 'False',  
+                    });  
 
                 const propsErrors = this.isValidRegionBlock();
                 if (propsErrors.length) return;
