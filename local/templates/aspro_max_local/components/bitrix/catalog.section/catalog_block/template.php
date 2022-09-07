@@ -972,15 +972,3 @@ use \Bitrix\Main\Localization\Loc,
 		})
 	})
 </script>
-<script type="text/javascript">
-    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-        try { rrApi.categoryView("<?$arParams["SECTION_ID"]?>"); } catch(e) {}
-    })
-</script>
-<div style="display:none;" class="123123123">
-	<pre>
-	<?
-// 	print_r($arParams);
-	?>
-	</pre>
-</div>
