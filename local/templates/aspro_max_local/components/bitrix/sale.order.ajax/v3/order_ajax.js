@@ -730,7 +730,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 section = this.getNextSection(actionSection), allSections, editStep;
             if ("bx-soa-delivery" === actionSection.id) {
                     var delivery = this.getSelectedDelivery();
-                    console.log(delivery);
                     var info, i, products = [], dataVariant, item;
                     for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
                         for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
@@ -748,7 +747,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             'ecommerce': {  
                                 'currencyCode': 'RUB',  
                                 'checkout': {  
-                                'actionField': {'step': 4, 'option': 'Доставка'},
+                                'actionField': {'step': 4, 'option': delivery.NAME},
                                 'products': products 
                                 }  
                             },  
