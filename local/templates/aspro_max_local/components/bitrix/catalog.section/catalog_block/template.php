@@ -972,3 +972,13 @@ use \Bitrix\Main\Localization\Loc,
 		})
 	})
 </script>
+<div class="132456" style="display:none">
+<?
+print_r($arResult);	
+?>
+</div>
+<script type="text/javascript">
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+		try { rrApi.categoryView(); } catch(e) {}
+	})
+</script>
