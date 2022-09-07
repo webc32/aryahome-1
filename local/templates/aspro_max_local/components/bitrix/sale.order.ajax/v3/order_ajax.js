@@ -3569,7 +3569,37 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
         }, checkEmptyProps: function () {
             return this.isValidPropertiesBlock(!0, this.propsBlockNode, !0).length
         }, showSaveProfile: function (node) {
-            console.log('showSaveProfile');
+            var step3 = 0;
+            if (step != 1){
+                console.log('showSaveProfile');
+                var info, i, products = [], dataVariant, item;
+                for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                    for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                    products.push({
+                        id: item.data.PRODUCT_ID,
+                        name: item.data.NAME,
+                        price: item.data.PRICE,
+                        brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                        variant: dataVariant.join("/"),
+                        quantity: item.data.QUANTITY
+                    })
+                }
+                window.dataLayer = window.dataLayer || [];  
+                    dataLayer.push({  
+                        'ecommerce': {  
+                            'currencyCode': 'RUB',  
+                            'checkout': {  
+                            'actionField': {'step': 3, 'option': 'Контактная информация'},  
+                            'products': products
+                            }  
+                        },  
+                    'event': 'gtm-ee-event',  
+                    'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                    'gtm-ee-event-action': 'Checkout - Step 3',  
+                    'gtm-ee-event-non-interaction': 'False',  
+                });  
+                step3 = 1;
+            }
             node.appendChild(BX.create("DIV", {
                 props: {className: "bx-soa-more"},
                 children: [BX.create("DIV", {
