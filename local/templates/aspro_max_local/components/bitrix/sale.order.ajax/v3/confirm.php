@@ -121,7 +121,7 @@ if($_GET['test'] == 'y'){
 
 	$arItems =array();
 	while($arIt = $dbItemsInOrder->fetch()){
-		$arItems[]= array("id"=>$arIt["ID"],"id"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+		$arItems[]= array("id"=>$arIt["ID"],"PRODUCT_ID"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 	}
 
 	foreach ($arItems as $product) {
