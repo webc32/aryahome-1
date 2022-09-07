@@ -3569,8 +3569,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
         }, checkEmptyProps: function () {
             return this.isValidPropertiesBlock(!0, this.propsBlockNode, !0).length
         }, showSaveProfile: function (node) {
-            var step3 = 0;
-            if (step != 1){
+            var stepSaveProfile = 0;
+            if (stepSaveProfile != 1){
                 console.log('showSaveProfile');
                 var info, i, products = [], dataVariant, item;
                 for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
@@ -3598,7 +3598,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     'gtm-ee-event-action': 'Checkout - Step 3',  
                     'gtm-ee-event-non-interaction': 'False',  
                 });  
-                step3 = 1;
+                stepSaveProfile = 1;
             }
             node.appendChild(BX.create("DIV", {
                 props: {className: "bx-soa-more"},
