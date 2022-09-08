@@ -934,5 +934,6 @@ margin-top: 20px;
     background: black !important;
 }
 .sticker_new {
-    background-color: #d0a550 !important;
+    background-color: #cccccc !important;
+    color: black !important;
 }
