@@ -224,6 +224,13 @@ class OnAfterUserRegisterAddCoupon
 				'header' => "Authorization: ApiKey " . $TOKEN . "\r\n"
 			)
 		);
+		
+		//test RRApi
+		?>
+		<script type="text/javascript">
+			(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail("<?=$arFields["EMAIL"]?>");});
+		</script>
+		<?
 
 		$context = stream_context_create($opts);
 
