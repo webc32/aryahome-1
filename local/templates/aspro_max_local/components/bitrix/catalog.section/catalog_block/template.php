@@ -426,7 +426,7 @@ use \Bitrix\Main\Localization\Loc,
 							<? endif; ?>
 						<? endif; ?>
 						<? if ($arParams["TYPE_VIEW_BASKET_BTN"] == "TYPE_2" && !$bBigBlock) : ?>
-							<div class="icons-basket-wrapper offer_buy_block ce_cmp_hidden">
+							<div class="icons-basket-wrapper offer_buy_block ce_cmp_hidden" onmousedown="try { rrApi.addToBasket('<?=$arItem["ID"]?>') } catch(e) {}">
 								<div class="button_block">
 									<!--noindex-->
 									<?= $arAddToBasketData["HTML"] ?>
