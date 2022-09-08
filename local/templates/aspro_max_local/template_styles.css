@@ -7909,8 +7909,8 @@ body .catalog_item.hover .footer_button {
 }
 .stickers .sticker_stock,
 .stickers .sticker_aktsiya {
-  background-color: black;
-  color: white;
+  background-color: #d7cff8;
+  color: black;
 }
 .stickers .sticker_recommend,
 .stickers .sticker_sovetuem {
