@@ -242,21 +242,3 @@
     height: auto;
   }
 }
-.banner_bottons{
-  text-align: center;
-  width: 75%;
-}
-.banner_botton{
-  background: #d0a550;
-  margin: 10px 0;
-  border-radius: 5px;  
-}
-.banner_botton *{
-  color: white;
-  display: block;
-}
-@media(max-width: 992px){
-  .banner_bottons{
-    display: none;
-  }
-}
