@@ -68,19 +68,6 @@
 												<?endif;?>
 											</div>
 										</div>
-										<?if($col == 6):?>
-											<?if($arItem['PROPERTIES']['MORE_BUTTONS']['VALUE']):?>
-												<div class="banner_bottons">
-													<?foreach ($arItem['PROPERTIES']['MORE_BUTTONS']['VALUE'] as $key => $value):?>
-														<?if($arItem['PROPERTIES']['MORE_BUTTONS']['DESCRIPTION'][$key]):?>
-															<div class="banner_botton"><a href="<?=$arItem['PROPERTIES']['MORE_BUTTONS']['DESCRIPTION'][$key]?>"><?=$value?></a></div>
-														<?else:?>
-															<div class="banner_text"><?=$value?></div>
-														<?endif;?>
-													<?endforeach;?>
-												</div>
-											<?endif;?>
-										<?endif;?>
 										<?if($arItem['PREVIEW_TEXT'] && !$bTopBgBlock):?>
 											<div class="previewtext font_xs muted777">
 												<?=$arItem['PREVIEW_TEXT'];?>
