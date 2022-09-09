@@ -164,6 +164,12 @@ if (!empty($arResult['ITEMS'])){
 
 	foreach ($arResult['ITEMS'] as $key => $arItem)
 	{
+
+		if($arItem["DETAIL_PICTURE"]){
+			$arItem["PREVIEW_PICTURE"] = $arItem["DETAIL_PICTURE"];
+		}
+
+		
 		if(is_array($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']))
 		{
 			$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'] = reset($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']);
