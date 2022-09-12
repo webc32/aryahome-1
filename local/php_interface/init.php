@@ -9,6 +9,18 @@ use \Bitrix\Sale\Shipment;
 use \Bitrix\Sale\Helpers\Admin\Blocks\OrderBasketShipment;
 use \Bitrix\Main\Config\Option;
 use Bitrix\Main\Localization\Loc;
+
+CModule::AddAutoloadClasses('', // не указываем имя модуля
+    [
+        // ключ - имя класса, значение - путь относительно корня сайта к файлу с классом
+        'saleEvents'        => '/local/php_interface/lib/arya/saleEvents.php',
+        'SberbankPay'       => '/local/php_interface/lib/arya/SberbankPay.php'
+    ]
+);
+
+//изменение статуса заказа
+AddEventHandler("sale", "OnSaleStatusOrder", ['saleEvents', 'OnSaleStatusOrder']);
+
 $inst = EventManager::getInstance();
 $inst-> addEventHandler('sale', 'OnBeforeCollectionDeleteItem', 'saveInfo');
 $inst-> addEventHandler('sale', 'OnSaleOrderBeforeSaved', 'reverseInfo');
