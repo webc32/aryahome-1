@@ -4695,7 +4695,10 @@ body .catalog_block.items .item_block.item {
   background: var(--card_bg_hover_black);
 }
 .catalog_block .catalog_item > div .item_info {
-  /*padding-bottom: 29px;*/
+  padding-bottom: 29px;
+}
+.catalog_block .catalog_item:hover .item_info {
+  padding-bottom: 0px;
 }
 
 .catalog_block .catalog_item.big {
