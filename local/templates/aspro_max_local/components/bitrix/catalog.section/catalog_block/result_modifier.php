@@ -168,7 +168,6 @@ if (!empty($arResult['ITEMS'])){
 		if($arItem["DETAIL_PICTURE"]){
 			$arItem["PREVIEW_PICTURE"] = $arItem["DETAIL_PICTURE"];
 		}
-
 		
 		if(is_array($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']))
 		{
@@ -255,7 +254,8 @@ if (!empty($arResult['ITEMS'])){
 		if ($_POST['offer_ajax'] && ($_POST['product_color'] || $_POST['product_size'])) {
 			$arParams['ADD_DETAIL_TO_SLIDER'] = 'Y';
 		}
-					
+
+
 
 		$arItem['GALLERY'] = CMax::getSliderForItemExt($arItem, $arParams['ADD_PICT_PROP'], 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']);
 		

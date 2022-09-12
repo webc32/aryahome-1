@@ -164,6 +164,12 @@ if (!empty($arResult['ITEMS'])){
 
 	foreach ($arResult['ITEMS'] as $key => $arItem)
 	{
+
+		if($arItem["DETAIL_PICTURE"]){
+			$arItem["PREVIEW_PICTURE"] = $arItem["DETAIL_PICTURE"];
+		}
+
+		
 		if(is_array($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']))
 		{
 			$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'] = reset($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']);
@@ -208,31 +214,31 @@ if (!empty($arResult['ITEMS'])){
 			switch ($arItem['CATALOG_TYPE'])
 			{
 				case CCatalogProduct::TYPE_SET:
-					$arItem['OFFERS'] = array();
-					$arItem['CHECK_QUANTITY'] = ('Y' == $arItem['CATALOG_QUANTITY_TRACE'] && 'N' == $arItem['CATALOG_CAN_BUY_ZERO']);
+				$arItem['OFFERS'] = array();
+				$arItem['CHECK_QUANTITY'] = ('Y' == $arItem['CATALOG_QUANTITY_TRACE'] && 'N' == $arItem['CATALOG_CAN_BUY_ZERO']);
 
-					$arSets = CCatalogProductSet::getAllSetsByProduct($arItem["ID"], 1);
-					if($arSets)
+				$arSets = CCatalogProductSet::getAllSetsByProduct($arItem["ID"], 1);
+				if($arSets)
+				{
+					foreach($arSets as $arSet2)
 					{
-						foreach($arSets as $arSet2)
+						foreach($arSet2["ITEMS"] as $arSet3)
 						{
-							foreach($arSet2["ITEMS"] as $arSet3)
-							{
-								$arItem['SET_ITEMS'][] = array(
-									"ID" => $arSet3["ITEM_ID"],
-									"QUANTITY" => $arSet3["QUANTITY"]
-								);
-							}
+							$arItem['SET_ITEMS'][] = array(
+								"ID" => $arSet3["ITEM_ID"],
+								"QUANTITY" => $arSet3["QUANTITY"]
+							);
 						}
 					}
+				}
 
-					break;
+				break;
 				case CCatalogProduct::TYPE_SKU:
-					break;
+				break;
 				case CCatalogProduct::TYPE_PRODUCT:
 				default:
-					$arItem['CHECK_QUANTITY'] = ('Y' == $arItem['CATALOG_QUANTITY_TRACE'] && 'N' == $arItem['CATALOG_CAN_BUY_ZERO']);
-					break;
+				$arItem['CHECK_QUANTITY'] = ('Y' == $arItem['CATALOG_QUANTITY_TRACE'] && 'N' == $arItem['CATALOG_CAN_BUY_ZERO']);
+				break;
 			}
 		}
 		else
@@ -245,10 +251,16 @@ if (!empty($arResult['ITEMS'])){
 		if(($arItem['DETAIL_PICTURE'] && $arItem['PREVIEW_PICTURE']) || (!$arItem['DETAIL_PICTURE'] && $arItem['PREVIEW_PICTURE']))
 			$arItem['DETAIL_PICTURE'] = $arItem['PREVIEW_PICTURE'];
 
+							
+		if ($_POST['offer_ajax'] && ($_POST['product_color'] || $_POST['product_size'])) {
+			$arParams['ADD_DETAIL_TO_SLIDER'] = 'Y';
+		}
+					
+
 		$arItem['GALLERY'] = CMax::getSliderForItemExt($arItem, $arParams['ADD_PICT_PROP'], 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']);
+		
 		array_splice($arItem['GALLERY'], $arParams['MAX_GALLERY_ITEMS']);
-
-
+		
 
 		if ($arItem['CATALOG'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS']))
 		{
@@ -458,17 +470,17 @@ if (!empty($arResult['ITEMS'])){
 				{
 					//if (empty($arItem['MIN_PRICE']))
 					//{
-						if ($arItem['OFFER_ID_SELECTED'] > 0)
-							$foundOffer = ($arItem['OFFER_ID_SELECTED'] == $arOffer['ID']);
-						else
-							$foundOffer = $arOffer['CAN_BUY'];
-						if ($foundOffer && $intSelected == -1)
-						{
-							$intSelected = $keyOffer;
-							$arItem['MIN_PRICE'] = (isset($arOffer['RATIO_PRICE']) ? $arOffer['RATIO_PRICE'] : $arOffer['MIN_PRICE']);
-							$arItem['MIN_BASIS_PRICE'] = $arOffer['MIN_PRICE'];
-						}
-						unset($foundOffer);
+					if ($arItem['OFFER_ID_SELECTED'] > 0)
+						$foundOffer = ($arItem['OFFER_ID_SELECTED'] == $arOffer['ID']);
+					else
+						$foundOffer = $arOffer['CAN_BUY'];
+					if ($foundOffer && $intSelected == -1)
+					{
+						$intSelected = $keyOffer;
+						$arItem['MIN_PRICE'] = (isset($arOffer['RATIO_PRICE']) ? $arOffer['RATIO_PRICE'] : $arOffer['MIN_PRICE']);
+						$arItem['MIN_BASIS_PRICE'] = $arOffer['MIN_PRICE'];
+					}
+					unset($foundOffer);
 					//}
 				}
 
@@ -589,7 +601,7 @@ if (!empty($arResult['ITEMS'])){
 
 					if(($arOffer['DETAIL_PICTURE'] && $arOffer['PREVIEW_PICTURE']) || (!$arOffer['DETAIL_PICTURE'] && $arOffer['PREVIEW_PICTURE']))
 						$arOffer['DETAIL_PICTURE'] = $arOffer['PREVIEW_PICTURE'];
-
+					
 					if ($arParams['SHOW_GALLERY'] == 'Y') {
 						$arItem['OFFERS'][$keyOffer]['GALLERY'] = CMax::getSliderForItemExt($arOffer, $arParams['OFFER_ADD_PICT_PROP'], true);
 
@@ -613,7 +625,7 @@ if (!empty($arResult['ITEMS'])){
 			}
 		}
 
-		
+
 		$arFirstSkuPicture = array();
 		$bNeedFindPicture = ($arParams['SHOW_GALLERY'] == 'Y') && (CMax::GetFrontParametrValue("SHOW_FIRST_SKU_PICTURE") == "Y") && empty($arItem['GALLERY']);
 		if( $bNeedFindPicture ){
@@ -621,7 +633,6 @@ if (!empty($arResult['ITEMS'])){
 			{
 				if(($arOffer['DETAIL_PICTURE'] && $arOffer['PREVIEW_PICTURE']) || (!$arOffer['DETAIL_PICTURE'] && $arOffer['PREVIEW_PICTURE']))
 					$arOffer['DETAIL_PICTURE'] = $arOffer['PREVIEW_PICTURE'];
-
 				$arFirstSkuPicture = CMax::getSliderForItemExt($arOffer, '', true);
 				if(!empty( $arFirstSkuPicture )){
 					$arItem['GALLERY'] = $arFirstSkuPicture;
@@ -660,7 +671,7 @@ if (!empty($arResult['ITEMS'])){
 			$arResult['MODULES']['catalog']
 			&& $arItem['CATALOG']
 			&&
-				($arItem['CATALOG_TYPE'] == CCatalogProduct::TYPE_PRODUCT
+			($arItem['CATALOG_TYPE'] == CCatalogProduct::TYPE_PRODUCT
 				|| $arItem['CATALOG_TYPE'] == CCatalogProduct::TYPE_SET)
 		)
 		{
@@ -771,4 +782,76 @@ if (!empty($arResult['ITEMS'])){
 		}
 	}
 }
+
+$arFilter = array();
+foreach ($arResult['ITEMS'] as $key => $arItem) {
+	$arKeys[] = $arItem['ID'];
+	$nameForSite[$key] = $arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"];
+	$color[$key] = $arItem['PROPERTIES']['PROPERTY_TSVET']["VALUE"];
+}
+
+
+
+$i = 0;
+$arSort= Array("NAME"=>"ASC");
+$arSelect = Array("ID","NAME","IBLOCK_ID","PROPERTY_NAIMENOVANIE_DLYA_SAYTA","PROPERTY_RAZMER","PROPERTY_TSVET","PREVIEW_PICTURE","DETAIL_PAGE_URL","PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA");
+$arFilter = Array(
+	"IBLOCK_ID" => $arParams['IBLOCK_ID'],
+	'>CATALOG_STORE_AMOUNT_3' => 0,
+	"PROPERTY_NAIMENOVANIE_DLYA_SAYTA" => $nameForSite,
+	"ACTIVE" => "Y",
+	"!SECTION_ID" => 0
+);
+$res = CIBlockElement::GetList($arSort, $arFilter, false, false, $arSelect);
+$availabelSku = array();
+while($ob = $res->GetNextElement()){
+
+	$arFields = $ob->GetFields();
+	if(!$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]]){
+		$availabelSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']]["COLOR"]++;
+		$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]] = array(
+			"ID" => $arFields['ID'],
+			"SRC" => $arFields["PREVIEW_PICTURE"] ? CFile::GetPath($arFields["PREVIEW_PICTURE"]) : SITE_TEMPLATE_PATH.'/images/svg/noimage_product.svg',
+			"COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
+		);
+	}
+
+	if(!$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
+		$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"] = $arFields["PROPERTY_RAZMER_VALUE"];
+	}
+
+	if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
+		$availabelSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']]["SIZE"]++;
+		$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]]["SIZE"][] = 
+		array(
+			"ID" => $arFields['ID'],
+			"RAZMER" => $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"],
+			"COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
+		);
+	}
+
+}
+
+// далее запишим всё по своим местам + скрипт ajax на обновление данных о товаре
+foreach ($arResult['ITEMS'] as $key => $arItem) {
+	if(array_key_exists($arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"], $arSku) && $arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]){
+		//$currentColor = ($_POST['product_color'] ? $_POST['product_color'] : ($arItem['PROPERTIES']['TSVET']['VALUE'] == $offer['COLOR'] ? $offer['ID'] : $arItem['ID']));
+		//$currentSize = ($_POST['product_size'] ? $_POST['product_size'] : ($currentColor ? $currentColor : $arItem['ID']));
+		
+		foreach ($arSku[$arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]] as &$prop) {
+			if($_POST['product_color'] == $prop['ID']){
+				$prop['SELECTED'] = "Y";
+				findSelectedSize($arItem,$prop,$_POST['product_size']);
+				break;
+			}elseif($arItem['PROPERTIES']['TSVET']['VALUE'] == $prop['COLOR']){
+				$prop['SELECTED'] = "Y";
+				findSelectedSize($arItem,$prop);
+				break;
+			}
+		}
+		$arResult['ITEMS'][$key]['OFFERS_CUSTOM'] = $arSku[$arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]];
+	}
+}
+
+
 ?>

@@ -38,22 +38,22 @@ if (isset($templateData['TEMPLATE_LIBRARY']) && !empty($templateData['TEMPLATE_L
 		var elCatalogBlock = $(".catalog_block > .item_block");
 		var mobileElCatalogBlock = $(".mobil_select");
 
-		if ($(window).width() > 991) {
-			elCatalogBlock.on({
-				mouseenter: function() {
-					$(this).find('.item_info').css("padding-bottom", "10px");
-					$(this).find('.item_info>.item_info--bottom_block>.prices').css({"margin-top": "0px", "padding-top": "0px"});
-					var offerBlock = $(this).find('.item-offers');
-					offerBlock.removeClass('hide');
-				},
-				mouseleave: function() {
-					$(this).find('.item_info').css("padding-bottom", "29px");
-					$(this).find('.item_info>.item_info--bottom_block>.prices').css({"margin-top": "12px", "padding-top": "7px"});
-					var offerBlock = $(this).find('.item-offers');
-					offerBlock.addClass('hide');
-				}
-			});
-		}
+		// if ($(window).width() > 991) {
+		// 	elCatalogBlock.on({
+		// 		mouseenter: function() {
+		// 			$(this).find('.item_info').css("padding-bottom", "10px");
+		// 			$(this).find('.item_info>.item_info--bottom_block>.prices').css({"margin-top": "0px", "padding-top": "0px"});
+		// 			var offerBlock = $(this).find('.item-offers');
+		// 			offerBlock.removeClass('hide');
+		// 		},
+		// 		mouseleave: function() {
+		// 			$(this).find('.item_info').css("padding-bottom", "29px");
+		// 			$(this).find('.item_info>.item_info--bottom_block>.prices').css({"margin-top": "12px", "padding-top": "7px"});
+		// 			var offerBlock = $(this).find('.item-offers');
+		// 			offerBlock.addClass('hide');
+		// 		}
+		// 	});
+		// }
 
 
 		mobileElCatalogBlock.on("click", function(evt) {

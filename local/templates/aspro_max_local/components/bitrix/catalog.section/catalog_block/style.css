@@ -277,3 +277,24 @@
 		max-height: 110px;
 	}
 }
+.catalog_item .image_wrapper_block.with-props:hover > .thumb{
+  left: 0 !important;
+}
+.catalog_item.with-props:hover .properties_absolute{
+  z-index: 9;
+  width: 100%;
+  background: rgba(255,255,255,0.7);
+  padding: 20px;
+}
+.colors .owl-item .textShow{
+  margin-bottom: 10px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.colors .owl-item .textShow.active{
+      text-decoration: underline;
+}
+.colors .owl-item{
+
+  margin-right: 5px;
+}
