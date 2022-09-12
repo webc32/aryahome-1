@@ -4697,10 +4697,10 @@ body .catalog_block.items .item_block.item {
 .catalog_block .catalog_item > div .item_info {
   padding-bottom: 29px;
 }
-.catalog_block .catalog_item:hover .item_info {
+.catalog_block .col-lg-20 .catalog_item:hover .item_info {
   padding-bottom: 0px;
 }
-.catalog_block .catalog_item:hover .TYPE_2 .cost.prices{
+.catalog_block .col-lg-20 .catalog_item:hover .TYPE_2 .cost.prices{
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
