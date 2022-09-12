@@ -279,69 +279,6 @@ use \Bitrix\Main\Localization\Loc,
 				<? $itemSaBlock = ob_get_clean(); ?>
 
 
-				<? ob_start(); ?>
-				<? if ($arItem['OFFERS_CUSTOM']) : ?>
-					<? if (!$arItem['NOT_CUSTOM_OFFERS']) : ?>
-						<? //for mobile
-						?>
-						
-						<div class="<?if($_POST['offer_ajax']):?>mobil_select_ajax<?else:?>mobil_select<?endif;?> font_xs noact">Выбрать цвет и <span>размер</span></div>
-						
-						<div class="item-offers hide">
-							<span class="offer_title">Цвета:</span>
-							<div class="colors owl_carousel_colors">
-								<? foreach ($arItem['OFFERS_CUSTOM'] as $color => $offer) : ?>
-									<?
-
-									if ($_POST['offer_ajax']) {
-										$style = "data-img= '" . $offer['SRC'] . "'";
-									} else {
-										$style = "";
-									}
-									?>
-									<span onclick="changeOfferListing(this)" <?= $style ?> data-product_color="<?= $offer['ID'] ?>" <?= $offer['SELECTED'] ? 'class="active"' : '' ?>><img width="56px" height="56px" src="<?= $offer['SRC'] ?>" title="<?= $color ?>" /></span>
-								<? endforeach; ?>
-							</div>
-							<?
-							foreach ($arItem['OFFERS_CUSTOM'] as $color => $offer) {
-								if ($offer['SELECTED']) {
-									$sizes = $arItem['OFFERS_CUSTOM'][$color];
-								}
-							}
-							?>
-							<? if ($sizes['SIZE']) : ?>
-								<span class="offer_title">Размеры:</span>
-								<div class="sizes">
-									<? foreach ($sizes['SIZE'] as $size) : ?>
-										<span onclick="changeOfferListing(this)" <?= $size['SELECTED'] ? 'class="active"' : '' ?> data-product_size="<?= $size['ID'] ?>"><?= $size['RAZMER'] ?></span>
-									<? endforeach; ?>
-								</div>
-							<? endif; ?>
-
-						</div>
-					<? endif; ?>
-				<? endif; ?>
-				<?if($_POST['offer_ajax']):?>
-					<script type="text/javascript">
-						
-
-						var mobileElCatalogBlock = $(".mobil_select_ajax");
-						
-
-						mobileElCatalogBlock.on("click", function(evt) {
-
-							$(this).toggleClass('noact');
-							$(this).toggleClass('act');
-							$(this).parent().find('.item-offers').toggleClass("hide");
-							evt.stopImmediatePropagation();
-							
-						
-						})
-					</script>
-					
-				<?endif;?>
-				<? $offers = ob_get_clean(); ?>
-
 
 				<? ob_start(); ?>
 				<div class="item-title">
@@ -633,7 +570,7 @@ use \Bitrix\Main\Localization\Loc,
 						$APPLICATION->RestartBuffer();
 					}
 					?>
-					<div class="catalog_item_wrapp catalog_item item_wrap main_item_wrapper<?= ($bBigBlock ? ' big' : ''); ?> <?= ($bFonImg ? '' : ' product_image') ?> <?= ($arItem["OFFERS"] ? 'has-sku' : '') ?>" id="<?= $arItem["strMainID"] ?>">
+					<div class="catalog_item_wrapp catalog_item item_wrap main_item_wrapper<?= ($bBigBlock ? ' big' : ''); ?> <?= ($bFonImg ? '' : ' product_image') ?> <?= (($arParams['SHOW_PROPS'] == 'Y' && !$bBigBlock) || !$arItem['NOT_CUSTOM_OFFERS'] ? ' with-props' : ''); ?> <?= ($arItem["OFFERS"] ? 'has-sku' : '') ?>" id="<?= $arItem["strMainID"] ?>">
 						<div class="inner_wrap <?= $arParams["TYPE_VIEW_BASKET_BTN"] ?>">
 							<? if ($arParams["COMPLECT_MODE"] == "Y") : ?>
 								<div class="item_block__complect-checkbox filter label_block">
@@ -651,7 +588,7 @@ use \Bitrix\Main\Localization\Loc,
 									<a class="absolute-full-block lazy absolute-full-block_bg_center darken-bg-animate" href="<?= $arItem['DETAIL_PAGE_URL']; ?>" data-src="<?= $imageSrc ?>" data-bg="<?= $imageSrc ?>" style="background-image:url(<?= \Aspro\Functions\CAsproMax::showBlankImg($imageSrc); ?>)"><span></span></a>
 								<? endif; ?>
 							<? endif; ?>
-							<div class="image_wrapper_block js-notice-block__image <?= ($arParams['SHOW_PROPS'] == 'Y' && $arItem['DISPLAY_PROPERTIES'] && !$bBigBlock ? ' with-props' : ''); ?>">
+							<div class="image_wrapper_block js-notice-block__image <?= (($arParams['SHOW_PROPS'] == 'Y' && !$bBigBlock) || !$arItem['NOT_CUSTOM_OFFERS'] ? ' with-props' : ''); ?>">
 								<? \Aspro\Functions\CAsproMaxItem::showStickers($arParams, $arItem, true); ?>
 
 								
@@ -690,7 +627,7 @@ use \Bitrix\Main\Localization\Loc,
 								<? endif; ?>
 								
 								<? if (!$bBigBlock) : ?>
-									<? if ($arParams['SHOW_PROPS'] == 'Y' && $arItem['DISPLAY_PROPERTIES']) : ?>
+									<? if ($arParams['SHOW_PROPS'] == 'Y' || !$arItem['NOT_CUSTOM_OFFERS']) : ?>
 										<div class="properties properties_absolute scrollblock">
 											<div class="properties__container">
 												<? foreach ($arItem['DISPLAY_PROPERTIES'] as $arProp) : ?>
@@ -721,6 +658,78 @@ use \Bitrix\Main\Localization\Loc,
 														</div>
 													</div>
 												<? endforeach; ?>
+												<? if ($arItem['OFFERS_CUSTOM']) : ?>
+													<? if (!$arItem['NOT_CUSTOM_OFFERS']) : ?>
+														<?
+														$showColor = false;
+														foreach ($arItem['OFFERS_CUSTOM'] as $color => $offer){
+															if($color){
+																$showColor = true;
+															}
+														}?>
+														<div class="item-offers">
+															<?if($showColor):?>
+															<span class="offer_title">Цвета:</span>
+															<div class="colors">
+																<? foreach ($arItem['OFFERS_CUSTOM'] as $color => $offer) : ?>
+																	<?
+
+																	if ($_POST['offer_ajax']) {
+																		$style = "data-img= '" . $offer['SRC'] . "'";
+																	} else {
+																		$style = "";
+																	}
+																	if($offer['SELECTED']){
+																		$class = 'active';
+																	}else{
+																		$class = '';
+																	}
+																	
+																	?>
+																	
+																	<span class="textShow <?=$class?>" onclick="changeOfferListing(this)" <?= $style ?> data-product_color="<?= $offer['ID'] ?>"><?= $color ?></span>
+																	
+																<? endforeach; ?>
+															</div>
+															<?endif;?>
+															<?
+															foreach ($arItem['OFFERS_CUSTOM'] as $color => $offer) {
+																if ($offer['SELECTED']) {
+																	$sizes = $arItem['OFFERS_CUSTOM'][$color];
+																}
+															}
+															?>
+															<? if ($sizes['SIZE']) : ?>
+																<span class="offer_title">Размеры:</span>
+																<div class="sizes">
+																	<? foreach ($sizes['SIZE'] as $size) : ?>
+																		<span onclick="changeOfferListing(this)" <?= $size['SELECTED'] ? 'class="active"' : '' ?> data-product_size="<?= $size['ID'] ?>"><?= $size['RAZMER'] ?></span>
+																	<? endforeach; ?>
+																</div>
+															<? endif; ?>
+
+														</div>
+													<? endif; ?>
+												<? endif; ?>
+												<?if($_POST['offer_ajax']):?>
+												<script type="text/javascript">
+
+
+													var mobileElCatalogBlock = $(".mobil_select_ajax");
+
+
+													mobileElCatalogBlock.on("click", function(evt) {
+
+														$(this).toggleClass('noact');
+														$(this).toggleClass('act');
+														$(this).parent().find('.item-offers').toggleClass("hide");
+														evt.stopImmediatePropagation();
+
+
+													})
+												</script>
+
+												<?endif;?>
 											</div>
 											<div class="properties__container properties__container_js">
 												<? if ($arItem["OFFERS"][$arItem["OFFERS_SELECTED"]]['DISPLAY_PROPERTIES']) : ?>
@@ -799,7 +808,6 @@ use \Bitrix\Main\Localization\Loc,
 										<?/*=$offers*/ ?>
 									</div>
 									<div class="item_info--bottom_block">
-										<?= $offers ?>
 										<?= $itemPrice ?>
 										<? if (!$bBigBlock) : ?>
 											<?= $itemFooterButton ?>

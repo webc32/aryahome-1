@@ -456,7 +456,7 @@ if(isset($isAjaxFilter) && $isAjaxFilter == "Y")
 						"PRODUCT_PROPS_VARIABLE" => "prop",
 						"MAX_GALLERY_ITEMS" => $arParams["MAX_GALLERY_ITEMS"],
 						"SHOW_GALLERY" => $arParams["SHOW_GALLERY"],
-						"SHOW_PROPS" => "N",
+						"SHOW_PROPS" => $arParams['SHOW_PROPS'],
 						'SHOW_POPUP_PRICE' => (CMax::GetFrontParametrValue('SHOW_POPUP_PRICE') == 'Y' ? "Y" : "N"),
 						'TYPE_VIEW_BASKET_BTN' => CMax::GetFrontParametrValue('TYPE_VIEW_BASKET_BTN'),
 						'TYPE_VIEW_CATALOG_LIST' => CMax::GetFrontParametrValue('TYPE_VIEW_CATALOG_LIST'),

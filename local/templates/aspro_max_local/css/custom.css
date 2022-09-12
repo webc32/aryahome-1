@@ -347,11 +347,11 @@ input.border-gray {
     text-decoration: none;
 }
 
-.colors span:hover, .colors span.active, .sizes span:hover, .sizes span.active{
-    border: 1px solid #D0A550;
+.colors span:not(.textShow):hover, .colors span.active:not(.textShow), .sizes span:hover, .sizes span.active{
+    border: 1px solid #D0A550 !important;
     cursor: pointer;
 }
-.colors span, .sizes span{
+.colors span:not(.textShow), .sizes span:not(.textShow){
     border-radius: 3px;
     border: 1px solid #fff;
     padding: 4px;
@@ -359,7 +359,7 @@ input.border-gray {
     margin-bottom: 5px;
     display: inline-block;
 }
-.colors .owl-item span{
+.colors .owl-item span:not(.textShow){
     display: block;
     width: 56px;
     height: 56px;
@@ -936,4 +936,23 @@ margin-top: 20px;
 .sticker_new {
     background-color: #cccccc !important;
     color: black !important;
+}
+
+
+.colors .owl-stage, .colors .owl-item{
+    width: 100% !important;
+}
+.textShow {
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px;
+    background: #f5f5f5;
+}
+.textShow.active{
+    color: #525252;
+    border: 1px solid #d0a550;
+}
+.properties.properties_absolute{
+    display: flex;
+    align-items: flex-end;
 }
