@@ -7937,9 +7937,14 @@ body .catalog_item.hover .footer_button {
   background-color: #2992d9;
 }
 .stickers .sticker_stock,
-.stickers .sticker_aktsiya {
+.stickers .sticker_aktsiya,
+.sticker_lider_prodazh {
   background-color: #d7cff8;
   color: black;
+}
+.sticker_novinka{
+  background-color: #cccccc !important;
+    color: black !important;
 }
 .stickers .sticker_recommend,
 .stickers .sticker_sovetuem {
