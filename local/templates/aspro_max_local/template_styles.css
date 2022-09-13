@@ -7939,8 +7939,8 @@ body .catalog_item.hover .footer_button {
 .stickers .sticker_stock,
 .stickers .sticker_aktsiya,
 .sticker_lider_prodazh {
-  background-color: #d7cff8;
-  color: black;
+  background-color: #d7cff8 !important;
+  color: black !important;
 }
 .sticker_novinka{
   background-color: #cccccc !important;
