@@ -2514,8 +2514,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    if (property.getId()=='81' || property.getId()=='82' || property.getId()=='53' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
-
+                    if (property.getId() == '56' || property.getId()=='81' || property.getId()=='82' || property.getId()=='83' || property.getId()=='84' || property.getId()=='95' || property.getId()=='96' || property.getId()=='99' || property.getId()=='100' || property.getId()=='101') {
                         this.getPropertyRowNode(property, deliveryItemsContainer, false);
                         deliveryNode.appendChild(deliveryItemsContainer);
 
@@ -3776,13 +3775,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 errorNode && node.appendChild(errorNode.cloneNode(!0)), personType && (fadeParamName = "PROPS_FADE_LIST_" + personType.ID, props = this.params[fadeParamName]), !props || props.length, this.propsBlockNode.getAttribute("data-visited")
             }
         }, editPropsItems: function (propsNode) {
-            // if (this.result.ORDER_PROP && this.propertyCollection) {
-            //     for (var propsItemsContainer, propsInnerWrapper = BX.create("div", {props: {className: "row row-props group-without-margin"}}), group, property, groupIterator = this.propertyCollection.getGroupIterator(), propsIterator; group = groupIterator();) for (propsIterator = group.getIterator(); property = propsIterator();) this.deliveryLocationInfo.loc != property.getId() && this.deliveryLocationInfo.zip != property.getId() && this.deliveryLocationInfo.city != property.getId() && "80" !== property.getId() && "81" !== property.getId() && "82" !== property.getId() && "83" !== property.getId() && "84" !== property.getId() && "95" !== property.getId() && "96" !== property.getId() && "96" !== property.getId() && "99" !== property.getId() && "100" !== property.getId() && "101" !== property.getId() && "ADDRESS" !== property.getSettings().CODE && this.getPropertyRowNode(property, propsInnerWrapper, !1);
-            //     propsItemsContainer = BX.create("DIV", {
-            //         props: {className: "col-sm-12 bx-soa-customer"},
-            //         children: [propsInnerWrapper]
-            //     }), propsNode.appendChild(propsItemsContainer)
-            // }
 
             if (!this.result.ORDER_PROP || !this.propertyCollection)
                 return;
@@ -3806,7 +3798,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         continue;
 
                     console.log(property.getId(),property);
-                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
+                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){
                         //оставляю как и было
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
