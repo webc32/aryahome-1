@@ -7845,10 +7845,27 @@ body .catalog_item.hover .footer_button {
 .catalog_item.with-props:hover > .thumb {
   left: 100%;
 }
-.catalog_item.with-props:hover .properties_absolute {
-  right: 0;
-  opacity: 1;
+@media(min-width: 787px){
+	.catalog_item.with-props:hover .properties_absolute {
+		right: 0;
+		opacity: 1;
+		z-index: 9;
+		width: 100%;
+		background: rgba(255,255,255,0.7);
+		padding: 20px;
+	}
 }
+@media(max-width: 787px){
+	.catalog_item .with-props:hover .properties_absolute {
+		right: 0;
+		opacity: 1;
+		z-index: 9;
+		width: 100%;
+		background: rgba(255,255,255,0.7);
+		padding: 20px;
+	}
+}
+
 @media(max-width: 600px){
 	.catalog_block .col-lg-20 .catalog_item:hover .item_info{
 		padding-bottom: 24px !important;
