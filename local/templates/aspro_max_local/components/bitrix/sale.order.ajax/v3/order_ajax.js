@@ -1916,7 +1916,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
                 // var adresNode = BX('bx-soa-delivery').querySelector('.bx-soa-section-content');
                 // // adresNode.appendChild(propsItemNode);
-                // console.log(this.result.ORDER_PROP.properties);
                 var group, property, groupIterator = this.propertyCollection.getGroupIterator(), propsIterator;
                 while (group = groupIterator())
                 {
@@ -2420,7 +2419,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
 
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
-                        console.log(this.deliveryPropsArray[i].getId());
+                        //console.log(this.deliveryPropsArray[i].getId());
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
                         }
@@ -3806,6 +3805,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     )
                         continue;
 
+                    console.log(property.getId(),property);
                     if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
                         //оставляю как и было
                         this.getPropertyRowNode(property, propsItemsContainer, false);
