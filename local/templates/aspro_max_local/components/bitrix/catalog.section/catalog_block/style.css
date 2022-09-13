@@ -124,6 +124,11 @@
   padding: 0 25px 27px 25px;
   top: 82.2%;
 }
+@media(max-width: 600px){
+  .col-lg-20.catalog-block-view__item:hover .item_info--bottom_block, .assoc-block .catalog-block-view__item:hover .item_info--bottom_block{
+    margin-top: 10px;
+  }
+}
 .catalog_block .catalog_item>div{
   height: unset;
 }
