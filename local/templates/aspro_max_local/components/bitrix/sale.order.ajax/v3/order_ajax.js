@@ -2418,8 +2418,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     });
                     //ебанутый фикс поля индекса end
 
-                    console.log(this.deliveryPropsArray);
+
                     for(var i = 1;i<this.deliveryPropsArray.length;i++){
+                        console.log(this.deliveryPropsArray[i].getId());
                         if(BX('soa-property-'+this.deliveryPropsArray[i].getId()) == null){
                             this.getPropertyRowNode(this.deliveryPropsArray[i], deliveryContent, false);
                         }
