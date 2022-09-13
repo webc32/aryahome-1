@@ -7853,6 +7853,11 @@ body .catalog_item.hover .footer_button {
 		width: 100%;
 		background: rgba(255,255,255,0.7);
 		padding: 20px;
+		height: 50%;
+		position: absolute;
+		top: 47%;
+		min-height: -webkit-fill-available;
+
 	}
 }
 @media(max-width: 787px){
