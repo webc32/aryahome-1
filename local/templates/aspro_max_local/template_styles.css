@@ -7835,6 +7835,8 @@ body .catalog_item.hover .footer_button {
 .catalog_item .image_wrapper_block.with-props > .thumb {
   transition: left ease 0.2s;
 }
+
+
 .catalog_item.with-props:hover .stickers {
   left: 100%;
   right: -100%;
@@ -7847,7 +7849,12 @@ body .catalog_item.hover .footer_button {
   right: 0;
   opacity: 1;
 }
-
+@media(max-width: 600px){
+	.catalog_block .col-lg-20 .catalog_item:hover .item_info{
+		padding-bottom: 24px !important;
+		margin-top: 19px !important;
+	}
+}
 .stickers {
   left: 0px;
   top: 0px;
