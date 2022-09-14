@@ -328,6 +328,26 @@ if (is_array($arResult["GRID"]["ROWS"])) {
 
     $arResult["JSON"] = $arJson;
 
+
+    // Массив для искусственной сортировки
+    $sizesOrder = array(
+    	'XS'    => 100,
+    	'S'     => 110,
+    	'M'     => 120,
+    	'L'     => 130,
+    	'XL'    => 140,
+    	'XXL'   => 150,
+    	'3XL'   => 160,
+    	'XXXL'  => 161,
+    	'4XL'   => 170,
+    	'XXXXL' => 171,
+    );
+    // Функция сортировки по полю ORDER
+    function cmp($a, $b) {
+    	return strnatcmp($a["ORDER"], $b["ORDER"]);
+    }
+
+
     //цвета и размеры
     $arSku = array();
     foreach ($arResult["GRID"]["ROWS"] as $key => $row) {
@@ -385,7 +405,10 @@ if (is_array($arResult["GRID"]["ROWS"])) {
                         "PRODUCT_ID" => $arFields['ID'],
                         "RAZMER" => $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"],
                         "COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
-                        "SELECTED" => ($arResult["GRID"]["ROWS"][$key]["PROPERTY_RAZMER_VALUE"] == $arFields["PROPERTY_RAZMER_VALUE"])
+                        "SELECTED" => ($arResult["GRID"]["ROWS"][$key]["PROPERTY_RAZMER_VALUE"] == $arFields["PROPERTY_RAZMER_VALUE"]),
+
+                        // Присваем индексы для дальнейшей сортировки
+                        "ORDER" => array_key_exists($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"], $sizesOrder) ?  $sizesOrder[$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]] : 0,
                     );
                 }
             }
@@ -393,6 +416,8 @@ if (is_array($arResult["GRID"]["ROWS"])) {
             foreach ($arResult["GRID"]["ROWS"][$key]['CUSTOM_SKU'] as &$value) {
                 $selected = ($value["NAME_COLOR"] == $arResult["GRID"]["ROWS"][$key]["PROPERTY_TSVET_VALUE"]);
                 $value['SELECTED'] = $selected;
+
+                usort($value['SIZE'], "cmp");
             }
             $arResult["GRID"]["ROWS"][$key]['CUSTOM_SKU'] = array_values($arResult["GRID"]["ROWS"][$key]['CUSTOM_SKU']);
         }
