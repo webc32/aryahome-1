@@ -124,8 +124,3 @@
 .product-main .product-action{
     width:70%;
 }
-@media (min-width: 768px){
-.product-view--type2 .product-info.product-info--type2 > .flexbox > .product-main{
-    flex-basis: 45% !important;
-}
-}

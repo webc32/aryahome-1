@@ -4698,11 +4698,11 @@ body .catalog_block.items .item_block.item {
   padding-bottom: 29px;
 }
 .catalog_block .col-lg-20 .catalog_item:hover .item_info {
-  padding-bottom: 0px;
+  /*padding-bottom: 0px;*/
 }
 .catalog_block .col-lg-20 .catalog_item:hover .TYPE_2 .cost.prices{
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+/*  margin-top: 4px !important;
+  padding-top: 0 !important;*/
 }
 
 .catalog_block .catalog_item.big {
@@ -8605,7 +8605,7 @@ body .catalog_block.owl-carousel .catalog_item {
 .catalog_block .catalog_item:not(.big) > div .item_info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 /* end */
 body .no_scroll {

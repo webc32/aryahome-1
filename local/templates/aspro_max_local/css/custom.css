@@ -365,6 +365,10 @@ input.border-gray {
     height: 56px;
     margin: auto;
 }
+.hideDesctop .colors .owl-item span:not(.textShow){
+    margin:unset;
+}
+
 
 .basket-checkout-info.custom:before{
     display: none;
@@ -939,14 +943,19 @@ margin-top: 20px;
 }
 
 
-.colors .owl-stage, .colors .owl-item{
+.item-offers:not(.hideDesctop) .colors .owl-stage, .item-offers:not(.hideDesctop) .colors .owl-item{
     width: 100% !important;
+}
+.item-offers.hideDesctop .colors .owl-stage, .item-offers.hideDesctop .colors .owl-item{
+    width: auto !important;
 }
 .textShow {
     cursor: pointer;
     display: inline-block;
-    padding: 4px;
+    padding: 3px;
     background: #f5f5f5;
+    margin: 0 5px 5px 0;
+    font-size: 14px;
 }
 .textShow.active{
     color: #525252;

@@ -1902,7 +1902,7 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
     .product-container .product-detail-gallery__item.product-detail-gallery__item--middle{
         max-width: 750px;
         width:750px;
-        height:650px;
+        height:550px;
 
     }
     .product-detail-gallery__slider.owl-carousel .owl-nav{
