@@ -791,6 +791,19 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 }
 
 
+// Массив для искусственной сортировки
+$sizesOrder = array(
+	'XS'    => 100,
+	'S'     => 110,
+	'M'     => 120,
+	'L'     => 130,
+	'XL'    => 140,
+	'XXL'   => 150,
+	'3XL'   => 160,
+	'XXXL'  => 161,
+	'4XL'   => 170,
+	'XXXXL' => 171,
+);
 
 $i = 0;
 $arSort= Array("NAME"=>"ASC");
@@ -827,9 +840,17 @@ while($ob = $res->GetNextElement()){
 			"ID" => $arFields['ID'],
 			"RAZMER" => $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"],
 			"COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
+
+			// Присваем индексы для дальнейшей сортировки
+			"ORDER" => array_key_exists($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"], $sizesOrder) ?  $sizesOrder[$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]] : 0,
 		);
 	}
 
+}
+
+// Функция сортировки по полю ORDER
+function cmp($a, $b) {
+	return strnatcmp($a["ORDER"], $b["ORDER"]);
 }
 
 // далее запишим всё по своим местам + скрипт ajax на обновление данных о товаре
@@ -839,6 +860,9 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 		//$currentSize = ($_POST['product_size'] ? $_POST['product_size'] : ($currentColor ? $currentColor : $arItem['ID']));
 		
 		foreach ($arSku[$arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]] as &$prop) {
+			// Искусственная сортировка по размеру
+			usort($prop['SIZE'], "cmp");
+
 			if($_POST['product_color'] == $prop['ID']){
 				$prop['SELECTED'] = "Y";
 				findSelectedSize($arItem,$prop,$_POST['product_size']);
@@ -849,6 +873,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 				break;
 			}
 		}
+
 		$arResult['ITEMS'][$key]['OFFERS_CUSTOM'] = $arSku[$arItem['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]];
 	}
 }
