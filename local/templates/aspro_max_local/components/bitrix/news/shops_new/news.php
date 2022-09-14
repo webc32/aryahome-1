@@ -7,6 +7,7 @@ Loc::loadMessages(__FILE__);
 global $arRegion, $dopClass;
 
 $dopClass .= ' iks-on-ios';
+$moscowID = '151';
 
 $arItemFilter = CMax::GetIBlockAllElementsFilter($arParams);
 $arItemSelect = array('ID', 'NAME', 'IBLOCK_ID', 'DETAIL_PAGE_URL', 'IBLOCK_SECTION_ID', 'PROPERTY_MAP', 'PROPERTY_PHONE', 'PROPERTY_SCHEDULE', 'PROPERTY_METRO', 'PROPERTY_EMAIL', 'PROPERTY_ADDRESS');
@@ -29,9 +30,9 @@ if($arItems)
 							<?if($bHasSections):?>
 								<div class="col-lg-6 col-md-4 col-sm-6">
 									<select class="city">
-										<option value="0" selected><?=Loc::getMessage('CHOISE_ITEM_CUSTOM')?></option>
+										<?/*<option value="0" selected><?=Loc::getMessage('CHOISE_ITEM_CUSTOM')?></option>*/?>
 										<?foreach($arAllSections['ALL_SECTIONS'] as $arSection):?>
-											<option value="<?=$arSection['SECTION']['ID'];?>" data-parent_section="0"><?=$arSection['SECTION']['NAME'];?></option>
+											<option value="<?=$arSection['SECTION']['ID'];?>" <?if ($arSection['SECTION']['ID'] == $moscowID):?> selected <?endif;?> data-parent_section="0"><?=$arSection['SECTION']['NAME'];?></option>
 										<?endforeach;?>
 									</select>
 								</div>
@@ -75,6 +76,21 @@ if($arItems)
 	<?if((isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == "xmlhttprequest") || (strtolower($_REQUEST['ajax']) == 'y')){
 		$APPLICATION->RestartBuffer();?>
 	<?}?>
+	
+	<?if (!isset($_POST['ID'])){ // При первой загрузке оставляем только точки с московскими магазинами
+		foreach ($arItems as $key => $item){
+		   if (is_array($item["IBLOCK_SECTION_ID"])){
+			if (!in_array($moscowID,$item["IBLOCK_SECTION_ID"])){
+			    unset($arItems[$key]);
+			}
+		   }elseif($moscowID != $item["IBLOCK_SECTION_ID"]){
+		       unset($arItems[$key]);
+		   }
+		}
+
+        	$arItemFilter['SECTION_ID'] = $moscowID; // Для выборы списка Московских магазинов
+    }?>
+	
 	<?if($arItems):?>
 
 		<?$dbRes = CIBlock::GetProperties($arParams['IBLOCK_ID']);
