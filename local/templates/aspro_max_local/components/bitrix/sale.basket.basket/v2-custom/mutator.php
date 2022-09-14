@@ -108,6 +108,25 @@ foreach ($this->basketItems as $key => $row)
 }
 
 
+// Массив для искусственной сортировки
+$sizesOrder = array(
+	'XS'    => 100,
+	'S'     => 110,
+	'M'     => 120,
+	'L'     => 130,
+	'XL'    => 140,
+	'XXL'   => 150,
+	'3XL'   => 160,
+	'XXXL'  => 161,
+	'4XL'   => 170,
+	'XXXXL' => 171,
+);
+// Функция сортировки по полю ORDER
+function cmp($a, $b) {
+	return strnatcmp($a["ORDER"], $b["ORDER"]);
+}
+
+
 //цвета и размеры
 $arSku = array();
 foreach ($this->basketItems as $key => $row) {
@@ -167,7 +186,11 @@ foreach ($this->basketItems as $key => $row) {
                     "PRODUCT_ID" => $arFields['ID'],
                     "RAZMER" => $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"],
                     "COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
-                    "SELECTED" => ($this->basketItems[$key]["PROPERTY_RAZMER_VALUE"] == $arFields["PROPERTY_RAZMER_VALUE"])
+                    "SELECTED" => ($this->basketItems[$key]["PROPERTY_RAZMER_VALUE"] == $arFields["PROPERTY_RAZMER_VALUE"]),
+
+
+                    // Присваем индексы для дальнейшей сортировки
+                    "ORDER" => array_key_exists($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"], $sizesOrder) ?  $sizesOrder[$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]] : 0,
                 );
             }
         }
@@ -175,6 +198,8 @@ foreach ($this->basketItems as $key => $row) {
         foreach ($this->basketItems[$key]['CUSTOM_SKU'] as &$value) {
             $selected = ($value["NAME_COLOR"] == $this->basketItems[$key]["PROPERTY_TSVET_VALUE"]);
             $value['SELECTED'] = $selected;
+
+            usort($value['SIZE'], "cmp");
         }
 
         $this->basketItems[$key]['CUSTOM_SKU'] = array_values($this->basketItems[$key]['CUSTOM_SKU']);
