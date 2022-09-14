@@ -1156,7 +1156,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 														<?=\Aspro\Functions\CAsproMax::showItemCounter($arAddToBasketData, $arResult["ID"], $arItemIDs, $arParams, 'md', '', true, true);?>
 													<?//endif;?>
 
-													<div id="<? echo $arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block <?=(($arAddToBasketData["ACTION"] == "ORDER" /*&& !$arResult["CAN_BUY"]*/) || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || ($arAddToBasketData["ACTION"] == "SUBSCRIBE" && $arResult["CATALOG_SUBSCRIBE"] == "Y")  ? "wide" : "");?>">
+													<div onmousedown="try { rrApi.addToBasket('<?=$arResult["ID"]?>') } catch(e) {}" id="<? echo $arItemIDs["ALL_ITEM_IDS"]['BASKET_ACTIONS']; ?>" class="button_block <?=(($arAddToBasketData["ACTION"] == "ORDER" /*&& !$arResult["CAN_BUY"]*/) || !$arAddToBasketData["CAN_BUY"] || !$arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_DETAIL"] || ($arAddToBasketData["ACTION"] == "SUBSCRIBE" && $arResult["CATALOG_SUBSCRIBE"] == "Y")  ? "wide" : "");?>">
 														<!--noindex-->
 															<?=$arAddToBasketData["HTML"]?>
 														<!--/noindex-->
@@ -1902,7 +1902,7 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
     .product-container .product-detail-gallery__item.product-detail-gallery__item--middle{
         max-width: 750px;
         width:750px;
-        height:650px;
+        height:550px;
 
     }
     .product-detail-gallery__slider.owl-carousel .owl-nav{
@@ -1998,7 +1998,7 @@ dataLayer.push({
 </script>
 
 <script type="text/javascript">
-	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-        try{ rrApi.groupView("<?=$arResult["ID"]?>"); } catch(e) {}
-    })
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+		try{ rrApi.view("<?=$arResult["ID"]?>"); } catch(e) {}
+	})
 </script>
