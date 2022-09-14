@@ -174,6 +174,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         }
                     }
 
+                    $('#bx-soa-paysystem').removeClass('bx-step-completed'); // Раскрываем блок с оплатами
+                    
                     if(this.firstLoadToHide){
                         $('.deliveries').hide();
                         $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
