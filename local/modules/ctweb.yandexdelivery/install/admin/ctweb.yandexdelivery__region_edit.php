@@ -1,1 +1,0 @@
-<?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/ctweb.yandexdelivery/tools/ctweb.yandexdelivery__region_edit.php");?>
