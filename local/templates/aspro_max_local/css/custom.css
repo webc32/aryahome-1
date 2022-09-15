@@ -965,3 +965,23 @@ margin-top: 20px;
     display: flex;
     align-items: flex-end;
 }
+@media(max-width: 767px)
+{
+    .product-main .product-action {
+        width: 100%;
+    }
+    .product-view--type2 .text-additional {
+        padding: 26px 0px 5px;
+    }
+}
+.stores_block_wrap::-webkit-scrollbar {
+    width: 12px; 
+}
+.stores_block_wrap::-webkit-scrollbar-track {
+    background-color: #fff !important;
+    
+}
+.stores_block_wrap::-webkit-scrollbar-thumb {
+    background-color: #d0a550 !important;
+    border-radius: 100px !important;
+}
