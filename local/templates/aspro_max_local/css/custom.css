@@ -996,8 +996,8 @@ margin-top: 20px;
     width: 700px;
     
 }
-@media (min-width: 500px){
+@media (max-width: 500px){
     .kea-placeholder{
-        float: inherit;
+        float: inherit !important;
     }
 }
