@@ -1018,6 +1018,9 @@ margin-top: 20px;
         left: -120px!important;
         top:35%!important;
     }
+   .catalog_detail .product-detail-gallery__slider.owl-carousel .owl-nav{
+       top: calc(60% - 20px) !important;
+    }
 }
 
 
