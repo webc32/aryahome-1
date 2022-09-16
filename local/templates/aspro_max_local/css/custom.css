@@ -1012,23 +1012,22 @@ margin-top: 20px;
         max-height: 700px;
         order:1;
     }
-    .product-detail-gallery__slider.custom_owl-carousel{
-        left: -120px!important;
-        top:35%!important;
-    }
-   .catalog_detail .product-detail-gallery__slider.owl-carousel .owl-nav{
-       top: calc(60% - 20px) !important;
-    }
 }
 
+@media(min-width: 768px){
+    .product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical[data-size="3"]{
+        left: -120px!important;
+        top: 35%!important;
+    }
+    .catalog_detail .product-detail-gallery__slider.owl-carousel .owl-nav{
+        top: calc(60% - 20px) !important;
+    }
+}
 
 
 @media(min-width: 320px){
     .product-view--type2 .product-info.product-info--type2>.flexbox .product-detail-gallery__slider{
         max-height: 100%!important;
-    }
-    .catalog_detail .flexbox.flexbox--row .product-detail-gallery__container .stickers{
-        padding-left: 66px;
     }
 }
 
@@ -1037,13 +1036,19 @@ margin-top: 20px;
     .product-detail-gallery__container.product-detail-gallery__container--vertical .product-container .product-detail-gallery__item .product-detail-gallery__picture{
         max-height: 460px;
     }
+    .product-container .product-detail-gallery__slider.product-detail-gallery__slider_custom .product-detail-gallery__item.product-detail-gallery__item--middle{
+        height: 560px;
+    }
+    .product-container .product-detail-gallery__thmb-container.product-detail-gallery__thmb-container_custom .product-detail-gallery__picture{
+        max-height: 100%;
+    }
 }
 
 @media(max-width: 768px){
     .product-container .js-notice-block__image .product-detail-gallery__item.product-detail-gallery__item--middle{
         max-width: 485px!important;
     }
-    .product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical, body .product-detail-gallery__thmb-container .product-detail-gallery__slider{
+    .product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical{
         display: none;
     }
 }
