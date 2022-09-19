@@ -207,7 +207,7 @@ if( $showCustomOffer && isset($arResult['OFFERS'][$arResult['OFFERS_SELECTED']])
 	$bOfferDetailText = $arParams['SHOW_SKU_DESCRIPTION'] === 'Y' && $arCurrentSKU["DETAIL_TEXT"];
 	if(strlen($arParams["SKU_DETAIL_ID"]))
 		$arResult['DETAIL_PAGE_URL'].= '?'.$arParams["SKU_DETAIL_ID"].'='.$arCurrentSKU['ID'];
-	$templateData["OFFERS_INFO"]["CURRENT_OFFER"] = $arCurrentSKU["ID"];	
+	$templateData["OFFERS_INFO"]["CURRENT_OFFER"] = $arCurrentSKU["ID"];
 	$templateData["OFFERS_INFO"]["CURRENT_OFFER_TITLE"] = $arCurrentSKU['IPROPERTY_VALUES']["ELEMENT_PAGE_TITLE"] ?? $arCurrentSKU["NAME"];
 	$templateData["OFFERS_INFO"]["CURRENT_OFFER_WINDOW_TITLE"] = $arCurrentSKU['IPROPERTY_VALUES']["ELEMENT_META_TITLE"] ?? $templateData["OFFERS_INFO"]["CURRENT_OFFER_TITLE"];
 	if ($arCurrentSKU["DISPLAY_PROPERTIES"]["ARTICLE"]["VALUE"]) {
@@ -262,7 +262,7 @@ $arOfferProps = implode(';', $arParams['OFFERS_CART_PROPERTIES']);
 // save item viewed
 $arFirstPhoto = reset($arResult['MORE_PHOTO']);
 $viwedItem = $arCurrentSKU ?? $arResult;
-$arItemPrices = $viwedItem['MIN_PRICE'];	
+$arItemPrices = $viwedItem['MIN_PRICE'];
 if(isset($viwedItem['PRICE_MATRIX']) && $viwedItem['PRICE_MATRIX'])
 {
 	$rangSelected = $viwedItem['ITEM_QUANTITY_RANGE_SELECTED'];
@@ -344,7 +344,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 						$arskuAddToBasketData =$arSKU['ADD_TO_BASKET_DATA'];
 						$arskuAddToBasketData["HTML"] = str_replace('data-item', 'data-props="'.$arOfferProps.'" data-item', $arskuAddToBasketData["HTML"]);
 						?>
-						
+
 						<div class="table-view__item item bordered box-shadow main_item_wrapper <?=($useStores ? "table-view__item--has-stores" : "");?>">
 							<div class="table-view__item-wrapper item_info catalog-adaptive flexbox flexbox--row">
 								<?if($showSkUImages):?>
@@ -631,19 +631,19 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 							</a>
 						</div>
 					<?endif;?>
-					
+
 					<div class="product-detail-gallery__slider product-detail-gallery__slider_custom<?if(!$bMagnifier):?> owl-carousel owl-theme big owl-bg-nav short-nav<?else:?> hidden-xs<?endif;?> <?=$arParams['PICTURE_RATIO'];?>" data-plugin-options='{"items": "1", "dots": false, "nav": true, "relatedTo": ".product-detail-gallery__slider.thmb", "loop": false}'>
-						
+
 						<?if($arResult["MORE_PHOTO"]){?>
-						
+
 						<?//Увеличиваем ключи на 1 если есть видео чтобы не сломать слайдер?>
-						
+
 						<?if($arResult["MORE_PHOTO"] && $popupVideo) {
 
 							$arResult["MORE_PHOTO"] = array_combine(range(1, count($arResult["MORE_PHOTO"])), $arResult["MORE_PHOTO"]);
 						}
 						?>
-						
+
 							<?foreach($arResult["MORE_PHOTO"] as $i => $arImage){
 								if($i && $bMagnifier):?>
 									<?continue;?>
@@ -665,7 +665,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 							<?}?>
 													<?if($popupVideo) {?>
 							<div id="photo-0" class="product-detail-gallery__item product-detail-gallery__item--middle text-center">
-								<iframe class="frame_custom_detail product-detail-gallery__item product-detail-gallery__item--middle" allowfullscreen="allowfullscreen" src="<?=$popupVideo;?>?&modestbranding=1&showinfo=0&controls=0&rel=0&mute=1&rel=0&autohide=1" allow="autoplay" frameborder="0" scrolling="auto">
+								<iframe class="frame_custom_detail product-detail-gallery__item product-detail-gallery__item--middle" allowfullscreen="allowfullscreen" src="<?=$popupVideo;?>?&modestbranding=1&showinfo=0&controls=1&rel=0&mute=1&rel=0&autohide=1" allow="autoplay" frameborder="0" scrolling="auto">
 								</iframe>
 							</div>
 						<?}?>
@@ -700,14 +700,14 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					<div class="product-detail-gallery__thmb-container  product-detail-gallery__thmb-container_custom text-center">
 						<div class="product-detail-gallery__thmb-inner<?=($bVertical ? ' vertical' : '');?>">
 							<?if($countPhoto > 1 || $showCustomOffer || $popupVideo):?>
-								<div class="product-detail-gallery__slider custom_owl-carousel owl-carousel owl-theme thmb<?=($bVertical ? ' product-detail-gallery__slider--vertical' : '');?><?=($countPhoto > 3 ? ' m-photo' : '');?>" data-size="<?=$countPhoto;?>" data-plugin-options='{"items": "4", "nav": true, "loop": false, "clickTo": ".product-detail-gallery__slider.big", "dots": false, "autoWidth": true, "margin": 10<?//if($bVertical):?>, "mouseDrag": false, "pullDrag": false<?//endif;?><?if($bMagnifier):?>, "magnifier": true<?endif;?>}' 
-								style="max-width:<?=ceil((($countPhoto <= 4 ? $countPhoto : 4) * 120) - 10)?>px; left:-180px; ">								
+								<div class="product-detail-gallery__slider custom_owl-carousel owl-carousel owl-theme thmb<?=($bVertical ? ' product-detail-gallery__slider--vertical' : '');?><?=($countPhoto > 3 ? ' m-photo' : '');?>" data-size="<?=$countPhoto;?>" data-plugin-options='{"items": "4", "nav": true, "loop": false, "clickTo": ".product-detail-gallery__slider.big", "dots": false, "autoWidth": true, "margin": 10<?//if($bVertical):?>, "mouseDrag": false, "pullDrag": false<?//endif;?><?if($bMagnifier):?>, "magnifier": true<?endif;?>}'
+								style="max-width:<?=ceil((($countPhoto <= 4 ? $countPhoto : 4) * 120) - 10)?>px; left:-180px; ">
 									<?if($arResult["MORE_PHOTO"] && $popupVideo) {
 
 										$arResult["MORE_PHOTO"] = array_combine(range(1, count($arResult["MORE_PHOTO"])), $arResult["MORE_PHOTO"]);
 									}
 									?>
-									
+
 									<?if($arResult["MORE_PHOTO"] && $countPhoto > 1):?>
 										<?foreach($arResult["MORE_PHOTO"] as $i => $arImage):?>
 											<div id="photo-<?=$i?>" class="product-detail-gallery__item slide_custom text-center  product-detail-gallery__item--thmb" data-big="<?=$arImage["BIG"]["src"];?>">
@@ -719,11 +719,18 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 											</div>
 										<?endforeach;?>
 									<?endif;?>
-									
+
 									<?if($popupVideo):?>
-									<div id="photo-0" class="video-block video-block_custom popup_video product-detail-gallery__item text-center  product-detail-gallery__item--thmb"><a class="various video_link image dark_link" href="<?=$popupVideo;?>" title="<?=Loc::getMessage("VIDEO")?>"><span class="play text-upper font_xs"><?=Loc::getMessage("VIDEO")?></span></a></div>
+									<div id="photo-0" class="video-block video-block_custom popup_video product-detail-gallery__item text-center  product-detail-gallery__item--thmb">
+                                        <?if($arResult["MORE_PHOTO"][1]){?>
+                                            <img class="lazy product-detail-gallery__picture" data-src="<?=$arResult["MORE_PHOTO"][1]["SMALL"]["src"]?>" src="<?=\Aspro\Functions\CAsproMax::showBlankImg($arResult["MORE_PHOTO"][1]["SMALL"]["src"])?>" alt="<?=$alt;?>" title="<?=$title;?>"/>
+                                        <?}else{?>
+                                            <img class="lazy product-detail-gallery__picture" data-src="<?=\Aspro\Functions\CAsproMax::showBlankImg($arResult["MORE_PHOTO"][1]["SRC"])?>" src="<?=$arResult["MORE_PHOTO"][1]["SRC"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
+                                        <?}?>
+                                        <a class="various video_link image dark_link" href="<?=$popupVideo;?>" title="<?=Loc::getMessage("VIDEO")?>"><span class="play text-upper font_xs"><?=Loc::getMessage("VIDEO")?></span></a>
+                                    </div>
 									<?endif;?>
-									
+
 								</div>
 							<?endif;?>
 							<?/*if($popupVideo):?>
@@ -733,7 +740,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					</div>
 				</div>
 
-				
+
 			</div>
 
 			<div class="product-main">
@@ -916,7 +923,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 												<?$j++;?>
 											<?endforeach;?>
 										</div>
-										
+
 									</div>
 									<?if($bShowMoreLink):?>
 										<div class="more-char-link"><span class="choise colored_theme_text_with_hover font_sxs dotted" data-block=".js-scrolled"><?=Loc::getMessage('ALL_CHARS');?></span></div>
@@ -929,7 +936,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					<?//discount,buy|order|subscribe?>
 					<div class="product-action">
 						<div class="info_item">
-							<div class="middle-info-wrapper main_item_wrapper">	
+							<div class="middle-info-wrapper main_item_wrapper">
 								<div class="shadowed-block">
 									<?if($bComplect):?>
 										<div class="complect_prices_block">
@@ -937,7 +944,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 												<div class="prices-wrapper">
 													<div class="price font-bold font_mxs">
 														<div class="price_value_block values_wrapper">
-															<span class="price_value complect_price_value">0</span>												
+															<span class="price_value complect_price_value">0</span>
 															<span class="price_currency">
 																<?//$arResult['MIN_PRICE']['CURRENCY']?>
 																<?=str_replace("999", "", \CCurrencyLang::CurrencyFormat("999", $arResult["CURRENCIES"][0]["CURRENCY"]))?>
@@ -999,7 +1006,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 											</div>
 											<div class="size w-100">
 												<?php if (!empty($RAZMER)) : ?>
-													
+
 															<? if ($_POST['ajax'] == 'Y') { ?>
 																<a href="" onclick="UpdateParamAjaxCatalogElement(this); return false" class="active position-relative mb-1" data-id="<?= $arResult["ID"] ?>"><span class="d-block bg-graylight text-gold px-2 py-2"><?= $RAZMER ?></span></a>
 															<? } else { /*?>
@@ -1127,7 +1134,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 													})
 												</script>
 											<?endif;?>
-												
+
 											<div class="text-additional text-additional_custom">
 												<?$path = SITE_DIR."include/element_detail_text.php"?>
 												<div class="price_txt muted777 font_sxs<?=((CMax::checkContentFile($path) ? ' filed' : ''));?>">
@@ -1222,7 +1229,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 									<?//services?>
 									<div class="js-services"></div>
 								</div>
-								
+
 							</div>
 
 							<?//delivery calculate?>
@@ -1230,7 +1237,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 								(
 									!$arResult["OFFERS"] &&
 									$arAddToBasketData["ACTION"] == "ADD" &&
-									$arAddToBasketData["CAN_BUY"] && 
+									$arAddToBasketData["CAN_BUY"] &&
 									!$bComplect
 								) ||
 								(
@@ -1258,7 +1265,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 
 							<?//help text?>
 							<?if($arResult['HELP_TEXT']):?>
-							
+
 								<div class="text-form">
 									<div class="price_txt muted777 font_sxs muted ncolor">
 										<?=CMax::showIconSvg("info_big pull-left", SITE_TEMPLATE_PATH.'/images/svg/catalog/info_big.svg', '', '', true, false);?>
@@ -1897,7 +1904,7 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 <style>
     .product-view--type2 .product-info.product-info--type2>.flexbox .product-detail-gallery__slider{
         max-width:750px;
-      
+
     }
     .product-container .product-detail-gallery__item.product-detail-gallery__item--middle{
         max-width: 750px;
@@ -1949,50 +1956,50 @@ $nav = CIBlockSection::GetNavChain(false, $arResult["SECTION"]['ID']);
 ?>
 
 <script>
-window.dataLayer = window.dataLayer || [];  
-dataLayer.push({  
- 'ecommerce': {  
-   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
-   'detail': {  
-     'actionField': {'list': 'Catalog'},  
-     'products': [{  
-       'name': "<?=$arResult["NAME"]?>",  
-       'id': "<?=$arResult["ID"]?>",  
-       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
-       // 'brand': 'Бренд 1',  
-       'category': "<?=implode("/", $resultSections);?>" 
-     }]  
-   }  
- },  
- 'event': 'gtm-ee-event',  
- 'gtm-ee-event-category': 'Enhanced Ecommerce',  
- 'gtm-ee-event-action': 'Product Details',  
- 'gtm-ee-event-non-interaction': 'True',  
-});  
-</script>  
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+ 'ecommerce': {
+   'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",
+   'detail': {
+     'actionField': {'list': 'Catalog'},
+     'products': [{
+       'name': "<?=$arResult["NAME"]?>",
+       'id': "<?=$arResult["ID"]?>",
+       'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",
+       // 'brand': 'Бренд 1',
+       'category': "<?=implode("/", $resultSections);?>"
+     }]
+   }
+ },
+ 'event': 'gtm-ee-event',
+ 'gtm-ee-event-category': 'Enhanced Ecommerce',
+ 'gtm-ee-event-action': 'Product Details',
+ 'gtm-ee-event-non-interaction': 'True',
+});
+</script>
 
 
 <script>
 	$(document).on("click", ".to-cart:not(.read_more), .basket_item_add", function (e) {
-		window.dataLayer = window.dataLayer || [];  
-		dataLayer.push({  
-			'ecommerce': {  
-				'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",  
-				'add': {  
-					'products': [{  
-						'name': "<?=$arResult["NAME"]?>",  
-						'id': "<?=$arResult["ID"]?>",  
-						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",  
-						// 'brand': 'Бренд 1',  
-						'category': "<?=implode("/", $resultSections);?>", 
-						'quantity': $(this).attr("data-quantity")  
-					}]  
-				}  
-			},  
-			'event': 'gtm-ee-event',  
-			'gtm-ee-event-category': 'Enhanced Ecommerce',  
-			'gtm-ee-event-action': 'Add to Cart',  
-			'gtm-ee-event-non-interaction': 'False',  
+		window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'ecommerce': {
+				'currencyCode': "<?=$arResult["CURRENCY_ID"]?>",
+				'add': {
+					'products': [{
+						'name': "<?=$arResult["NAME"]?>",
+						'id': "<?=$arResult["ID"]?>",
+						'price': "<?=$arResult["MIN_PRICE"]['VALUE']?>",
+						// 'brand': 'Бренд 1',
+						'category': "<?=implode("/", $resultSections);?>",
+						'quantity': $(this).attr("data-quantity")
+					}]
+				}
+			},
+			'event': 'gtm-ee-event',
+			'gtm-ee-event-category': 'Enhanced Ecommerce',
+			'gtm-ee-event-action': 'Add to Cart',
+			'gtm-ee-event-non-interaction': 'False',
 		});
 	})
 </script>
