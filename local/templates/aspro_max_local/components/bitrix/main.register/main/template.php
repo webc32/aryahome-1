@@ -289,6 +289,8 @@ list($bPhoneAuthSupported, $bPhoneAuthShow, $bPhoneAuthRequired, $bPhoneAuthUse)
 								$(this).append('<input type="hidden" name="REGISTER[PHONE_NUMBER]" value="' + phone + '" />');
 							}
 						}
+						var $email = $('[name=register_login]');
+						(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail($email); });
 					});
 					<?endif;?>
 
@@ -356,7 +358,7 @@ list($bPhoneAuthSupported, $bPhoneAuthShow, $bPhoneAuthRequired, $bPhoneAuthUse)
 					"bitrix:system.auth.form",
 					"popup",
 					array(
-						"TITLE" => "Àâòîðèçàöèÿ",
+						"TITLE" => "Ã€Ã¢Ã²Ã®Ã°Ã¨Ã§Ã Ã¶Ã¨Ã¿",
 						"PROFILE_URL" => $arParams["PATH_TO_PERSONAL"],
 						"SHOW_ERRORS" => "Y",
 						"POPUP_AUTH" => "Y"
