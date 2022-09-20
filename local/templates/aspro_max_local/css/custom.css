@@ -1221,3 +1221,11 @@ margin-top: 20px;
         left: 12.5%;
     }
 }
+
+/* catalog */
+.vertical-catalog-img .image_wrapper_block{
+    padding-top: 100%;
+}
+.section-gallery-wrapper{
+    overflow: hidden;
+}
