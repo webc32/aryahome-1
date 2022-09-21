@@ -37,6 +37,30 @@ $bPopupAuth = (isset($_POST['POPUP_AUTH']) ? $_POST['POPUP_AUTH'] === 'Y' : fals
 		)
 	);?>
 <?else:?>
+	<?
+	global $USER;
+	    $values = [];
+	    if(is_object($USER))
+	    {
+		$rsUser = CUser::GetList($by, $order,
+		    array(
+			"ID" => $USER->GetID(),
+		    ),
+		    array(
+			"SELECT" => array(
+			    "EMAIL"
+			),
+		    )
+		);
+		if($arUser = $rsUser->Fetch())
+		{
+		    foreach($arUser as $key=>$value){
+			$values[$key] = $value;
+		    }
+		}
+	    }
+	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail("<?=$values['EMAIL']?>"); });
+	?>
 	<?$url = ($arTheme["PERSONAL_PAGE_URL"]["VALUE"] ? $arTheme["PERSONAL_PAGE_URL"]["VALUE"] : $arParams["SEF_FOLDER"]);?>
 	<?LocalRedirect($url);?>
 <?endif;?>
