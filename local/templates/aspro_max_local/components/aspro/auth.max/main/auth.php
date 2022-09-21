@@ -59,8 +59,10 @@ $bPopupAuth = (isset($_POST['POPUP_AUTH']) ? $_POST['POPUP_AUTH'] === 'Y' : fals
 		    }
 		}
 	    }
-	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail("<?=$values['EMAIL']?>"); });
 	?>
+	<script type="text/javascript">
+		(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail("<?=$values['EMAIL']?>"); });
+	</script>
 	<?$url = ($arTheme["PERSONAL_PAGE_URL"]["VALUE"] ? $arTheme["PERSONAL_PAGE_URL"]["VALUE"] : $arParams["SEF_FOLDER"]);?>
 	<?LocalRedirect($url);?>
 <?endif;?>
