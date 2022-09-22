@@ -1270,7 +1270,7 @@ $arSelect = Array("ID","NAME","IBLOCK_ID","PROPERTY_NAIMENOVANIE_DLYA_SAYTA","PR
 $arFilter = Array(
 	"IBLOCK_ID" => $arParams['IBLOCK_ID'],
 	"PROPERTY_NAIMENOVANIE_DLYA_SAYTA" => $nameForSite,
-	'>CATALOG_STORE_AMOUNT_3' => 0,
+	//'>CATALOG_STORE_AMOUNT_3' => 0,
 	"ACTIVE" => "Y",
 	"!SECTION_ID" => 0
 );
