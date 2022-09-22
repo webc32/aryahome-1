@@ -115,36 +115,6 @@ if ($arParams["SET_TITLE"] == "Y")
 	?>
 <?
 if($_GET['test'] == 'y'){
-	$orderID = $arResult["ORDER"]["ID"];
-	
-	$dbItemsInOrder = CSaleBasket::GetList(array("ID" => "ASC"), array("ORDER_ID" => $orderID));
-
-	$arItems =array();
-	while($arIt = $dbItemsInOrder->fetch()){
-		$arItems[]= array("id"=>$arIt["ID"],"id"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
-	}
-
-	foreach ($arItems as $product) {
-
-		$res = CIBlockElement::GetByID($product['PRODUCT_ID']);
-		if($arRes = $res->Fetch()){
-			$IBLOCK_SECTION_ID = $arRes["SECTION_ID"];
-		}
-		echo $IBLOCK_SECTION_ID;
-		$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
-		   while($v = $nav->GetNext()) {
-
-		       if($v['ID']) {
-			   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
-			   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
-			   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
-			   $arItemSection[] = $v['NAME'];
-		       }
-		   }
-		print_r($arItemSection);
-		
-	}
-	
 }
 ?>
 <? else: ?>
@@ -178,7 +148,7 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 
 		$arItems =array();
 		while($arIt = $dbItemsInOrder->fetch()){
-			$arItems[]= array("id"=>$arIt["ID"],"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
+			$arItems[]= array("id"=>$arIt["ID"],"PRODUCT_ID"=>$arIt["PRODUCT_ID"] ,"name"=>$arIt["NAME"], "price" => preg_replace("/\..*$/","",$arIt["PRICE"]), "quantity" => $arIt["QUANTITY"]);
 		}
 		$arOrderSum = CSaleOrder::GetByID($orderID);
 		
@@ -193,9 +163,44 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 	   $purchasecoupon = $coupon['COUPON'];
 	
 	}
+	global $USER;
+	    $values = [];
+	    if(is_object($USER))
+	    {
+		$rsUser = CUser::GetList($by, $order,
+		    array(
+			"ID" => $USER->GetID(),
+		    ),
+		    array(
+			"SELECT" => array(
+			    "EMAIL"
+			),
+		    )
+		);
+		if($arUser = $rsUser->Fetch())
+		{
+		    foreach($arUser as $key=>$value){
+			$values[$key] = $value;
+		    }
+		}
+	    }
 
 	$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]] = "Y";?>
-
+	<script type="text/javascript">
+	(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+	    try {
+		rrApi.setEmail("<?=$values['EMAIL']?>");
+		rrApi.order({
+		    "transaction": "<transaction_id>",
+		    "items": [
+			<?foreach($arItems as $arItem):?>
+				{"id": '<?=$arItem["PRODUCT_ID"]?>', "qnt": "<?=$arItem['quantity']?>",  "price": "<?=$arItem['price']?>"},
+			<?endforeach;?>
+		    ]
+		});
+	    } catch(e) {}
+	})
+	</script>
 	<script>  
 		window.dataLayer = window.dataLayer || [];  
 		dataLayer.push({  
@@ -211,12 +216,34 @@ if(!$_SESSION["EXISTS_ORDER"][$arResult["ORDER"]["ID"]]):
 					},  
 					'products': [
 					<?foreach($arItems as $arItem):?>
+					<?
+						$arSelect = Array(
+							"ID",
+							"IBLOCK_SECTION_ID");
+						$arFilter = Array("IBLOCK_ID"=>3, "ID" => $arItem["PRODUCT_ID"]);
+						$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
+						while($ob = $res->GetNextElement())
+						{
+							$arFields = $ob->GetFields();
+							$IBLOCK_SECTION_ID = $arFields["IBLOCK_SECTION_ID"];
+						}
+						$nav = CIBlockSection::GetNavChain(false, $IBLOCK_SECTION_ID);
+						   while($v = $nav->GetNext()) {
+
+						       if($v['ID']) {
+							   Bitrix\Main\Diag\Debug::writeToFile('ID => ' . $v['ID']);
+							   Bitrix\Main\Diag\Debug::writeToFile('NAME => ' . $v['NAME']);
+							   Bitrix\Main\Diag\Debug::writeToFile('DEPTH_LEVEL => ' . $v['DEPTH_LEVEL']);
+							   $arItemSection[] = $v['NAME'];
+						       }
+						   }	
+					?>
 					{    
 						'name': "<?=$arItem['name']?>",  
 						'id': "<?=$arItem['id']?>",  
 						'price': "<?=$arItem['price']?>",  
 						// 'brand': 'Название бренда',  
-						// 'category': 'Категория 1',  
+						'category': "<?=implode("/", $arItemSection);?>",  
 						'quantity': "<?=$arItem['quantity']?>"  
 					}
 					<?endforeach;?>

@@ -174,6 +174,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         }
                     }
 
+                    $('#bx-soa-paysystem').removeClass('bx-step-completed'); // Раскрываем блок с оплатами
+                    
                     /*if(this.firstLoadToHide){
                         $('.deliveries').hide();
                         $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
@@ -724,7 +726,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             return this.isValidForm() && (this.allowOrderSave(), "Y" === this.params.USER_CONSENT && BX.UserConsent ? BX.onCustomEvent("bx-soa-order-save", []) : this.doSaveAction()), BX.PreventDefault(event)
         }, doSaveAction: function () {
             this.isOrderSaveAllowed() && (this.reachGoal("order"), this.sendRequest("saveOrderAjax"))
-        }, clickNextAction: function (event) {
+        }, clickNextAction: function (event) { 
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
@@ -738,10 +740,68 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }
             /////////////////////
 
+            console.log(actionSection.id);
             if ("bx-soa-delivery" === actionSection.id) {
+                    var delivery = this.getSelectedDelivery();
+                    var info, i, products = [], dataVariant, item;
+                    for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                        for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                        products.push({
+                            id: item.data.PRODUCT_ID,
+                            name: item.data.NAME,
+                            price: item.data.PRICE,
+                            brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                            variant: dataVariant.join("/"),
+                            quantity: item.data.QUANTITY
+                        })
+                    }
+                	window.dataLayer = window.dataLayer || [];  
+                        dataLayer.push({  
+                            'ecommerce': {  
+                                'currencyCode': 'RUB',  
+                                'checkout': {  
+                                'actionField': {'step': 4, 'option': delivery.NAME},
+                                'products': products 
+                                }  
+                            },  
+                        'event': 'gtm-ee-event',  
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                        'gtm-ee-event-action': 'Checkout - Step 4',  
+                        'gtm-ee-event-non-interaction': 'False',  
+                    });  
+
                 const propsErrors = this.isValidRegionBlock();
                 if (propsErrors.length) return;
                 actionSection.querySelector(".alert.alert-danger").style.display = "none", BX.cleanNode(actionSection.querySelector(".alert.alert-danger")), BX.removeClass(actionSection, "bx-step-error")
+            }
+            if ("bx-soa-paysystem" === actionSection.id) {
+                    var paysystem = this.getSelectedPaySystem();
+                    var info, i, products = [], dataVariant, item;
+                    for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                        for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                        products.push({
+                            id: item.data.PRODUCT_ID,
+                            name: item.data.NAME,
+                            price: item.data.PRICE,
+                            brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                            variant: dataVariant.join("/"),
+                            quantity: item.data.QUANTITY
+                        })
+                    }
+                	window.dataLayer = window.dataLayer || [];  
+                        dataLayer.push({  
+                            'ecommerce': {  
+                                'currencyCode': 'RUB',  
+                                'checkout': {  
+                                'actionField': {'step': 5, 'option': paysystem.NAME},
+                                'products': products 
+                                }  
+                            },  
+                        'event': 'gtm-ee-event',  
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                        'gtm-ee-event-action': 'Checkout - Step 5',  
+                        'gtm-ee-event-non-interaction': 'False',  
+                    });  
             }
             return this.reachGoal("next", actionSection), this.result.IS_AUTHORIZED && void 0 === this.result.LAST_ORDER_DATA.FAIL || "false" != section.next.getAttribute("data-visited") || (allSections = this.orderBlockNode.querySelectorAll(".bx-soa-section.bx-active"), section.next.id == allSections[allSections.length - 1].id && this.switchOrderSaveButtons(!0)), this.fade(actionSection, actionSection), this.show(actionSection), section.prev && section.next.querySelector(".change-info").click(), BX.PreventDefault(event)
         }, clickPrevAction: function (event) {
@@ -3527,6 +3587,37 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
         }, checkEmptyProps: function () {
             return this.isValidPropertiesBlock(!0, this.propsBlockNode, !0).length
         }, showSaveProfile: function (node) {
+            var stepSaveProfile = 0;
+            if (stepSaveProfile != 1){
+                console.log('showSaveProfile');
+                var info, i, products = [], dataVariant, item;
+                for (i in this.result.GRID.ROWS) if (this.result.GRID.ROWS.hasOwnProperty(i)) {
+                    for (item = this.result.GRID.ROWS[i], dataVariant = [], i = 0; i < item.data.PROPS.length; i++) dataVariant.push(item.data.PROPS[i].VALUE);
+                    products.push({
+                        id: item.data.PRODUCT_ID,
+                        name: item.data.NAME,
+                        price: item.data.PRICE,
+                        brand: (item.data[this.params.BRAND_PROPERTY + "_VALUE"] || "").split(", ").join("/"),
+                        variant: dataVariant.join("/"),
+                        quantity: item.data.QUANTITY
+                    })
+                }
+                window.dataLayer = window.dataLayer || [];  
+                    dataLayer.push({  
+                        'ecommerce': {  
+                            'currencyCode': 'RUB',  
+                            'checkout': {  
+                            'actionField': {'step': 3, 'option': 'Контактная информация'},  
+                            'products': products
+                            }  
+                        },  
+                    'event': 'gtm-ee-event',  
+                    'gtm-ee-event-category': 'Enhanced Ecommerce',  
+                    'gtm-ee-event-action': 'Checkout - Step 3',  
+                    'gtm-ee-event-non-interaction': 'False',  
+                });  
+                stepSaveProfile = 1;
+            }
             node.appendChild(BX.create("DIV", {
                 props: {className: "bx-soa-more"},
                 children: [BX.create("DIV", {
