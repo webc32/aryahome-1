@@ -166,7 +166,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         case"removeCoupon":
                             result && result.order ? (this.deliveryCachedInfo = [], this.refreshOrder(result)) : this.removeCoupon(result)
                     };
-                    if(!this.firstLoadToHide){
+                    if(this.firstLoadToHide){
                         for (var key in this.deliveryGroup) {
                             if($('.deliveries > .bx-soa-pp-company.bx-selected').hasClass("GROUP_"+key)){
                                 $('#bx-soa-delivery .bx-soa-pp-item-container2 .bx-soa-pp-company-smalltitle:contains("'+this.deliveryGroup[key]["NAME"]+'")').trigger('click');
@@ -176,7 +176,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
                     $('#bx-soa-paysystem').removeClass('bx-step-completed'); // Раскрываем блок с оплатами
                     
-                    if(this.firstLoadToHide){
+                    /*if(this.firstLoadToHide){
                         $('.deliveries').hide();
                         $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="80"]').hide();
@@ -187,7 +187,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         $('.bx-soa-customer-field[data-property-id-row="95"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="96"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="53"]').hide();
-                    }
+                    }*/
                     this.firstLoadToHide = false;
                     setTimeout(function(){
                         $('.bx-soa-pp-item-container2 .bx-selected2').append($('.deliveries'));
@@ -730,6 +730,16 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
+
+            /////////////////////
+            // Если ошибки, то не переходим к следующему шагу
+            var errorNode, errors;
+            errors = (errorNode = actionSection.querySelector("div.alert.alert-danger")) && "none" != errorNode.style.display;
+            if (errors) {
+                return;
+            }
+            /////////////////////
+
             console.log(actionSection.id);
             if ("bx-soa-delivery" === actionSection.id) {
                     var delivery = this.getSelectedDelivery();
@@ -2852,13 +2862,13 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }else{
                 var numDeliveryDate = parseInt(currentDelivery.PERIOD_TEXT.match(/\d+/));
             }
-            
+
             var arThisDate = new Date();
             var arDateDelivery = new Date(arThisDate.getTime() + (numDeliveryDate * 3600 * 24 * 1000));
 
-            var dd = arDateDelivery.getDate(); 
-            var mm = arDateDelivery.getMonth() + 1;; 
-            var yyyy = arDateDelivery.getFullYear(); 
+            var dd = arDateDelivery.getDate();
+            var mm = arDateDelivery.getMonth() + 1;;
+            var yyyy = arDateDelivery.getFullYear();
 
             if ((mm >= 1) && (mm < 10)) {
                 mm = '0' + mm;
@@ -3806,7 +3816,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 propsIterator =  group.getIterator();
                 while (property = propsIterator())
                 {
-                    
+
                     if (
                         this.deliveryLocationInfo.loc == property.getId()
                         || this.deliveryLocationInfo.city == property.getId()
