@@ -1282,7 +1282,7 @@ while($ob = $res->GetNextElement()){
 		$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]] = array(
 			"ID" => $arFields['ID'],
 			"URL" => $arFields['DETAIL_PAGE_URL'],
-			"SRC" => CFile::GetPath($arFields["PREVIEW_PICTURE"]),
+			"SRC" => $arFields["PREVIEW_PICTURE"] ? CFile::GetPath($arFields["PREVIEW_PICTURE"]) : SITE_TEMPLATE_PATH.'/images/svg/noimage_product.svg',
 		);
 	}
 
