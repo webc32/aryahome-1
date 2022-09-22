@@ -1306,10 +1306,10 @@ while($ob = $res->GetNextElement()){
 
 // далее запишим всё по своим местам + скрипт ajax на обновление данных о товаре
 if (array_key_exists($arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"], $arSku) && $arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]) {
-	foreach ($arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]] as &$prop) {
+	//foreach ($arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]] as &$prop) {
 		// Искусственная сортировка по размеру
-		usort($prop['SIZE'], "cmp");
-	}
+	//	usort($prop['SIZE'], "cmp");
+	//}
 
 	$arResult['OFFERS_CUSTOM'] = $arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]];
 }
