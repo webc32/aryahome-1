@@ -189,10 +189,10 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         $('.bx-soa-customer-field[data-property-id-row="53"]').hide();
                     }*/
                     this.firstLoadToHide = false;
-                    setTimeout(function(){
+                    /*setTimeout(function(){
                         $('.bx-soa-pp-item-container2 .bx-selected2').append($('.deliveries'));
                         $('#bx-soa-delivery .bx-soa-pp-company .bx-soa-pp-company.bx-selected').closest(".bx-soa-pp-company").trigger('click');
-                    },100);
+                    },100);*/
 
                     BX.cleanNode(this.savedFilesBlockNode), this.endLoader()
                 }), this),

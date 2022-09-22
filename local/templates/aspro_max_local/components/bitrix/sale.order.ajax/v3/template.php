@@ -311,7 +311,7 @@ switch (LANGUAGE_ID)
 $this->addExternalCss('/bitrix/css/main/bootstrap.css');
 $APPLICATION->SetAdditionalCSS('/bitrix/css/main/themes/'.$arParams['TEMPLATE_THEME'].'/style.css', true);
 $APPLICATION->SetAdditionalCSS($templateFolder.'/style.css', true);
-$this->addExternalJs($templateFolder.'/order_ajax.js?2');
+$this->addExternalJs($templateFolder.'/order_ajax.js');
 \Bitrix\Sale\PropertyValueCollection::initJs();
 $this->addExternalJs($templateFolder.'/script.js');
 $this->addExternalJs($templateFolder.'/scripts/order.js');
