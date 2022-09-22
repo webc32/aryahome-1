@@ -535,7 +535,7 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	$arPropsSKU=array();
 	$arOfferProps = implode(';', $arParams['OFFERS_CART_PROPERTIES']);
 
-	global $arSite;	
+	global $arSite;
 	$bChangeTitleItem = \Bitrix\Main\Config\Option::get('aspro.max', 'CHANGE_TITLE_ITEM_DETAIL', 'N') === 'Y';
 
 	if( 'TYPE_1' == $arParams['TYPE_SKU'] && $arResult['OFFERS'] ){
@@ -819,7 +819,7 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	if (-1 == $intSelected){
 		$intSelected = 0;
 	}
-	
+
 	$arResult['JS_OFFERS'] = $arMatrix;
 	$arResult['OFFERS_SELECTED'] = $intSelected;
 
@@ -914,8 +914,8 @@ if ($arResult['MODULES']['catalog'] && $arResult['CATALOG'])
 	} elseif (isset($arResult['ITEM_PRICE_MODE']) && $arResult['ITEM_PRICE_MODE'] === 'Q') {
 		//set PRICE_MATRIX when PRICE_RANGE will start not from 1
 		if (
-			function_exists('CatalogGetPriceTableEx') 
-			&& (isset($arResult['PRICE_MATRIX'])) 
+			function_exists('CatalogGetPriceTableEx')
+			&& (isset($arResult['PRICE_MATRIX']))
 			&& !$arResult['PRICE_MATRIX']
 			&& $arResult['CAT_PRICES']
 		) {
@@ -1142,7 +1142,7 @@ if(in_array('HELP_TEXT', $arParams['PROPERTY_CODE']))
 					"EDIT_TEMPLATE" => ""
 				)
 			);?>
-		<?$help_text = ob_get_contents();		
+		<?$help_text = ob_get_contents();
 		ob_end_clean();
 		$bshowHelpTextFromFile = true;
 		if( strlen( trim($help_text) ) < 1){
@@ -1154,7 +1154,7 @@ if(in_array('HELP_TEXT', $arParams['PROPERTY_CODE']))
 				$bshowHelpTextFromFile = false;
 			}
 		}
-		
+
 		if( $bshowHelpTextFromFile ){
 			$arResult['HELP_TEXT'] = $help_text;
 			$arResult['HELP_TEXT_FILE'] = true;
@@ -1244,13 +1244,31 @@ $nameForSite[$key] = $arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]
 $color[$key] = $arResult['PROPERTIES']['PROPERTY_TSVET']["VALUE"];
 
 
+// Массив для искусственной сортировки
+$sizesOrder = array(
+	'XS'    => 100,
+	'S'     => 110,
+	'M'     => 120,
+	'L'     => 130,
+	'XL'    => 140,
+	'XXL'   => 150,
+	'3XL'   => 160,
+	'XXXL'  => 161,
+	'4XL'   => 170,
+	'XXXXL' => 171,
+);
+
+// Функция сортировки по полю ORDER
+function cmp($a, $b) {
+	return strnatcmp($a["ORDER"], $b["ORDER"]);
+}
 
 
 $i = 0;
 $arSort= Array("NAME"=>"ASC");
 $arSelect = Array("ID","NAME","IBLOCK_ID","PROPERTY_NAIMENOVANIE_DLYA_SAYTA","PROPERTY_RAZMER","PROPERTY_TSVET","PREVIEW_PICTURE","DETAIL_PAGE_URL","PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA","DETAIL_PAGE_URL");
 $arFilter = Array(
-	"IBLOCK_ID" => $arParams['IBLOCK_ID'], 
+	"IBLOCK_ID" => $arParams['IBLOCK_ID'],
 	"PROPERTY_NAIMENOVANIE_DLYA_SAYTA" => $nameForSite,
 	'>CATALOG_STORE_AMOUNT_3' => 0,
 	"ACTIVE" => "Y",
@@ -1273,20 +1291,27 @@ while($ob = $res->GetNextElement()){
 	}
 
 	if($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]){
-		$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]]["SIZE"][] = 
+		$arSku[$arFields['PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE']][$arFields["PROPERTY_TSVET_VALUE"]]["SIZE"][] =
 		array(
 			"ID" => $arFields['ID'],
 			"URL" => $arFields['DETAIL_PAGE_URL'],
 			"RAZMER" => $arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"],
 			"COLOR" => $arFields["PROPERTY_TSVET_VALUE"],
+
+			// Присваем индексы для дальнейшей сортировки
+			"ORDER" => array_key_exists($arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"], $sizesOrder) ?  $sizesOrder[$arFields["PROPERTY_OBSHCHIY_RAZMER_DLYA_SAYTA_VALUE"]] : 0,
 		);
 	}
 }
 
 // далее запишим всё по своим местам + скрипт ajax на обновление данных о товаре
-
-	if(array_key_exists($arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"], $arSku) && $arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]){
-		$arResult['OFFERS_CUSTOM'] = $arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]];
+if (array_key_exists($arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"], $arSku) && $arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]) {
+	foreach ($arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]] as &$prop) {
+		// Искусственная сортировка по размеру
+		usort($prop['SIZE'], "cmp");
 	}
-	
+
+	$arResult['OFFERS_CUSTOM'] = $arSku[$arResult['PROPERTIES']['NAIMENOVANIE_DLYA_SAYTA']["VALUE"]];
+}
+
 ?>
