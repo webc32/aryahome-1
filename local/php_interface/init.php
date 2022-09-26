@@ -19,7 +19,9 @@ CModule::AddAutoloadClasses('', // не указываем имя модуля
 );
 
 //Добавление outlets в выгрузку yandex
-$eventManager = \Bitrix\Main\EventManager::getInstance(); 
+use Bitrix\Main;
+use Yandex\Market;
+$eventManager = Main\EventManager::getInstance();
 $eventManager->addEventHandler('yandex.market', 'onExportOfferWriteData', function(Main\Event $event) {
 
    $tagResultList = $event->getParameter('TAG_RESULT_LIST');
