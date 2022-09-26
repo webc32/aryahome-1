@@ -19,31 +19,6 @@ CModule::AddAutoloadClasses('', // не указываем имя модуля
 );
 
 //Добавление outlets в выгрузку yandex
-$eventManager->addEventHandler('yandex.market', 'onExportOfferWriteData', function(Main\Event $event) {
-$tagResultList = $event->getParameter('TAG_RESULT_LIST');
-$elementList = $event->getParameter('ELEMENT_LIST');
-$context = $event->getParameter('CONTEXT');
-
-if ($context["SETUP_ID"] == 3)
-{
-foreach ($tagResultList as $elementId => $tagResult)
-{
- if ($tagResult->isSuccess())
- {
-    $tagNode = $tagResult->getXmlElement(); 
-
-    $ar_res = CCatalogProduct::GetByID($elementId);
-
-       $outlets = $tagNode->addChild('outlets');
-       $outlet = $outlets->addChild('outlet');
-       $outlet->addAttribute('id', 0);
-       $outlet->addAttribute('instock', $ar_res["QUANTITY"]);
-
-       $tagResult->invalidateXmlContents();
- }
-}
-} 
-});
 
 //изменение статуса заказа
 AddEventHandler("sale", "OnSaleStatusOrder", ['saleEvents', 'OnSaleStatusOrder']);
