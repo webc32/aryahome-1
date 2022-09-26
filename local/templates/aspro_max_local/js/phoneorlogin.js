@@ -219,20 +219,26 @@ $.fn.phoneOrLogin = function(callback){
 				$input.data('code', '');
 			}
 		}
-		
-		$('*[name="Login1"]').on('click', function() {
-			var Sending = 0;
-			if(test.bPossibleEmail){
-				if(Sending == 0) {
-					Sending ++;
-					console.log('Отправка почты в RR: '+val);
-					(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail(val); });
-				}
-			}
-		});
 
 		if(typeof callback === 'function'){
 			callback(input, test);
 		}
 	}
+	
+	$('*[name="Login1"]').on('click', function() {
+		var $input = $('*[name="AUTH_PHONE_OR_LOGIN"]');
+		var val = $input.val();
+		var code = $input.data('code');
+		var test = testPhoneOrLogin(val, code);
+		var Sending = 0;
+		//console.log(Sending);
+		if(test.bPossibleEmail){
+			if(Sending == 0) {
+				Sending ++;
+				//console.log(Sending);
+				console.log('Отправка почты в RR: '+val);
+				(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail(val); });
+			}
+		}
+	});
 }
