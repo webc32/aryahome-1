@@ -85,6 +85,8 @@ $.fn.phoneOrLogin = function(callback){
 			bPossiblePhone = clearPhone.match(/^\+?\d*$/) ? true : false;
 			if(!bPossiblePhone){
 				bPossibleEmail = clearLogin.indexOf('@') !== -1;
+				console.log('Отправка почты RR: '+val);
+				(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail(val); });
 			}
 		}
 
