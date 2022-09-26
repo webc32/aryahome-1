@@ -223,7 +223,7 @@ $.fn.phoneOrLogin = function(callback){
 		$('*[name="Login1"]').on('click', function() {
 			var Sending = 0;
 			if(test.bPossibleEmail){
-				if(Sending = 0) {
+				if(Sending == 0) {
 					Sending ++;
 					console.log('Отправка почты в RR: '+val);
 					(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() { rrApi.setEmail(val); });
