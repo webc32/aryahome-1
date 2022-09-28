@@ -1,7 +1,7 @@
 <?
 $arResult = array();
 $iblockIDCustomBanner = 34; 
-$iblockSectionIDCustomBanner = 406; 
+$iblockSectionIDCustomBanner = 408; 
 $res = CIBlockElement::GetList(
     array("ID"=>"DESC"),
     array("IBLOCK_ID" => $iblockIDCustomBanner, "SECTION_ID" => $iblockSectionIDCustomBanner, "ACTIVE" => "Y"),
