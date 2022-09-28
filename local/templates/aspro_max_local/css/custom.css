@@ -1330,3 +1330,14 @@ margin-top: 20px;
     order: 23;
     -webkit-box-ordinal-group: 24;
 }
+/*fix stock price*/
+.catalog_block .sa_block {
+    height: 0;
+}
+.price_matrix_block .not-show {
+    height: 0;
+   
+}
+body .prices .price_matrix_block .not-show:first-of-type {
+    margin-bottom: 0px;
+}
