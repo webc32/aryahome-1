@@ -24,10 +24,15 @@ $bHideLeftBlockByHeader = ($arTheme['HEADER_TYPE']['VALUE'] == 28 || $arTheme['H
 
 $isBasketPage = CSite::InDir($arTheme["BASKET_PAGE_URL"]['VALUE']);
 
-global $bBigBannersIndexClass, $bTizersIndexClass, $bCatalogSectionsIndexClass, $bCatalogTabIndexClass, $bMiddleAdvIndexClass, $bTopAdvIndexClass, $bFloatBannerIndexClass, $bSaleIndexClass, $bBlogIndexClass, $bBottomBannersIndexClass, $bCompanyTextIndexClass, $bBrandsIndexClass, $bNewsIndexClass, $bMapsIndexClass, $bReviewIndexClass, $bCollectionIndexClass, $bLookbookIndexClass, $bStoriesIndexClass, $bInstagrammIndexClass, $bFloatBannersIndexClass, $bFavoritItemIndexClass;
-global $bShowBigBanners, $bShowTizers, $bShowCatalogSections, $bShowCatalogTab, $bShowMiddleAdvBottomBanner, $bShowTopAdvBanner, $bShowFloatBanner, $bShowSale, $bShowReview, $bShowCollection, $bShowLookbook, $bShowStories, $bShowBlog, $bShowBottomBanner, $bShowCompany, $bShowBrands, $bShowNews, $bShowMaps, $bShowInstagramm, $bShowFloatBanners, $bShowFavoritItem, $bShowSimple;
+global $bBigBannersIndexClass, $bTizersIndexClass, $bCatalogSectionsIndexClass, $bCatalogTabIndexClass, $bMiddleAdvIndexClass, $bTopAdvIndexClass, $bShowCustbannersIndexClass, $bFloatBannerIndexClass, $bSaleIndexClass, $bBlogIndexClass, $bBottomBannersIndexClass, $bCompanyTextIndexClass, $bBrandsIndexClass, $bNewsIndexClass, $bMapsIndexClass, $bReviewIndexClass, $bCollectionIndexClass, $bLookbookIndexClass, $bStoriesIndexClass, $bInstagrammIndexClass, $bFloatBannersIndexClass, $bFavoritItemIndexClass;
+global $bShowBigBanners, $bShowTizers, $bShowCatalogSections, $bShowCatalogTab, $bShowMiddleAdvBottomBanner, $bShowTopAdvBanner, $bShowFloatBanner, $bShowSale, $bShowReview, $bShowCollection, $bShowLookbook, $bShowStories, $bShowBlog, $bShowBottomBanner, $bShowCompany, $bShowBrands, $bShowNews, $bShowMaps, $bShowInstagramm, $bShowFloatBanners, $bShowFavoritItem, $bShowSimple, $bShowCustbanners;
 
 $bActiveTheme = ($arTheme["THEME_SWITCHER"]["VALUE"] == 'Y');
+
+//cust
+$bShowCustbanners = ($bActiveTheme || ($arTheme["INDEX_TYPE"]["SUB_PARAMS"][$indexType]["CUST_BANNER"]["VALUE"] != "N"));
+$bShowCustbannersIndexClass = ($arTheme["INDEX_TYPE"]["SUB_PARAMS"][$indexType]["CUST_BANNER"]["VALUE"] == 'Y' ? '' : 'hidden');
+$bShowCustbannersIndexClass .= ($arTheme["FON_PARAMS"]["fon".$indexType."CUST_BANNER"] == 'Y' ? ' grey_block' : '');
 
 $bShowBigBanners = ($bActiveTheme || ($arTheme["INDEX_TYPE"]["SUB_PARAMS"][$indexType]["BIG_BANNER_INDEX"]["VALUE"] != "N"));
 $bBigBannersIndexClass = ($arTheme["INDEX_TYPE"]["SUB_PARAMS"][$indexType]["BIG_BANNER_INDEX"]["VALUE"] == 'Y' ? '' : 'hidden');
