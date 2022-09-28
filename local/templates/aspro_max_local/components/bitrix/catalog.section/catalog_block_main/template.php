@@ -269,7 +269,7 @@ use \Bitrix\Main\Localization\Loc,
 
 				<? ob_start(); ?>
 				<div class="sa_block " data-fields='<?= Json::encode($arParams["FIELDS"]) ?>' data-stores='<?= Json::encode($arParams["STORES"]) ?>' data-user-fields='<?= Json::encode($arParams["USER_FIELDS"]) ?>'>
-					<?= $arQuantityData["HTML"]; ?>
+					<?/*= $arQuantityData["HTML"]; */?>
 					<? if (isset($arQuantityDataCMP) && $arQuantityDataCMP && $arItem['OFFERS'] && !empty($arItem['OFFERS_PROP'])) : ?>
 						<?= $arQuantityDataCMP["HTML"]; ?>
 					<? endif; ?>

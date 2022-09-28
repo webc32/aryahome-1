@@ -447,10 +447,14 @@ if (!function_exists('showPriceMatrixCustom2')){
                         $class = '';
                         if($arTmpPrice)
                         {
-                            if($arItem['PRICE_MATRIX']['MATRIX'][$arPriceGroup['ID']][$arTmpPrice['QUANTITY_HASH']]['ID'] == $arTmpPrice['ID'])
+                            if($arItem['PRICE_MATRIX']['MATRIX'][$arPriceGroup['ID']][$arTmpPrice['QUANTITY_HASH']]['ID'] == $arTmpPrice['ID']){
                                 $class = 'min';
+			    }else{
+				$class = 'not-show';    
+			    }
+				    
                         }?>
-                        <div class="price_group <?=$class;?> <?=$arPriceGroup['XML_ID']?>"><div class="price_name <?=($arItem['ITEM_PRICE_MODE'] == 'Q' || !$bShowPopupPrice ? 'font_xs darken' : 'font_xxs muted');?>"><?=$arPriceGroup["NAME_LANG"];?></div>
+                        <div class="price_group <?=$class;?> <?=$arPriceGroup['XML_ID']?>"><?/*<div class="price_name <?=($arItem['ITEM_PRICE_MODE'] == 'Q' || !$bShowPopupPrice ? 'font_xs darken' : 'font_xxs muted');?>"><?=$arPriceGroup["NAME_LANG"];?></div>*/?>
                     <?endif;?>
                     <?
 
