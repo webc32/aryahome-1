@@ -1091,12 +1091,14 @@ margin-top: 20px;
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 630px;
+    /*height: 630px;*/
+    height: 500px;
     border-radius: 3px;
     overflow: hidden;
 }
 .bnr_clickable--bottom{
-    height: 685px;
+    /*height: 685px;*/
+    height: 620px;
     margin-top: 60px;
 }
 .bnr_clickable__image{
@@ -1121,11 +1123,13 @@ margin-top: 20px;
 }
 .bnr_clickable--vertical .bnr_clickable__image{
     width: 100%;
-    height: 78%;
+    /*height: 78%;*/
+    height: 83%;
     position: static;
 }
 .bnr_clickable--vertical .bnr_clickable__content{
-    height: 22%;
+    /*height: 22%;*/
+    height: 17%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1140,7 +1144,8 @@ margin-top: 20px;
 }
 .bnr_clickable__title{
     font-family: Playfair, serif;
-    font-size: 35px;
+    /*font-size: 35px;*/
+    font-size: 30px;
     line-height: 1.34;
     margin-bottom: 1.15em;
     display: block;
@@ -1153,12 +1158,15 @@ margin-top: 20px;
     display: inline-block;
     text-transform: uppercase;
     text-align: center;
-    font-size: 22px;
+    /*font-size: 22px;*/
+    font-size: 15px;
     line-height: 25px;
     letter-spacing: 0.07em;
     color: #ECC36D !important;
-    padding: 28px 50px;
-    border: 3px solid #ECC36D;
+    /*padding: 8px 50px;*/
+    border: 1px solid #ECC36D;
+    padding: 5px 15px;
+    width: 264px;
 }
 .bnr_clickable__button:hover{
     color: inherit !important;
@@ -1228,4 +1236,97 @@ margin-top: 20px;
 }
 .section-gallery-wrapper{
     overflow: hidden;
+}
+/*style module main page*/
+.drag-block[data-order = "1"]{
+    order: 1;
+    -webkit-box-ordinal-group: 2;
+}
+.drag-block[data-order = "2"]{
+    order: 2;
+    -webkit-box-ordinal-group: 3;
+}
+.drag-block[data-order = "3"]{
+    order: 3;
+    -webkit-box-ordinal-group: 4;
+}
+.drag-block[data-order = "4"]{
+    order: 4;
+    -webkit-box-ordinal-group: 5;
+}
+.drag-block[data-order = "5"]{
+    order: 5;
+    -webkit-box-ordinal-group: 6;
+}
+.drag-block[data-order = "6"]{
+    order: 6;
+    -webkit-box-ordinal-group: 7;
+}
+.drag-block[data-order = "7"]{
+    order: 7;
+    -webkit-box-ordinal-group: 8;
+}
+.drag-block[data-order = "8"]{
+    order: 8;
+    -webkit-box-ordinal-group: 9;
+}
+.drag-block[data-order = "9"]{
+    order: 9;
+    -webkit-box-ordinal-group: 10;
+}
+.drag-block[data-order = "10"]{
+    order: 10;
+    -webkit-box-ordinal-group: 11;
+}
+.drag-block[data-order = "11"]{
+    order: 11;
+    -webkit-box-ordinal-group: 12;
+}
+.drag-block[data-order = "12"]{
+    order: 12;
+    -webkit-box-ordinal-group: 13;
+}
+.drag-block[data-order = "13"]{
+    order: 13;
+    -webkit-box-ordinal-group: 14;
+}
+.drag-block[data-order = "14"]{
+    order: 14;
+    -webkit-box-ordinal-group: 15;
+}
+.drag-block[data-order = "15"]{
+    order: 15;
+    -webkit-box-ordinal-group: 16;
+}
+.drag-block[data-order = "16"]{
+    order: 16;
+    -webkit-box-ordinal-group: 17;
+}
+.drag-block[data-order = "17"]{
+    order: 17;
+    -webkit-box-ordinal-group: 18;
+}
+.drag-block[data-order = "18"]{
+    order: 18;
+    -webkit-box-ordinal-group: 19;
+}
+.drag-block[data-order = "19"]{
+    order: 19;
+    -webkit-box-ordinal-group: 20;
+}
+.drag-block[data-order = "20"]{
+    order: 20;
+    -webkit-box-ordinal-group: 21;
+}
+.drag-block[data-order = "21"]{
+    order: 21;
+    -webkit-box-ordinal-group: 22;
+}
+.drag-block[data-order = "22"]{
+    order: 22;
+    -webkit-box-ordinal-group: 23;
+}
+.drag-block[data-order = "23"]{
+    order: 23;
+    -webkit-box-ordinal-group: 24;
 }
