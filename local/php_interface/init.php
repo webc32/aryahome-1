@@ -1128,4 +1128,17 @@ function GetQuantityArrayToString(
 		// 		$USER->Authorize('1');
 		// 	}
 		// }
+//add to module
+CModule::IncludeModule("aspro.max");
+CMax::$arParametrsList["INDEX_PAGE"]["OPTIONS"]["INDEX_TYPE"]["SUB_PARAMS"]["index1"]["CUST_BANNER"] = array(
+        "TITLE" => 'Группа баннеров',
+        "TYPE" => 'checkbox',
+        'DEFAULT' => 'type_1',
+        'VISIBLE' => 'Y',
+        'THEME' => 'Y',
+        'ONE_ROW' => 'Y',
+        'DRAG' => 'Y',
+        'SMALL_TOGGLE' => 'Y',
+        "FON" => 'Y'
+    );
 ?>
