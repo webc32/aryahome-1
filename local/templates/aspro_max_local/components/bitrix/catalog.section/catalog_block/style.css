@@ -165,6 +165,9 @@
 .mobil_select {
   display: none;
 }
+.mobil_select_ajax {
+  display: none;
+}
 /* body .catalog_block.items .item_block.item {
   height: fit-content !important;
 } */
