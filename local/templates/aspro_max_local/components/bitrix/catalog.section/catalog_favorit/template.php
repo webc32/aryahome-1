@@ -229,7 +229,7 @@
 									<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="dark_link font_lg option-font-bold js-notice-block__title"><span><?=$elementName;?></span></a>
 								</div>
 								<div class="sa_block" data-fields='<?=Json::encode($arParams["FIELDS"])?>' data-stores='<?=Json::encode($arParams["STORES"])?>' data-user-fields='<?=Json::encode($arParams["USER_FIELDS"])?>'>
-									<?=$arQuantityData["HTML"];?>
+									<?/*=$arQuantityData["HTML"];*/?>
 									<div class="article_block font_sxs muted" <?if(isset($arItem['ARTICLE']) && $arItem['ARTICLE']['VALUE']):?>data-name="<?=$arItem['ARTICLE']['NAME'];?>" data-value="<?=$arItem['ARTICLE']['VALUE'];?>"<?endif;?>>
 										<?if(isset($arItem['ARTICLE']) && $arItem['ARTICLE']['VALUE']){?>
 											<div><?=$arItem['ARTICLE']['NAME'];?>: <?=$arItem['ARTICLE']['VALUE'];?></div>
