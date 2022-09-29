@@ -295,7 +295,7 @@
 														"PRODUCT_PROPERTIES" => $arParams["PRODUCT_PROPERTIES"],
 														"SALE_STIKER" => $arParams["SALE_STIKER"],
 														"STIKERS_PROP" => $arParams["STIKERS_PROP"],
-														"SHOW_RATING" => "N",
+														"SHOW_RATING" => "Y",
 														"REVIEWS_VIEW" => (isset($arTheme["REVIEWS_VIEW"]["VALUE"])&&$arTheme["REVIEWS_VIEW"]["VALUE"]=="EXTENDED")||(!isset($arTheme["REVIEWS_VIEW"]["VALUE"])&&isset($arTheme["REVIEWS_VIEW"])&&$arTheme["REVIEWS_VIEW"]=="EXTENDED"),
 														"ADD_PICT_PROP" => $arParams["ADD_PICT_PROP"],
 														"IBINHERIT_TEMPLATES" => $arSeoItem?$arIBInheritTemplates:array(),
