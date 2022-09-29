@@ -221,6 +221,9 @@ body .wrapper1:not(.with_left_block) .wrapper_inner.front .middle .drag-block.co
 .mobil_select {
   display: none;
 }
+.mobil_select_ajax {
+  display: none;
+}
 /* body .catalog_block.items .item_block.item {
   height: fit-content !important;
 } */
