@@ -298,7 +298,7 @@ use \Bitrix\Main\Localization\Loc,
 										$style = "";
 									}
 									?>
-									<span onclick="changeOfferListing(this)" <?= $style ?> data-product_color="<?= $offer['ID'] ?>" <?= $offer['SELECTED'] ? 'class="active"' : '' ?>><img width="56px" height="56px" src="<?= $offer['SRC'] ?>" title="<?= $color ?>" /></span>
+									<span onclick="changeOfferListing(this)" <?= $style ?> data-product_color="<?= $offer['ID'] ?>" <?= ($offer['SELECTED'] && $offer['ID'] == $arItem['ID']) ? 'class="active"' : '' ?>><img width="56px" height="56px" src="<?= $offer['SRC'] ?>" title="<?= $color ?>" /></span>
 								<? endforeach; ?>
 							</div>
 							<?
@@ -312,7 +312,7 @@ use \Bitrix\Main\Localization\Loc,
 								<span class="offer_title">Размеры:</span>
 								<div class="sizes">
 									<? foreach ($sizes['SIZE'] as $size) : ?>
-										<span onclick="changeOfferListing(this)" <?= $size['SELECTED'] ? 'class="active"' : '' ?> data-product_size="<?= $size['ID'] ?>"><?= $size['RAZMER'] ?></span>
+										<span onclick="changeOfferListing(this)" <?= ($size['SELECTED'] && $size['ID'] == $arItem['ID']) ? 'class="active"' : '' ?> data-product_size="<?= $size['ID'] ?>"><?= $size['RAZMER'] ?></span>
 									<? endforeach; ?>
 								</div>
 							<? endif; ?>
