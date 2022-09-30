@@ -193,9 +193,10 @@ $APPLICATION->IncludeComponent(
 		$idForSmartFilter = array();
 		$res = CIBlockElement::GetList($arSort, array_merge($arFilter,$preFilter), false, false, $arSelect);
 		while($ob = $res->fetch()){
-			if(!in_array($ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"], $arNames)){
+			if(!in_array($ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"], $arNames) && !isset($arNames[$ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"]][$ob["PROPERTY_COLOR_FILTER_VALUE"]])){
 				$idForFilter[] = $ob['ID'];
-				$arNames[$ob['ID']] = $ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"];
+				//$arNames[$ob['ID']] = $ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"];
+				$arNames[$ob["PROPERTY_NAIMENOVANIE_DLYA_SAYTA_VALUE"]][$ob["PROPERTY_COLOR_FILTER_VALUE"]] = $ob["PROPERTY_COLOR_FILTER_VALUE"];
 			}
 			$idForSmartFilter[] = $ob['ID'];
 		}
