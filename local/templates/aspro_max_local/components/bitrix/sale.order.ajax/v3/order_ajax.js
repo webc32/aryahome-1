@@ -129,6 +129,12 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             }
 
         }, sendRequest: function (action, actionData) {
+            // Запоминаем пункт выдачи, чтобы он сохранялся при переключении системы оплаты
+            // Здесь и при сохранении заказа, до валидации формы
+            if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
+                $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
+            }
+            
             var form;
             this.startLoader() && (this.initOrder = !1, this.firstLoad = !1, "saveOrderAjax" === (action = BX.type.isNotEmptyString(action) ? action : "refreshOrderAjax") ? ((form = BX("bx-soa-order-form")) && (form.querySelector("input[type=hidden][name=sessid]").value = BX.bitrix_sessid()), BX.ajax.submitAjax(BX("bx-soa-order-form"), {
                 url: this.ajaxUrl,
@@ -166,15 +172,29 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         case"removeCoupon":
                             result && result.order ? (this.deliveryCachedInfo = [], this.refreshOrder(result)) : this.removeCoupon(result)
                     };
-                    if(this.firstLoadToHide){
+                    //if(this.firstLoadToHide){
                         for (var key in this.deliveryGroup) {
                             if($('.deliveries > .bx-soa-pp-company.bx-selected').hasClass("GROUP_"+key)){
                                 $('#bx-soa-delivery .bx-soa-pp-item-container2 .bx-soa-pp-company-smalltitle:contains("'+this.deliveryGroup[key]["NAME"]+'")').trigger('click');
                             }
                         }
-                    }
-
+                    //}
+                    
                     $('#bx-soa-paysystem').removeClass('bx-step-completed'); // Раскрываем блок с оплатами
+
+                    //if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
+                    //    $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
+                    //}
+                    if (this.result.ORDER_PROP && this.result.ORDER_PROP.properties) {
+                        var props = this.result.ORDER_PROP.properties, i;
+                        for (i = 0; i < props.length; i++) {
+                            if (props[i].ID == 99 && props[i].VALUE[0]) {
+                                console.log(props[i])
+                                $('#pvz_link').html(props[i].VALUE[0]);
+                                break;
+                            }
+                        }
+                    }
                     
                     /*if(this.firstLoadToHide){
                         $('.deliveries').hide();
@@ -189,10 +209,10 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         $('.bx-soa-customer-field[data-property-id-row="53"]').hide();
                     }*/
                     this.firstLoadToHide = false;
-                    setTimeout(function(){
+                    setTimeout(function (){
                         $('.bx-soa-pp-item-container2 .bx-selected2').append($('.deliveries'));
                         $('#bx-soa-delivery .bx-soa-pp-company .bx-soa-pp-company.bx-selected').closest(".bx-soa-pp-company").trigger('click');
-                    },100);
+                    }, 100);
 
                     BX.cleanNode(this.savedFilesBlockNode), this.endLoader()
                 }), this),
@@ -720,9 +740,12 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if (locationStepInputs.length) for (i = 0; i < locationStepInputs.length; i++) BX.addClass(locationStepInputs[i], "form-control")
             }
         }, clickOrderSaveAction: function (event) {
+            // Запоминаем пункт выдачи до валиадции формы
+            // Дополнительно он заполнится в функции sendRequest (код продублирован)
             if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
                 $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
             }
+            
             return this.isValidForm() && (this.allowOrderSave(), "Y" === this.params.USER_CONSENT && BX.UserConsent ? BX.onCustomEvent("bx-soa-order-save", []) : this.doSaveAction()), BX.PreventDefault(event)
         }, doSaveAction: function () {
             this.isOrderSaveAllowed() && (this.reachGoal("order"), this.sendRequest("saveOrderAjax"))
@@ -730,16 +753,6 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
-
-            /////////////////////
-            // Если ошибки, то не переходим к следующему шагу
-            var errorNode, errors;
-            errors = (errorNode = actionSection.querySelector("div.alert.alert-danger")) && "none" != errorNode.style.display;
-            if (errors) {
-                return;
-            }
-            /////////////////////
-
             console.log(actionSection.id);
             if ("bx-soa-delivery" === actionSection.id) {
                     var delivery = this.getSelectedDelivery();
@@ -2366,9 +2379,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             var node = activeNodeMode ? this.deliveryBlockNode : this.deliveryHiddenBlockNode,
                 deliveryContent, deliveryNode;
-
+            
             //fix скрытой доставки
-            this.initialized.delivery = false;
+            //this.initialized.delivery = false;
             //fix скрытой доставки
 
             if (this.initialized.delivery)
@@ -2559,6 +2572,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             var deliveryItemsContainer = BX.create('DIV', {props: {className: 'col-sm-12 bx-soa-pp-item-container deliveries'}}),
                 deliveryItemNode, k,deliveryGroupNode,deliveryGroupAnotherNode;
             var _this = this;
+            
+            this.deliveryPropsReady = [];
 
             //создадим группы доставок и потом раскинем сами доставки
 
@@ -2703,9 +2718,11 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 children: [label],
                 events: {click: BX.proxy(this.selectDeliveryGroup, this)}
             });
-            if(!this.firstLoadToHide){
-                checked && BX.addClass(itemNode, 'bx-selected2');
-            }
+            //if(!this.firstLoadToHide){
+            //    checked && BX.addClass(itemNode, 'bx-selected2');
+            //}
+            if (checked)
+                BX.addClass(itemNode, 'bx-selected2');
 
 
             if (checked)
@@ -2721,13 +2738,10 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             // $('.deliveries').css("display",'block');
 
-
             var target = event.target || event.srcElement,
             actionSection =  BX.hasClass(target, 'bx-soa-pp-company') ? target : BX.findParent(target, {className: 'bx-soa-pp-company'}),
             selectedSection = this.deliveryBlockNode.querySelector('.bx-soa-pp-company.bx-selected2'),
             actionInput, selectedInput;
-
-
 
             if (BX.hasClass(actionSection, 'bx-selected2'))
                 return BX.PreventDefault(event);
@@ -2782,7 +2796,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
                 }
             }
-            $('.bx-soa-pp-item-container2 .bx-selected2').append($('.deliveries'));
+            var elDeliveries = $('.deliveries').detach();
+            $('.bx-soa-pp-item-container2 .bx-selected2').append(elDeliveries);
             //$('.bx-soa-pp-item-container > div:eq(1)').not('.hidden').trigger('click');
 
 
@@ -2798,7 +2813,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     if(lowerCaseName.indexOf(group) + 1){
                         this.deliveryGroup[group].ELEMENTS.push(item[k]);
                         if(this.deliveryPropsReady.length == 0){
-                            this.deliveryGroup[group].CHECKED = 'Y';
+                            //this.deliveryGroup[group].CHECKED = 'Y';
                         }
                         this.deliveryPagination.currentPage[k].GROUP = group;
                         this.deliveryPropsReady.push(k);
