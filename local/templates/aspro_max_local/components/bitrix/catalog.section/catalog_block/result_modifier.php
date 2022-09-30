@@ -867,7 +867,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 				$prop['SELECTED'] = "Y";
 				findSelectedSize($arItem,$prop,$_POST['product_size']);
 				break;
-			}elseif($arItem['PROPERTIES']['TSVET']['VALUE'] == $prop['COLOR']){
+			}elseif($arItem['ID'] == $prop['ID']){
 				$prop['SELECTED'] = "Y";
 				findSelectedSize($arItem,$prop);
 				break;
