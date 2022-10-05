@@ -7394,6 +7394,7 @@ body .view_sale_block.v2 .values .item .text {
   border-radius: 2px;
   margin: 0px;
   overflow: hidden;
+  display:none;
 }
 .view_sale_block.v2.grey .countdown,
 .view_sale_block.v2.grey .values .item,
