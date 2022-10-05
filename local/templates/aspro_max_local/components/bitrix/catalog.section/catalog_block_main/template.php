@@ -1061,7 +1061,7 @@ use \Bitrix\Main\Localization\Loc,
 	})
 </script>
 <script type="text/javascript">
-    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-		try { rrApi.categoryView('<?=$arResult[ID];?>'); } catch(e) {}
-	})
+    //(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+		//try { rrApi.categoryView('<?=$arResult[ID];?>'); } catch(e) {}
+    //})
 </script>
