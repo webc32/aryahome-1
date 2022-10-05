@@ -1219,7 +1219,7 @@ margin-top: 20px;
 /* detail page */
 @media (max-width: 768px){
     #photo-0.product-detail-gallery__item.product-detail-gallery__item--middle{
-        padding-top: 133%;
+        /*padding-top: 133%;*/
     }
     .frame_custom_detail.product-detail-gallery__item.product-detail-gallery__item--middle{
         position: absolute;
