@@ -38,7 +38,7 @@ $git = 'git ';
 <?$bIndexBot = CMax::checkIndexBot();?>
 <body class="<?=($bIndexBot ? "wbot" : "");?> site_<?=SITE_ID?> <?=($bIncludedModule ? CMax::getCurrentBodyClass() : '')?>" id="main" data-site="<?=SITE_DIR?>">
 
-	<script src="//aq.dolyame.ru/2420/client.js?ts=1662994701911" defer async></script>
+	<!-- <script src="//aq.dolyame.ru/2420/client.js?ts=1662994701911" defer async></script> -->
 	
 	<script>
 		var showCupon = BX.getCookie('showCupon');
