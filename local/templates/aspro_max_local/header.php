@@ -30,7 +30,7 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 		CMax::Start(SITE_ID);?>
 	<?include_once(str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'].'/'.SITE_DIR.'include/header_include/head.php'));?>
 
-	<!-- <script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script> -->
+	<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>
 </head>
 <?
 $git = 'git ';
@@ -38,7 +38,7 @@ $git = 'git ';
 <?$bIndexBot = CMax::checkIndexBot();?>
 <body class="<?=($bIndexBot ? "wbot" : "");?> site_<?=SITE_ID?> <?=($bIncludedModule ? CMax::getCurrentBodyClass() : '')?>" id="main" data-site="<?=SITE_DIR?>">
 
-	<!-- <script src="//aq.dolyame.ru/2420/client.js?ts=1662994701911" defer async></script> -->
+	<script src="//aq.dolyame.ru/2420/client.js?ts=1662994701911" defer async></script>
 	
 	<script>
 		var showCupon = BX.getCookie('showCupon');
