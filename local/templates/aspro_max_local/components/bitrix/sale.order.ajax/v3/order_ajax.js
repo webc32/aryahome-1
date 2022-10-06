@@ -134,7 +134,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
                 $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
             }
-            
+
             var form;
             this.startLoader() && (this.initOrder = !1, this.firstLoad = !1, "saveOrderAjax" === (action = BX.type.isNotEmptyString(action) ? action : "refreshOrderAjax") ? ((form = BX("bx-soa-order-form")) && (form.querySelector("input[type=hidden][name=sessid]").value = BX.bitrix_sessid()), BX.ajax.submitAjax(BX("bx-soa-order-form"), {
                 url: this.ajaxUrl,
@@ -179,7 +179,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             }
                         }
                     //}
-                    
+
                     $('#bx-soa-paysystem').removeClass('bx-step-completed'); // Раскрываем блок с оплатами
 
                     //if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
@@ -195,13 +195,14 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             }
                         }
                     }
-                    
+
                     /*if(this.firstLoadToHide){
                         $('.deliveries').hide();
                         $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="80"]').hide();
-                            //$('.bx-soa-customer-field[data-property-id-row="26"]').hide();
+                        //$('.bx-soa-customer-field[data-property-id-row="26"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="83"]').hide();
+                        $('.bx-soa-customer-field[data-property-id-row="84"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="81"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="82"]').hide();
                         $('.bx-soa-customer-field[data-property-id-row="95"]').hide();
@@ -419,6 +420,15 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 scroll && this.scrollToError()
             }
         }, showBlockErrors: function (node) {
+            var errorDel = this.result.ERROR.DELIVERY;
+            for (i in this.result.DELIVERY) {
+                if (this.result.DELIVERY[i].CHECKED == "Y" && this.result.DELIVERY[i].CALCULATE_ERRORS != undefined && this.result.DELIVERY[i].CALCULATE_ERRORS != "") {
+                    var err = []
+                    err.push(this.result.DELIVERY[i].CALCULATE_ERRORS);
+                    errorDel = err
+                }
+            }
+
             var errorNode = node.querySelector("div.alert.alert-danger"), hiddenNode, errors;
             if (errorNode) {
                 switch (BX.removeClass(node, "bx-step-error"), errorNode.style.display = "none", BX.cleanNode(errorNode), node.id) {
@@ -426,7 +436,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         hiddenNode = this.regionHiddenBlockNode, errors = this.result.ERROR.REGION;
                         break;
                     case this.deliveryBlockNode.id:
-                        hiddenNode = this.deliveryHiddenBlockNode, errors = this.result.ERROR.DELIVERY;
+                        hiddenNode = this.deliveryHiddenBlockNode, errors = errorDel;
                         break;
                     case this.paySystemBlockNode.id:
                         hiddenNode = this.paySystemHiddenBlockNode, errors = this.result.ERROR.PAY_SYSTEM;
@@ -745,11 +755,11 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             if($('#pvz_link').html() != 'Выбрать пункт выдачи'){
                 $('[name=ORDER_PROP_99]').val($('#pvz_link').html());
             }
-            
+
             return this.isValidForm() && (this.allowOrderSave(), "Y" === this.params.USER_CONSENT && BX.UserConsent ? BX.onCustomEvent("bx-soa-order-save", []) : this.doSaveAction()), BX.PreventDefault(event)
         }, doSaveAction: function () {
             this.isOrderSaveAllowed() && (this.reachGoal("order"), this.sendRequest("saveOrderAjax"))
-        }, clickNextAction: function (event) { 
+        }, clickNextAction: function (event) {
             var target = event.target || event.srcElement,
                 actionSection = BX.findParent(target, {className: "bx-active"}),
                 section = this.getNextSection(actionSection), allSections, editStep;
@@ -768,20 +778,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             quantity: item.data.QUANTITY
                         })
                     }
-                	window.dataLayer = window.dataLayer || [];  
-                        dataLayer.push({  
-                            'ecommerce': {  
-                                'currencyCode': 'RUB',  
-                                'checkout': {  
+                	window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'ecommerce': {
+                                'currencyCode': 'RUB',
+                                'checkout': {
                                 'actionField': {'step': 4, 'option': delivery.NAME},
-                                'products': products 
-                                }  
-                            },  
-                        'event': 'gtm-ee-event',  
-                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
-                        'gtm-ee-event-action': 'Checkout - Step 4',  
-                        'gtm-ee-event-non-interaction': 'False',  
-                    });  
+                                'products': products
+                                }
+                            },
+                        'event': 'gtm-ee-event',
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',
+                        'gtm-ee-event-action': 'Checkout - Step 4',
+                        'gtm-ee-event-non-interaction': 'False',
+                    });
 
                 const propsErrors = this.isValidRegionBlock();
                 if (propsErrors.length) return;
@@ -801,20 +811,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                             quantity: item.data.QUANTITY
                         })
                     }
-                	window.dataLayer = window.dataLayer || [];  
-                        dataLayer.push({  
-                            'ecommerce': {  
-                                'currencyCode': 'RUB',  
-                                'checkout': {  
+                	window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'ecommerce': {
+                                'currencyCode': 'RUB',
+                                'checkout': {
                                 'actionField': {'step': 5, 'option': paysystem.NAME},
-                                'products': products 
-                                }  
-                            },  
-                        'event': 'gtm-ee-event',  
-                        'gtm-ee-event-category': 'Enhanced Ecommerce',  
-                        'gtm-ee-event-action': 'Checkout - Step 5',  
-                        'gtm-ee-event-non-interaction': 'False',  
-                    });  
+                                'products': products
+                                }
+                            },
+                        'event': 'gtm-ee-event',
+                        'gtm-ee-event-category': 'Enhanced Ecommerce',
+                        'gtm-ee-event-action': 'Checkout - Step 5',
+                        'gtm-ee-event-non-interaction': 'False',
+                    });
             }
             return this.reachGoal("next", actionSection), this.result.IS_AUTHORIZED && void 0 === this.result.LAST_ORDER_DATA.FAIL || "false" != section.next.getAttribute("data-visited") || (allSections = this.orderBlockNode.querySelectorAll(".bx-soa-section.bx-active"), section.next.id == allSections[allSections.length - 1].id && this.switchOrderSaveButtons(!0)), this.fade(actionSection, actionSection), this.show(actionSection), section.prev && section.next.querySelector(".change-info").click(), BX.PreventDefault(event)
         }, clickPrevAction: function (event) {
@@ -2379,7 +2389,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             var node = activeNodeMode ? this.deliveryBlockNode : this.deliveryHiddenBlockNode,
                 deliveryContent, deliveryNode;
-            
+
             //fix скрытой доставки
             //this.initialized.delivery = false;
             //fix скрытой доставки
@@ -2426,8 +2436,8 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if (this.params.SHOW_COUPONS_DELIVERY == 'Y')
                     this.editCoupons(deliveryContent);
 
-                var curDeliveryName = this.getSelectedDelivery()['NAME'];
-                if((curDeliveryName.indexOf('курьер') + 1) || curDeliveryName.indexOf('Курьер') + 1 || curDeliveryName.indexOf('КУРЬЕР') + 1){
+                var curDeliveryId = this.getSelectedDelivery()['ID'];
+                if(curDeliveryId == '9' || curDeliveryId == '41'){
                     //показывать поля везде кроме самовывоза
 
                     //ебанутый фикс поля индекса
@@ -2442,7 +2452,12 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     }
 
                     this.deliveryPropsArray = this.deliveryPropsArray.filter(function (el) {
-                        return (el != null && el != "" || el === 0);
+                        let entityFilter = [];
+                        $.each(el.getSettings()['RELATION'], function(key, val) {
+                            entityFilter.push(val.ENTITY_ID);
+                        });
+
+                        return ((el != null && el != "" || el === 0) && entityFilter.includes(curDeliveryId));
                     });
                     //ебанутый фикс поля индекса end
 
@@ -2572,7 +2587,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
             var deliveryItemsContainer = BX.create('DIV', {props: {className: 'col-sm-12 bx-soa-pp-item-container deliveries'}}),
                 deliveryItemNode, k,deliveryGroupNode,deliveryGroupAnotherNode;
             var _this = this;
-            
+
             this.deliveryPropsReady = [];
 
             //создадим группы доставок и потом раскинем сами доставки
@@ -2759,10 +2774,17 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 selectedInput.checked = false;
             }
 
-            var targetText = $(target).text();
+            var targetBlock = $(target).parent()[0];
+            let targetTextName = $(target).text();
+            let targetText = '';
+            if ($(targetBlock).attr('for') != undefined) {
+                targetText = $(targetBlock).attr('for');
+            } else {
+                targetText = $(targetBlock).children('label').attr('for');
+            }
 
             $('#bx-soa-delivery .deliveries').css("display",'block');
-            if(targetText == "Доставить курьером"){
+            if(targetText == "ID_DELIVERY_GROUP_3" || targetText == "ID_DELIVERY_GROUP_4"){
                 $('.bx-soa-customer-field[data-property-id-row="56"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="80"]').css("display",'block');
                 //$('.bx-soa-customer-field[data-property-id-row="26"]').css("display",'block');
@@ -2771,6 +2793,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 $('.bx-soa-customer-field[data-property-id-row="81"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="82"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="83"]').css("display",'block');
+                $('.bx-soa-customer-field[data-property-id-row="84"]').css("display",'block');
                 $('.bx-soa-customer-field[data-property-id-row="53"]').css("display",'block');
             }else{
                 $('.bx-soa-customer-field[data-property-id-row="56"]').hide();
@@ -2781,14 +2804,14 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 $('.bx-soa-customer-field[data-property-id-row="81"]').hide();
                 $('.bx-soa-customer-field[data-property-id-row="82"]').hide();
                 $('.bx-soa-customer-field[data-property-id-row="83"]').hide();
+                $('.bx-soa-customer-field[data-property-id-row="84"]').hide();
                 $('.bx-soa-customer-field[data-property-id-row="53"]').hide();
             }
 
             $('#bx-soa-delivery .bx-soa-pp-item-container > div').addClass('hidden');
 
             for(var key in this.deliveryGroup){
-
-                if(this.deliveryGroup[key]['NAME'] == targetText){
+                if(this.deliveryGroup[key]['NAME'] == targetTextName){
                     if(key !== 'другое'){
                         $('#bx-soa-delivery .bx-soa-pp-item-container > .GROUP_'+key).removeClass('hidden');
                     }else{
@@ -2874,7 +2897,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
 
             if (currentDelivery.ID == 39) {
                 var numDeliveryDate = parseInt(3);
-            }else{
+            } else if (currentDelivery.ID == 42 || currentDelivery.ID == 41) {
+                var numDeliveryDate = parseInt(0);
+            } else {
                 var numDeliveryDate = parseInt(currentDelivery.PERIOD_TEXT.match(/\d+/));
             }
 
@@ -2967,13 +2992,22 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 });
             }
 
+            let periodInner = [
+                    BX.create('DIV', {props: {className: 'bx-soa-pp-list-termin'}, html: this.params.MESS_PERIOD + ':'}),
+                    BX.create('DIV', {props: {className: 'bx-soa-pp-list-description'}, html: currentDelivery.PERIOD_TEXT})
+                ],
+                type = 'LI';
+            if (currentDelivery.ID == 41) {
+                periodInner = [
+                    BX.create('DIV', {props: {className: 'bx-soa-pp-list-termin'}, html: 'Адрес:'}),
+                    BX.create('DIV', {props: {className: 'bx-soa-pp-list-description'}, html: currentDelivery.PERIOD_TEXT})
+                ];
+                type = 'DIV';
+            }
             if (currentDelivery.PERIOD_TEXT && currentDelivery.PERIOD_TEXT.length)
             {
-                period = BX.create('LI', {
-                    children: [
-                        BX.create('DIV', {props: {className: 'bx-soa-pp-list-termin'}, html: this.params.MESS_PERIOD + ':'}),
-                        BX.create('DIV', {props: {className: 'bx-soa-pp-list-description'}, html: currentDelivery.PERIOD_TEXT})
-                    ]
+                period = BX.create(type, {
+                    children: periodInner
                 });
             }
 
@@ -3617,20 +3651,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                         quantity: item.data.QUANTITY
                     })
                 }
-                window.dataLayer = window.dataLayer || [];  
-                    dataLayer.push({  
-                        'ecommerce': {  
-                            'currencyCode': 'RUB',  
-                            'checkout': {  
-                            'actionField': {'step': 3, 'option': 'Контактная информация'},  
+                window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'ecommerce': {
+                            'currencyCode': 'RUB',
+                            'checkout': {
+                            'actionField': {'step': 3, 'option': 'Контактная информация'},
                             'products': products
-                            }  
-                        },  
-                    'event': 'gtm-ee-event',  
-                    'gtm-ee-event-category': 'Enhanced Ecommerce',  
-                    'gtm-ee-event-action': 'Checkout - Step 3',  
-                    'gtm-ee-event-non-interaction': 'False',  
-                });  
+                            }
+                        },
+                    'event': 'gtm-ee-event',
+                    'gtm-ee-event-category': 'Enhanced Ecommerce',
+                    'gtm-ee-event-action': 'Checkout - Step 3',
+                    'gtm-ee-event-non-interaction': 'False',
+                });
                 stepSaveProfile = 1;
             }
             node.appendChild(BX.create("DIV", {
@@ -3838,7 +3872,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     )
                         continue;
 
-                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
+                    if(property.getId() != 53 && property.getId() != 56 && property.getId() != 80 && property.getId() != 95 && property.getId() != 96 && property.getId() != 83 && property.getId() != 84 && property.getId() != 81 && property.getId() != 82){// && property.getId() != 26 && property.getId() != 22
                         //оставляю как и было
                         this.getPropertyRowNode(property, propsItemsContainer, false);
                     }else{
@@ -3914,7 +3948,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                 if(property.getId() == 102 || property.getId() == 103){//property.getId() == 48 || property.getId() == 47 ||
                     BX.addClass(propsItemNode, "col-md-3");
                     propsItemNode.setAttribute("onclick","changeFIO();");
-                }else if(property.getId() == 95 || property.getId() == 53 || property.getId() == 96 || property.getId() == 83 || property.getId() == 81 || property.getId() == 82){//property.getId() == 26 ||
+                }else if(property.getId() == 95 || property.getId() == 53 || property.getId() == 96 || property.getId() == 83 || property.getId() == 84 || property.getId() == 81 || property.getId() == 82){//property.getId() == 26 ||
                     BX.addClass(propsItemNode, "col-sm-2");
                 }else if(property.getId() == 51 || property.getId() == 52){
                     BX.addClass(propsItemNode, "col-sm-3");
