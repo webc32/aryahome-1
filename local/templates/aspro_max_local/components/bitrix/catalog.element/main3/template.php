@@ -2005,7 +2005,7 @@ dataLayer.push({
 </script>
 
 <script type="text/javascript">
-    //(window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
-		//try{ rrApi.view("<?=$arResult["ID"]?>"); } catch(e) {}
-	//})
+    (window["rrApiOnReady"] = window["rrApiOnReady"] || []).push(function() {
+	try{ rrApi.view("<?=$arResult["ID"]?>"); } catch(e) {}
+    })
 </script>
