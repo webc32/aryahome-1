@@ -2437,7 +2437,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent"), function () {
                     this.editCoupons(deliveryContent);
 
                 var curDeliveryId = this.getSelectedDelivery()['ID'];
-                if(curDeliveryId == '9' || curDeliveryId == '41'){
+                if(curDeliveryId == '9' || curDeliveryId == '39' || curDeliveryId == '41'){
                     //показывать поля везде кроме самовывоза
 
                     //ебанутый фикс поля индекса
