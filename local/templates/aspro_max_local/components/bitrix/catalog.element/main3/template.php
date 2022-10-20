@@ -624,7 +624,7 @@ $iCountProps = count($arResult['DISPLAY_PROPERTIES']) + $offerPropCount;
 					<link href="<?=($arFirstPhoto["BIG"]["src"] ? $arFirstPhoto["BIG"]["src"] : $arFirstPhoto["SRC"]);?>" itemprop="image"/>
 					<?if($popupVideo):?>
 						<div class="video-block video-block_popup_custom sm video-block_detail">
-							<a class="various image" href="#photo-0" title="<?=Loc::getMessage("VIDEO")?>">
+							<a id="ato_video_slide" data-slide="<?=$countPhoto;?>" class="various image" href="#photo-0" title="<?=Loc::getMessage("VIDEO")?>">
 								<span class="play text-upper font_xs">
 									<span><?=Loc::getMessage("VIDEO")?></span>
 								</span>
