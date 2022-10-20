@@ -124,3 +124,6 @@
 .product-main .product-action{
     width:70%;
 }
+.product-container .product-detail-gallery__item .product-detail-gallery__picture {
+    max-width: 400px;
+}
