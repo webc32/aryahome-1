@@ -242,7 +242,7 @@ if($arTheme['CHANGE_TITLE_ITEM_DETAIL']['VALUE'] === "Y" && $currentOfferTitle){
 							<a class="various image" href="#photo-0" title="<?=Loc::getMessage("VIDEO")?>"><span class="play text-upper font_xs"><span><?=Loc::getMessage("VIDEO")?></span></span></a></div>
 					<?endif;?>
 
-					<div class="product-detail-gallery__slider product-detail-gallery__slider_custom_fast_view big<?if(!$bMagnifier):?> owl-carousel owl-theme big owl-bg-nav short-nav<?endif;?>" data-plugin-options='{"items": "1", "dots": false, "nav": true, "relatedTo": ".product-detail-gallery__slider.thmb", "loop": true, "autoWidth":true}'>
+					<div class="product-detail-gallery__slider product-detail-gallery__slider_custom_fast_view big<?if(!$bMagnifier):?> owl-carousel owl-theme big owl-bg-nav short-nav<?endif;?>" data-plugin-options='{"items": "1", "dots": false, "nav": true, "relatedTo": ".product-detail-gallery__slider.thmb", "loop": false, "autoWidth":true}'>
 						<?if($popupVideo) {?>
 							<?
 							$id_video = array_pop(explode('/', $popupVideo));
