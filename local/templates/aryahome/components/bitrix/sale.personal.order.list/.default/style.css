@@ -1,0 +1,66 @@
+/* history
+====================*/
+.catalog .profile .history .form{border-radius: 5px;}
+.catalog .profile .history .form .number{
+	font-family: Montserrat;
+	font-size: 22px;
+	line-height: 41px;}
+.catalog .profile .history .form .date{
+	font-size: 17px;
+	line-height: 41px;}
+.catalog .profile .history .form .date span{
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 21px;}
+.catalog .profile .history .form .img{max-width:100px;}
+.catalog .profile .history .form .img img{border-radius: 9px;}
+.catalog .profile .history .form .quantity{
+	font-size: 13px;
+	line-height: 21px;}
+.catalog .profile .history .form .price{
+	font-size: 22px;
+	line-height: 22px;}
+.catalog .profile .history .form .total{border-top: 1px solid #E1E1E1;}
+.catalog .profile .history .form .total .total-note{
+	font-size: 18px;
+	line-height: 20px;}
+.catalog .profile .history .form .total .total-price{
+	font-size: 26px;
+	line-height: 22px;}
+.catalog .profile .history .form .note{
+	font-size: 14px;
+	line-height: 26px;}
+.catalog .profile .history .form .value{line-height: 26px;}
+.catalog .profile .history .form .pay-status{
+	font-size: 12px;
+	line-height: 22px;}
+.catalog .profile .history .form .order-status{
+	font-size: 17px;
+	line-height: 22px;}
+.catalog .profile .history .form .pay-status,
+.catalog .profile .history .form .order-status{font-family: Montserrat;}
+.catalog .profile .history .form .pay-status.cansel,
+.catalog .profile .history .form .order-status.cansel{
+	color: #EB4E4E;
+	border: 1px solid #EB4E4E;}
+
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	/* history
+	====================*/
+	.catalog .profile .history .form .number{font-size: 18px;}
+	.catalog .profile .history .form .date{font-size: 14px;}
+	.catalog .profile .history .form .name{
+		font-size: 13px;
+		line-height: 19px;}
+	.catalog .profile .history .form .quantity{
+		font-size: 12px;
+		line-height: 18px;}
+	.catalog .profile .history .form .price{
+		font-size: 16px;
+		line-height: 23px;}
+	.catalog .profile .history .form .total .total-note{font-size: 16px;}
+	.catalog .profile .history .form .total .total-price{font-size: 22px;}
+	.catalog .profile .history .form .order-status{font-size: 15px;}
+}

@@ -1,0 +1,35 @@
+.title-search-result{
+	display: none;
+	overflow: hidden;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.18);
+    border-radius: 11px;
+    font-size: 14px;
+	background-color: #fff;
+	z-index: 1002;
+	margin-top: 10px;
+	padding: 20px;}
+
+.title-search-result .bx_item_block{
+	margin-bottom: 1rem!important;
+	display: flex;}
+
+.title-search-result .bx_img_element{margin-right: 1rem!important;}
+.title-search-result .bx_img_element .bx_image{border-radius: 9px;}
+.title-search-result .bx_item_element a b{color: #D0A550;}
+.title-search-result .bx_price{
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 19px;}
+.title-search-result .bx_price .old{
+	font-weight: normal;
+	text-decoration: line-through;
+	margin-left: 10px;
+	color: #A5ACAF;
+	font-size: 13px;}
+
+.title-search-result .bx_item_block.all_result a{color: #D0A550;}
+
+.all_result,
+.others_result{border: none;}
+
+.all_result{margin-bottom: 0;}

@@ -1,0 +1,66 @@
+.main-content-block {
+	position: relative;
+	overflow: hidden;
+}
+
+.ny-tree,
+.ny-ring,
+.ny-snow,
+.ny-cake,
+.ny-sock,
+.ny-star {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: contain;
+	max-width: 15%;
+}
+	
+.ny-tree {
+	background-image: url(../img/new_year/tree.svg);
+	width: 203px;
+	height: 275px;
+	top: 300px;
+	left: 0px;
+}
+
+.ny-ring {
+	background-image: url(../img/new_year/ring.svg);
+	width: 215px;
+	height: 250px;
+	top: 900px;
+	right: 0px;
+    background-position: center right;
+}
+
+.ny-snow {
+	background-image: url(../img/new_year/snow.svg);
+	width: 346px;
+	height: 326px;
+	top: 1500px;
+	left: 0px;
+}
+
+.ny-cake {
+	background-image: url(../img/new_year/cake.svg);
+	width: 195px;
+	height: 232px;
+	top: 2250px;
+	right: 0px;
+}
+
+.ny-sock {
+	background-image: url(../img/new_year/sock.svg);
+	width: 150px;
+	height: 280px;
+	top: 3350px;
+	left: 0px;
+}
+
+.ny-star {
+	background-image: url(../img/new_year/star.svg);
+	width: 260px;
+	height: 270px;
+	top: 4400px;
+	right: 0px;
+	background-position: center right;
+}

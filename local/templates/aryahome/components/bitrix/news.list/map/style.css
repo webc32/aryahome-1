@@ -1,0 +1,79 @@
+/* map
+====================*/
+.catalog .map{
+	width: 1184px;
+	height: 693px;
+	overflow-y: hidden;
+	/*overflow-x: scroll;*/}
+.catalog .map .name{
+	font-size: 13px;
+	line-height: 23px;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;}
+.catalog .map .name:after{
+	content: '';
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	display: inline-block;
+	background: #EB4E4E;
+	border: 2px solid #FFFFFF;
+	border-radius:100%;
+	box-sizing: border-box;
+	box-shadow: 1px 5px 6px rgba(0, 0, 0, 0.25);}
+.catalog .map .name.left:after{left:-15px;}
+.catalog .map .name.right:after{right:-15px;}
+.catalog .map .name.size-1{
+	z-index: 2;
+	font-size: 17px}
+.catalog .map .name.size-1:after{
+	width: 19px;
+	height: 19px;}
+.catalog .map .name.size-1.right:after{right:-25px;}
+.catalog .map .name.size-1.left:after{left:-25px;}
+.catalog .map .name.size-2{font-size: 14px}
+.catalog .map .name.size-2:after{
+	width: 13px;
+	height: 13px;}
+.catalog .map .name.size-2.right:after{right:-20px;}
+.catalog .map .name.size-2.left:after{left:-20px;}
+.catalog .region .title-5:not(.low){text-transform: uppercase;}
+.catalog .region .type .title-5{cursor: pointer;}
+.catalog .region .type .text-gray{
+	font-size: 12px;
+	line-height: 19px;}
+.catalog .region .type.active svg{fill: #D0A550;}
+.catalog .region .type.active .title-5{color: #D0A550;}
+.catalog .region .select .name {
+    font-size: 14px;
+    line-height: 41px;}
+.catalog .region .select select {display: none;}
+.catalog .region .select select.active{display: block;}
+.catalog .shops .view span{padding-top: 5px;}
+.catalog .shops .view {cursor: pointer;}
+.catalog .shops .view.active,
+.catalog .shops .view.active a {cursor: default;}
+.catalog .shops .view a{color: #A5ACAF}
+.catalog .shops .view.active a{
+	pointer-events: none;
+	color: #D0A550;}
+.catalog .shops .view.active svg{fill: #D0A550}
+.catalog .shops .list{display: none;}
+.catalog .shops .list.active{display: flex;}
+.catalog .shops .list #map{height: 615px;}
+.catalog .shops .list > .d-flex{min-width: 440px;}
+.catalog .shops .list img{border-radius: 5px;}
+.catalog .shops .list .name{font-size: 18px;}
+.catalog .shops .list .description{
+	font-size: 13px;
+	line-height: 26px;}
+.catalog .shops .list .more .btn{font-size: 12px;}
+
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	/* map
+	====================*/
+	.catalog .region .type .title-5{
+		font-size: 15px;
+		line-height: 20px;}
+}

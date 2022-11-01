@@ -1,0 +1,22 @@
+.modern-page-navigation {
+	margin-bottom: 20px;
+}
+
+.modern-page-navigation a,
+.modern-page-navigation span {
+	padding: 0px;
+	border: 1px solid transparent;
+	display: inline-block;
+	line-height: 30px;
+	width: 32px;
+	border-radius: 4px;
+	margin: 0px;
+}
+.modern-page-navigation .modern-page-current {
+	border: 1px solid #000;
+	font-weight: 700;
+}
+
+.modern-page-navigation a:hover {
+	font-weight: 700;
+}

@@ -1,0 +1,74 @@
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	.mobile-overlay, 
+	.menu-mobile{
+	    top: 0;
+	    left: 0;
+	    height: 100%;}
+	.mobile-overlay{
+	    cursor: pointer;
+	    z-index: 1000;
+	    background: rgba(0, 0, 0, 0.15);}
+	.menu-mobile{
+		-webkit-transform: translateX(-300px);
+		transform: translateX(-300px);
+		overflow: hidden;
+		display: none;
+		z-index: 1001;}
+	.menu-mobile.loaded{
+	   	-webkit-transform: translateX(0px);
+	   	transform: translateX(0px);
+	   	display: block;}
+	.menu-mobile .block{
+	    height: 100vh;
+	    padding-bottom: 70px;
+	    overflow-x: hidden;}
+	.menu-mobile .header{
+		z-index: 1000;
+		padding-bottom: 10px !important;}
+	.menu-mobile .menu{margin-top: 123px;}
+	.menu-mobile a:hover svg{fill: #262626;}
+	.menu-mobile ul li a{opacity: 0}
+	.menu-mobile ul.activity li a{opacity: 1;}
+	.menu-mobile, .menu-mobile ul li ul{
+		-webkit-transition: all 200ms;
+		-moz-transition: all 200ms;
+		transition: all 200ms;}
+	.menu-mobile ul li ul{
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+		top: 0;
+		left: 0;
+		padding: 0 15px;
+		max-height: 100%;
+		z-index: 2;}
+	.menu-mobile ul li ul.loaded{
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);}
+	.menu-mobile ul li ul.activity{
+		overflow-y: auto;
+		overflow-x: hidden;}
+	.menu-mobile .name.active{
+		padding-top: 2px;
+		font-family: Montserrat;
+		font-size: 19px;
+		line-height: 22px;}
+	.menu-mobile ul{padding-inline-start: 0px;}
+	.menu-mobile ul a{
+		border-radius: 5px;
+		text-transform: uppercase;
+		font-size: 14px;}
+}
+@media (max-width: 375px){
+	.menu-mobile .name.active{
+		font-size: 17px;
+		text-transform: uppercase;}
+}
+@media (max-width: 320px){
+	.menu-mobile .menu {
+	    margin-top: 136px;
+}
+	.menu-mobile .name.active{
+		font-size: 14px;}
+}

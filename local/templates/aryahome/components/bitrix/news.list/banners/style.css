@@ -1,0 +1,93 @@
+.timer-2{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding: 5px 0  12px 0;
+}
+.timer-box {
+  height: 50px;
+}
+.timer-box ul {
+  width: 226px;
+  padding: 0;
+}
+.timer-new {
+  width: 226px;
+  height: 40px;
+  margin: 0 auto;
+  background: url('images/bg_timerH40.png') no-repeat;
+}
+.timer-new li {
+  width: 42px;
+  height: 34px;
+  font-size: 34px;
+  line-height: 36px;
+  color: #e1e1e1;
+  letter-spacing: 7px;
+  position: relative;
+  padding-left: 4px;
+  list-style-type: none;    
+}
+.timer-new li + li:before {
+  width: 8px;
+  height: 40px;
+  display: block;
+  font-size: 34px;
+  line-height: 30px;
+  content: ':';
+  position: absolute;
+  left: -7px;
+  top: 0;
+  color: #262626;
+}
+.time-name { margin: 0 auto; }
+.time-name li {
+  width: 43px;
+  font-size: 12px;
+  color: #262626;
+  text-align: center;
+  list-style-type: none;
+}
+.timer-new li + li,
+.time-name li + li { margin-left: 15px; }
+.title-time {
+  font-size: 28px;
+}
+@media (max-width: 900px){
+  .timer-new {
+    transform: scale3d(.9,.9,1);
+  }
+}
+@media (max-width: 500px){
+  .timer-box {
+    padding-top: 0;
+  }
+  .timer-box ul {
+    width: 220px;
+  }
+  .timer-new li {
+    line-height: 40px;
+  }
+  .timer-new li + li:before {
+    font-size: 24px;
+    line-height: 38px;
+    left: -6px;
+  }
+  .title-time {
+    display: none !important;
+  }
+}
+@media (max-width: 420px){
+  .timer-box ul {
+    width: 172px;
+  }
+  .time-name {
+    width: 174px;
+  }
+  .time-name li {
+    font-size: 10px;
+  }
+  .timer-new {
+    transform: scale3d(.8,.8,1);
+  }
+}

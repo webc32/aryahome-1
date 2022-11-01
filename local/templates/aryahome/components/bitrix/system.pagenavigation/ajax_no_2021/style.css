@@ -1,0 +1,18 @@
+.catalog .load-product{
+	font-size: 16px;
+	line-height: 22px;
+	border-top: 1px solid #E1E1E1;}
+.catalog .load-product .line{max-width: 329px;}
+.catalog .load-product a{
+	
+	font-size: 16px;
+	line-height: 22px;}
+@media (max-width: 767px) {
+	/*pagination
+	=====================*/
+	.catalog .load-product{
+		font-size: 13px;}
+	.catalog .load-product a{
+		font-weight: 500;
+		font-size: 14px;}
+}

@@ -1,0 +1,87 @@
+/*catalog
+====================*/
+.catalog .sorting .sorting-section{
+	border-bottom: 1px solid #E1E1E1;
+	padding-bottom: 13px;}
+.catalog .sorting .sorting-section a{
+	font-size: 14px;
+	line-height: 20px;
+	padding-bottom: 15px;}
+.catalog .sorting .sorting-section a:hover{color: #D0A550;}
+.catalog .sorting .sorting-section .text-gold{border-bottom: 3px solid #D0A550;}
+.catalog .sorting .filter-active span label{
+	cursor: pointer;
+	padding-top:12px;
+	padding-bottom:8px;
+	font-size: 13px;
+	line-height: 20px;
+	border-radius: 32px;}
+.catalog .sorting .filter-active .ellipse{
+	margin-top: -4px;
+	padding-top: 0;
+	width: 24px;
+	height: 24px;
+	background-color: #D8D8D8;}
+.catalog .sorting .filter-active label:hover .ellipse{background-color: #D0A550;}
+.catalog .description.section{
+	text-align: justify;
+	font-size: 14px;}
+
+.card-sizes-link-c246x328{background-image: url(images/c246x328.png);	}
+.card-sizes-link-large{background-image: url(images/large.png);}
+.card-sizes-link-c246x328.active{background-image: url(images/c246x328_active.png);	}
+.card-sizes-link-large.active{background-image: url(images/large_active.png);}
+.card-sizes-link {
+    vertical-align: top;
+    width: 19px;
+    height: 19px;
+    padding: 0;
+    background-repeat: no-repeat;
+    cursor: pointer;}
+
+@media (max-width: 767px) {
+	/*catalog
+	=====================*/
+	.catalog .filter-active{border-bottom: 1px solid #E1E1E1;}
+	.catalog .sorting .sorting-section,
+	.catalog .filter-active{
+		padding-bottom: .5rem!important;
+		font-size: 13px;
+		line-height: 22px;
+		font-family: Montserrat;}
+	.catalog .sorting .filter-active span a{
+		padding-top:8px;}
+	.catalog .sorting .filter-active .ellipse{
+		padding-top: 0px;}
+	.sorting .sorting-section label{
+	    top: 0;
+	    bottom: 4px;
+	    left: 3px;
+	    right: 1px;
+	    border: 0;
+	    display: inline-block;
+	    z-index: 1;
+	    pointer-events: none;}
+	.sorting .sorting-section select{
+		border: none;
+	    border-radius: 0;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    text-indent: -99999px;
+	    top: 0;
+	    left: 0;
+	    padding-left: 2px;
+	    display: block;
+	    height: 100%;
+	    outline: 0;}
+	.catalog .description.section{
+		font-size: 13px;
+		line-height: 22px;}
+	.catalog .readmore-js-toggle{
+		padding-top: 75px;
+    	margin-top: -75px;
+		font-size: 14px;
+		line-height: 20px;
+		background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1) 75%);}
+}

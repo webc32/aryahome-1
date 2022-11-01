@@ -1,0 +1,22 @@
+/*setion.list
+====================*/
+.section-list .element .name{
+	text-transform: uppercase;
+	font-size: 14px;
+	line-height: 18px;}
+.section-list .element{
+	margin: 0 16px;
+	max-width: 116px;}
+.section-list .element img{border-radius: 9px;}
+
+@media (max-width: 767px){
+	/*setion.list
+	====================*/
+	.section-list .element .name{
+		font-size: 11px;
+		line-height: 13px;
+		font-family: Montserrat;}
+	.section-list .owl-item{
+		justify-content: center;
+		display: flex;}
+}

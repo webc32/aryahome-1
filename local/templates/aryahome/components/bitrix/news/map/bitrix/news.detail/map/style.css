@@ -1,0 +1,9 @@
+/* map.element
+====================*/
+.catalog .shop .photo img{border-radius: 5px;}
+#map{height: 500px;}
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	
+}

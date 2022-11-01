@@ -1,0 +1,32 @@
+/* sale
+====================*/
+.catalog .sale.list .name{max-width: 90%;}
+.catalog .sale.list .note{
+	max-width: 90%;
+	font-size: 16px;
+	line-height: 24px;}
+.catalog .sale.list .date-note{
+	font-size: 13px;
+	line-height: 24px;}
+.catalog .sale .border-gray{
+	border-radius: 9px;}
+
+/* Mobile-375
+====================*/
+@media (max-width: 767px){
+	/* sale
+	====================*/
+	.catalog .sale.list .name{
+		line-height: 20px;
+		font-size: 19px;}
+	.catalog .sale.list .note{
+		font-size: 13px;
+		line-height: 18px;}
+	.catalog .sale.list .date{
+		min-width: 100px;
+		font-size: 21px;
+		line-height: 20px;}
+	.catalog .sale.list .date-note{
+		font-size: 12px;
+		line-height: 13px;}
+}
