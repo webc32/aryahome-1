@@ -1141,4 +1141,52 @@ CMax::$arParametrsList["INDEX_PAGE"]["OPTIONS"]["INDEX_TYPE"]["SUB_PARAMS"]["ind
         'SMALL_TOGGLE' => 'Y',
         "FON" => 'Y'
     );
+	
+AddEventHandler("main", "OnEpilog", "redirects");
+function redirects(){
+	$notBitrix = strpos($_SERVER['REQUEST_URI'], '/bitrix/');
+	$if_index_html = (strpos($_SERVER['REQUEST_URI'], 'index.html') || strpos($_SERVER['REQUEST_URI'], 'index.php'));
+	$have_www = stristr($_SERVER['HTTP_HOST'], 'www');
+	$more_slashes = strpos($_SERVER['REQUEST_URI'], '//');
+	$is_file = is_file($_SERVER['DOCUMENT_ROOT'].explode('?',$_SERVER['REQUEST_URI'])[0]);
+	
+	$url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	if($notBitrix === false) {
+		
+		if($have_www){
+			$url = str_replace('www.','',$url);
+			$rd = true;
+		}
+		if ($url!= strtolower($url) && $is_file == false){
+			$url = strtolower($url);
+			$rd = true;
+		}
+		if($if_index_html){
+			$url = str_replace('index.html','',$url);
+			$url = str_replace('index.php','',$url);
+			$rd = true;
+		}
+		if($more_slashes){
+			$url = preg_replace ('~([\/\*])\1+~', '\1', $url);
+			$rd = true;
+		}
+		
+		$parts_url = explode("?", $url);
+		$parts_url_0= $parts_url[0];
+		$parts_url_1= $parts_url[1];
+		if(!$is_file && substr($parts_url_0, -1) !='/'){
+			if($parts_url_1){
+				$url = $parts_url_0.'/?'.$parts_url_1;
+			} else {
+				$url = $parts_url_0.'/';
+			}
+			$rd = true;
+		}
+		
+		if($rd == true){
+			 LocalRedirect( 'https://'.$url, true, '301');
+			 exit();
+		}
+	}
+}	
 ?>
