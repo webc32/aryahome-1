@@ -1141,7 +1141,7 @@ CMax::$arParametrsList["INDEX_PAGE"]["OPTIONS"]["INDEX_TYPE"]["SUB_PARAMS"]["ind
         'SMALL_TOGGLE' => 'Y',
         "FON" => 'Y'
     );
-	
+    
 AddEventHandler("main", "OnEpilog", "redirects");
 function redirects(){
 	$notBitrix = strpos($_SERVER['REQUEST_URI'], '/bitrix/');
