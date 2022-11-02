@@ -1148,17 +1148,23 @@ function redirects(){
 	$if_index_html = (strpos($_SERVER['REQUEST_URI'], 'index.html') || strpos($_SERVER['REQUEST_URI'], 'index.php'));
 	$have_www = stristr($_SERVER['HTTP_HOST'], 'www');
 	$more_slashes = strpos($_SERVER['REQUEST_URI'], '//');
-	$is_file = is_file($_SERVER['DOCUMENT_ROOT'].explode('?',$_SERVER['REQUEST_URI'])[0]);
+	$parts = explode('?',$_SERVER['REQUEST_URI']);
+	$is_file = is_file($_SERVER['DOCUMENT_ROOT'].$parts[0]);
 	
-	$url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$url = $_SERVER['HTTP_HOST'].$parts[0];
+	if($parts[1]){
+		$url .='?'.$parts[1];
+	}
 	if($notBitrix === false) {
-		
-		if($have_www){
-			$url = str_replace('www.','',$url);
+		if ($parts[0]!= strtolower($parts[0]) && $is_file == false){
+			$url = strtolower($_SERVER['HTTP_HOST'].$parts[0]);
+			if($parts[1]){
+				$url .='?'.$parts[1];
+			}
 			$rd = true;
 		}
-		if ($url!= strtolower($url) && $is_file == false){
-			$url = strtolower($url);
+		if($have_www){
+			$url = str_replace('www.','',$url);
 			$rd = true;
 		}
 		if($if_index_html){
