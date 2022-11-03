@@ -30,7 +30,7 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.max"));?>
 		CMax::Start(SITE_ID);?>
 	<?include_once(str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'].'/'.SITE_DIR.'include/header_include/head.php'));?>
 
-	<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>
+	<!--<script async type="text/javascript" src="https://cdn.kealabs.com/aryahome/loader.js"></script>-->
 </head>
 <?
 $git = 'git ';
