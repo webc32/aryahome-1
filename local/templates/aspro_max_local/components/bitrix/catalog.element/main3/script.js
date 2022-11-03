@@ -3957,7 +3957,9 @@ $(document).ready(function () {
 $(document).ready(function(){
 	if($('#photo-0 iframe').length>0){
 		setTimeout(function(){
-			$('.product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical').css('left', '-60px').css('top', '100px');
+			if($('.product-detail-gallery__slider_custom .owl-item').length <4){
+				$('.product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical').css('left', '-60px').css('top', '100px');
+			}
 		},100);
 		if(window.innerWidth<768){
 			$('#photo-0').find('iframe').removeAttr('class');
