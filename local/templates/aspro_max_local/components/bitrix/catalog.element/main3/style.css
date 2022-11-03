@@ -127,3 +127,12 @@
 .product-container .product-detail-gallery__item .product-detail-gallery__picture {
     max-width: 400px;
 }
+#mobile_video_container{
+	width:100%;
+	height:100%;
+	display:none;
+}
+#mobile_video_container iframe{
+	width:100%;
+	height:100%;
+}

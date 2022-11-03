@@ -1899,6 +1899,7 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 }
 ?>
 </div>
+<div id="mobile_video_container"></div>
 <?$this->EndViewTarget();?>
 
 <style>
