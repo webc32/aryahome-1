@@ -3944,10 +3944,28 @@ $(document).ready(function () {
   }
   $('.video-block_popup_custom').on('click', 'a', function(e){
     e.preventDefault();
-    var owl_car = $(this).closest('.product-detail-gallery ').find('.product-detail-gallery__slider_custom');
+   /*  var owl_car = $(this).closest('.product-detail-gallery ').find('.product-detail-gallery__slider_custom');
     
-    owl_car.trigger('to.owl.carousel', [0, 250])
+    owl_car.trigger('to.owl.carousel', [0, 250]) */
+	$.fancybox.open({
+		src: '#mobile_video_container',
+		type: 'inline'
+	});
   
   })
+})
+$(document).ready(function(){
+	if($('#photo-0 iframe').length>0){
+		setTimeout(function(){
+			$('.product-container .product-detail-gallery__slider.thmb.product-detail-gallery__slider--vertical').css('left', '-60px').css('top', '100px');
+		},100);
+		if(window.innerWidth<768){
+			$('#photo-0').find('iframe').removeAttr('class');
+			var video = $('#photo-0').html();
+			var video_index = $('.product-detail-gallery__item#photo-0').parent().index();
+			$('#mobile_video_container').html(video);
+			$('.product-detail-gallery__slider_custom').owlCarousel('remove', video_index).owlCarousel('update');
+		}
+	}
 })
 
