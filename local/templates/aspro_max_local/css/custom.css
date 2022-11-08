@@ -18,6 +18,22 @@
     font-weight: 400;
     font-style: normal
 }
+@font-face {
+    font-family: 'Fira Sans';
+    font-display: swap;
+    src: url(../fonts/FiraSans/FiraSans-Regular.eot);
+    src: url(../fonts/FiraSans/FiraSans-Regular.eot?#iefix) format('embedded-opentype'), url(../fonts/FiraSans/FiraSans-Regular.woff) format('woff'), url(../fonts/FiraSans/FiraSans-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fira Sans';
+    font-display: swap;
+    src: url(../fonts/FiraSans/FiraSans-Medium.eot);
+    src: url(../fonts/FiraSans/FiraSans-Medium.eot?#iefix) format('embedded-opentype'), url(../fonts/FiraSans/FiraSans-Medium.woff) format('woff'), url(../fonts/FiraSans/FiraSans-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal
+}
 
 
 
@@ -1340,4 +1356,15 @@ margin-top: 20px;
 }
 body .prices .price_matrix_block .not-show:first-of-type {
     margin-bottom: 0px;
+}
+/*font tizers*/
+.front_tizers span{
+    font-family: 'Fira Sans' !important;
+    font-style: normal;
+    font-weight: 500;
+}
+.front_tizers .value{
+    font-family: 'Fira Sans' !important;
+    font-style: normal;
+    font-weight: normal;
 }
