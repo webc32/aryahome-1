@@ -7,6 +7,10 @@ body .wrapper1.long_banner.with_left_block .header_wrap .line-row{display:none !
 body .wrapper1.long_banner .top_big_one_banner .top_slider_wrapp{margin-bottom:0px;}
 body .wrapper1.long_banner .drag-block.grey.TIZERS .tizers_block{margin-top:0px;}
 
+.top_slider_wrapp .main-slider .main-slider__wrapper .main-slider__item {
+    background-position: left !important;
+    background-repeat: no-repeat;
+}
 
 /*long banner*/
 @media (min-width:992px){
