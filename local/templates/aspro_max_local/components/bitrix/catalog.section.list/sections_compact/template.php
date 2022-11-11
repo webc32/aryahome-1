@@ -225,7 +225,7 @@
 				$countElements = CMaxCache::CIBlockElement_GetList($arOrder, $arFilter, []);
 				$arSubSections = Array();
 				$arItems['ELEMENT_CNT'] = $countElements;
-				$arFilter = array('SECTION_ID' => $arItems['ID']); // выберет потомков без учета активности
+				$arFilter = array('SECTION_ID' => $arItems['ID'], 'ACTIVE' => 'Y'); // выберет потомков с учетом активности
 				$rsSect = CIBlockSection::GetList(array('ID' => 'asc'),$arFilter);
 				while ($arSect = $rsSect->getNext())
 				{
