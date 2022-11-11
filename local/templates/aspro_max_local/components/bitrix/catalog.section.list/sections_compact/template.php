@@ -248,7 +248,7 @@
 							<?
 								foreach($arSubSections as $subsection){
 									?>
-									<a href="<?=$subsection['SECTION_PAGE_URL']?>" class="section-compact-list__link dark_link"><span style="font-family: 'Helvetica' !important;"><?=$subsection['NAME']?></span></a>
+									<a href="<?=$subsection['SECTION_PAGE_URL']?>" class="section-compact-list__link dark_link"><span style="font-family: 'Helvetica' !important;text-transform: none;"><?=$subsection['NAME']?></span></a>
 									<?
 								}
 								
